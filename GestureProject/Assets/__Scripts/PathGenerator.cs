@@ -11,11 +11,11 @@ public class PathGenerator : MonoBehaviour
 
         
 
-        for (int i = -60; i < -40; i += 2)
+        for (int i = -60; i < 0; i += 2)
         {
 
-            copy.transform.localScale = new Vector3(Random.Range(1.0f, 2.0f), 1, Random.Range(1.0f, 2.0f));
-            Instantiate(copy, new Vector3(Random.Range(-10.5f, -9.5f), Random.Range(-10.5f, -9.5f), i), Quaternion.identity);
+            copy.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
+            Instantiate(copy, new Vector3(Random.Range(-10.5f, -9.5f), Random.Range(-11f, -10.5f), i), Quaternion.identity);
         }
 
     }
