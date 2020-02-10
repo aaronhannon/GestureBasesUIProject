@@ -42,13 +42,13 @@ public class StartGame : MonoBehaviour
                 PlayerJump();
             }
 
-            // Check if player wants to move left (true = left)
+            // Check if player wants to move left
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 MoveLeft();
             }
 
-            // Check if player wants to move right (false = right)
+            // Check if player wants to move right
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 MoveRight();
