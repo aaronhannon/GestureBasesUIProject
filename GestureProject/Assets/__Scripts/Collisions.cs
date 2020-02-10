@@ -24,7 +24,9 @@ public class Collisions : MonoBehaviour
         {
             
             GameObject heart = GameObject.Find("heart" + lives);
-            Destroy(heart);
+            Animator a = heart.GetComponent<Animator>();
+            a.SetBool("Destroyed", true);
+            //Destroy(heart);
             
             lives--;
 
