@@ -69,7 +69,7 @@ public class StartGame : MonoBehaviour
     // Make the player jump, and trigger animation.
     private void PlayerJump()
     {
-        playerRb.AddForce(new Vector3(0.0f, 2.0f, 0.0f) * jumpSpeed, ForceMode.Impulse);
+        playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
         animator.SetTrigger("Jump");
     }
 
