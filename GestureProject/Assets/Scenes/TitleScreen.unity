@@ -470,7 +470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50507858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.73, y: 2.3293004, z: -4.346}
+  m_LocalPosition: {x: -1.73, y: 2.06, z: -4.346}
   m_LocalScale: {x: 2.3000002, y: 2.2999995, z: 2.2999995}
   m_Children: []
   m_Father: {fileID: 4028251830449965}
@@ -6126,6 +6126,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Village Chunk
       objectReference: {fileID: 0}
+    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -71.88
+      objectReference: {fileID: 0}
     - target: {fileID: -6163754642667335845, guid: 6defe2a992da0ad40a120171c1923a9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6211,6 +6226,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.3
       objectReference: {fileID: 0}
+    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -71.88
+      objectReference: {fileID: 0}
     - target: {fileID: 3033646097104575390, guid: 6defe2a992da0ad40a120171c1923a9f,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6251,21 +6281,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -71.88
       objectReference: {fileID: 0}
-    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: -9147093381953916846, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -71.88
-      objectReference: {fileID: 0}
     - target: {fileID: 5517777584848949749, guid: 6defe2a992da0ad40a120171c1923a9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6277,21 +6292,6 @@ PrefabInstance:
       value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 5517777584848949749, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -71.88
-      objectReference: {fileID: 0}
-    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.05
-      objectReference: {fileID: 0}
-    - target: {fileID: -2301635161378442943, guid: 6defe2a992da0ad40a120171c1923a9f,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -71.88
@@ -14426,6 +14426,7 @@ GameObject:
   - component: {fileID: 95139113287649485}
   - component: {fileID: 1948535616227634}
   - component: {fileID: 1948535616227635}
+  - component: {fileID: 1948535616227636}
   m_Layer: 0
   m_Name: Low Poly Warrior
   m_TagString: Untagged
@@ -14458,10 +14459,24 @@ BoxCollider:
   m_GameObject: {fileID: 1948535616227633}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2.0101724, z: 1}
   m_Center: {x: 0, y: 1.0304453, z: 0}
+--- !u!136 &1948535616227636
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948535616227633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 2.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1957902898712141
 GameObject:
   m_ObjectHideFlags: 0
@@ -14797,7 +14812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948535616227633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: -7.5, z: -86.49135}
+  m_LocalPosition: {x: -10, y: -7.24, z: -86.49135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 50507863}
