@@ -12,6 +12,7 @@ public class StartGame : MonoBehaviour
     private GameObject player;
     private Rigidbody playerRb;
     public Animator animator;
+    private bool fixedcamera = false;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class StartGame : MonoBehaviour
     {
         if(gameStarted == true)
         {
-            if(mainCamera.transform.position.x < -10)
+            if(mainCamera.transform.position.x < -10 && fixedcamera == false)
             {
                 mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.01f, mainCamera.transform.position.y, mainCamera.transform.position.z);
             }
@@ -34,6 +35,7 @@ public class StartGame : MonoBehaviour
             {
                 animator.SetBool("Started", true);
                 player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.2f);
+                fixedcamera = true;
             }
 
             // Check if player wants to jump, and if player is on the ground.
@@ -80,7 +82,7 @@ public class StartGame : MonoBehaviour
             player.transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
 
             // Move camera to new player position.
-            MoveCamera();
+            //MoveCamera();
         }
     }
 
@@ -91,14 +93,14 @@ public class StartGame : MonoBehaviour
             player.transform.position = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y, player.transform.position.z);
 
             // Move camera to new player position.
-            MoveCamera();
+            //MoveCamera();
         }
     }
 
-    private void MoveCamera()
-    {
-        mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
-    }
+    //private void MoveCamera()
+    //{
+    //    mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
+    //}
 
     private void OnMouseDown()
     {
