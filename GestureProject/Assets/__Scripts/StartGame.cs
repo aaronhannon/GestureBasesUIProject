@@ -22,7 +22,7 @@ public class StartGame : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(gameStarted == true)
         {
@@ -41,9 +41,24 @@ public class StartGame : MonoBehaviour
             {
                 PlayerJump();
             }
+
+            // Check if player wants to move left (true = left)
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MoveLeft();
+            }
+
+            // Check if player wants to move right (false = right)
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                MoveRight();
+            }
+
+            // Trying to smooth out movement, will look into this further.
+            player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
         }
     }
-
+    
     // Check if player is touching the ground by sending a raycast down. 
     // If the distance is greater than .05 then it returns false E.g Player is jumping.
     private bool IsGrounded()
@@ -57,7 +72,34 @@ public class StartGame : MonoBehaviour
         playerRb.AddForce(new Vector3(0.0f, 2.0f, 0.0f) * jumpSpeed, ForceMode.Impulse);
         animator.SetTrigger("Jump");
     }
-    
+
+    private void MoveLeft()
+    {
+        if(player.transform.position.x >= -11.1f)
+        {
+            player.transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
+
+            // Move camera to new player position.
+            MoveCamera();
+        }
+    }
+
+    private void MoveRight()
+    {
+        if (player.transform.position.x <= -8.1f)
+        {
+            player.transform.position = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y, player.transform.position.z);
+
+            // Move camera to new player position.
+            MoveCamera();
+        }
+    }
+
+    private void MoveCamera()
+    {
+        mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
+    }
+
     private void OnMouseDown()
     {
         gameStarted = true;
