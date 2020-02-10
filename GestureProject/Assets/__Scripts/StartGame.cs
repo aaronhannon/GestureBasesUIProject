@@ -28,7 +28,7 @@ public class StartGame : MonoBehaviour
             else
             {
                 animator.SetBool("Started", true);
-                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.1f);
+                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.2f);
             }
 
         }
