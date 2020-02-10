@@ -24,11 +24,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965979039297630411}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7, y: 1.07, z: 0.12}
-  m_Center: {x: -36.04, y: -1.32, z: -3.45}
+  m_Size: {x: 1.7871666, y: 1.0700003, z: 0.12000004}
+  m_Center: {x: -35.99642, y: -1.32, z: -3.4500003}
+--- !u!114 &3032878093603400638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965979039297630411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5360387c2fc8cd5449001a32a6654201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &964505396703309201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,6 +51,10 @@ PrefabInstance:
     - target: {fileID: 1482541839965530, guid: 8090c6aaeead5e145b7723e5d6fedc39, type: 3}
       propertyPath: m_Name
       value: fence
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482541839965530, guid: 8090c6aaeead5e145b7723e5d6fedc39, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 4071663868136026, guid: 8090c6aaeead5e145b7723e5d6fedc39, type: 3}
       propertyPath: m_LocalPosition.x
