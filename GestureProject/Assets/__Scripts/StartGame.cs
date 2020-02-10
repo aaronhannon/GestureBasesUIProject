@@ -51,11 +51,11 @@ public class StartGame : MonoBehaviour
         return Physics.Raycast(player.transform.position, Vector3.down, distToGround + 0.5f);
     }
 
-    // Make the player jump.
+    // Make the player jump, and trigger animation.
     private void PlayerJump()
     {
         playerRb.AddForce(new Vector3(0.0f, 2.0f, 0.0f) * jumpSpeed, ForceMode.Impulse);
-        //animator.SetBool("Jump", true);
+        animator.SetTrigger("Jump");
     }
     
     private void OnMouseDown()

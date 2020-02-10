@@ -9,9 +9,8 @@ public class PathGenerator : MonoBehaviour
     {
         GameObject copy = pathPrefab;
         GameObject grass;
-
-
-        for (int i = -60; i < 0; i += 2)
+        
+        for (int i = -60; i < 200; i += 2)
         {
             //Different grass prefabs can be used randomly but Coords need to be fixed
             grass = Resources.Load("grass4") as GameObject;
