@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class StartGame : MonoBehaviour
 {
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
+    private float distToGround;
     private GameObject mainCamera;
     private GameObject player;
     private Rigidbody playerRb;
@@ -16,6 +18,7 @@ public class StartGame : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
         player = GameObject.Find("Low Poly Warrior");
         playerRb = player.GetComponent<Rigidbody>();
+        distToGround = player.GetComponent<Collider>().bounds.extents.y;
     }
 
     // Update is called once per frame
@@ -32,18 +35,27 @@ public class StartGame : MonoBehaviour
                 animator.SetBool("Started", true);
                 player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.2f);
             }
-            // Check if player wants to jump.
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            // Check if player wants to jump, and if player is on the ground.
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             {
                 PlayerJump();
             }
         }
     }
-    
+
+    // Check if player is touching the ground by sending a raycast down. 
+    // If the distance is greater than .05 then it returns false E.g Player is jumping.
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(player.transform.position, Vector3.down, distToGround + 0.5f);
+    }
+
     // Make the player jump.
     private void PlayerJump()
     {
         playerRb.AddForce(new Vector3(0.0f, 2.0f, 0.0f) * jumpSpeed, ForceMode.Impulse);
+        //animator.SetBool("Jump", true);
     }
     
     private void OnMouseDown()
