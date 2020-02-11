@@ -76,6 +76,8 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+    <Compile Include="Assets\WaterStuff\Scripts\Water.cs" />
+    <None Include="Assets\WaterStuff\Shaders\FlatShadedWaterWithEdgeBlend.shader" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Aaron/Desktop/GestureBasesUIProject/GestureProject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
