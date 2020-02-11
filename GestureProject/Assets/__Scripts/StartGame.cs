@@ -13,7 +13,7 @@ public class StartGame : MonoBehaviour
     private Rigidbody playerRb;
     public Animator animator;
     private bool fixedcamera = false;
-
+    private int heartcounter = 1;
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
@@ -22,6 +22,7 @@ public class StartGame : MonoBehaviour
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
     }
 
+    //4.347826
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -36,6 +37,17 @@ public class StartGame : MonoBehaviour
                 animator.SetBool("Started", true);
                 player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.2f);
                 fixedcamera = true;
+
+                if(heartcounter < 4)
+                {
+                    GameObject heart = GameObject.Find("heart" + heartcounter);
+                    Animator a = heart.GetComponent<Animator>();
+                    a.SetBool("StartClicked", true);
+
+                    heartcounter++;
+                }
+
+
             }
 
             // Check if player wants to jump, and if player is on the ground.
