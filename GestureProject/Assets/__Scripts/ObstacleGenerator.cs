@@ -10,10 +10,10 @@ public class ObstacleGenerator : MonoBehaviour
     void Start()
     {
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = -40; i < 200; i += 25)
+        for (int i = 0; i < 240; i += 25)
         {
             fence = Resources.Load("fence") as GameObject;
-            Instantiate(fence, new Vector3(Random.Range(30f, 35f), -8f, i), Quaternion.identity);
+            Instantiate(fence, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity);
         }
     }
 }

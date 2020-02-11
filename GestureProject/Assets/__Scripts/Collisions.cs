@@ -22,7 +22,9 @@ public class Collisions : MonoBehaviour
     {
         if (other.CompareTag("obstacle"))
         {
-            
+
+            other.gameObject.GetComponent<Animator>().SetBool("collided", true);
+
             GameObject heart = GameObject.Find("heart" + lives);
             Animator a = heart.GetComponent<Animator>();
             a.SetBool("Destroyed", true);

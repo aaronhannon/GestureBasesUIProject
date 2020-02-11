@@ -7,6 +7,7 @@ public class StartGame : MonoBehaviour
 {
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
+    private float playerSpeed = 0.2f;
     private float distToGround;
     private GameObject mainCamera;
     private GameObject player;
@@ -28,14 +29,14 @@ public class StartGame : MonoBehaviour
     {
         if(gameStarted == true)
         {
-            if(mainCamera.transform.position.x < -10 && fixedcamera == false)
+            if(mainCamera.transform.position.x < 0 && fixedcamera == false)
             {
                 mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.01f, mainCamera.transform.position.y, mainCamera.transform.position.z);
             }
             else
             {
                 animator.SetBool("Started", true);
-                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 0.2f);
+                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + playerSpeed);
                 fixedcamera = true;
 
                 if(heartcounter < 4)
@@ -89,7 +90,7 @@ public class StartGame : MonoBehaviour
 
     private void MoveLeft()
     {
-        if(player.transform.position.x >= -11.1f)
+        if(player.transform.position.x >= -5f)
         {
             player.transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
 
@@ -100,7 +101,7 @@ public class StartGame : MonoBehaviour
 
     private void MoveRight()
     {
-        if (player.transform.position.x <= -8.1f)
+        if (player.transform.position.x <= 5f)
         {
             player.transform.position = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y, player.transform.position.z);
 
@@ -113,6 +114,11 @@ public class StartGame : MonoBehaviour
     //{
     //    mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
     //}
+
+    public void SetPlayerSpeed(float speed)
+    {
+        playerSpeed = speed;
+    }
 
     private void OnMouseDown()
     {
