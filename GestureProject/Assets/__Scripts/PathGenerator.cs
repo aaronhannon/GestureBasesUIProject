@@ -11,7 +11,7 @@ public class PathGenerator : MonoBehaviour
         GameObject grass;
         
         
-        for (int i = 0; i < 250; i += 1)
+        for (int i = 0; i < 600; i += 1)
         {
             //Different grass prefabs can be used randomly but Coords need to be fixed
             grass = Resources.Load("grass4") as GameObject;
