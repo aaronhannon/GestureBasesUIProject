@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - obstacle
+  - helmet
   layers:
   - Default
   - TransparentFX

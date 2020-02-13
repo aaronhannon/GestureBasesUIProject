@@ -39,6 +39,10 @@ public class Collisions : MonoBehaviour
             }
 
             
+        }else if (other.CompareTag("helmet"))
+        {
+            // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002
+            GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
         }
     }
 }
