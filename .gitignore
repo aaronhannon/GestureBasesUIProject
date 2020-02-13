@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+GestureProject/[Ll]ibrary/
+GestureProject/[Tt]emp/
+GestureProject/[Oo]bj/
+GestureProject/[Bb]uild/
+GestureProject/[Bb]uilds/
+GestureProject/[Ll]ogs/
+GestureProject/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -61,3 +61,6 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+GestureProject/UnityLockFile
+db.lock*
