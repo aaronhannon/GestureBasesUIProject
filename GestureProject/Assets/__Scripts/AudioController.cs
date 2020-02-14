@@ -10,7 +10,8 @@ public class AudioController : MonoBehaviour
 
     private AudioSource source;
 
-    Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
+    // Dictionary which holds all audio files in memory.
+    private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
 
     #endregion
 
@@ -31,21 +32,35 @@ public class AudioController : MonoBehaviour
         // Get AudioSource component and start background music playing.
         source = GetComponent<AudioSource>();
         loadAllAudioClips();
+
+        playAudio("background_2");
+    }
+
+    // Play any sound from Dictionary.
+    public void playAudio(string fileName)
+    {
+        source.clip = audioClips["background_2"];
+        source.Play();
     }
 
     private void loadAllAudioClips()
     {
+        // Get all file names from Resources folder, and get file information about each.
+        // Code adapted from: https://answers.unity.com/questions/16433/get-list-of-all-files-in-a-directory.html
         DirectoryInfo dir = new DirectoryInfo("Assets/Resources/Audio");
-        FileInfo[] info = dir.GetFiles();
+        FileInfo[] fileInfo = dir.GetFiles();
 
-        foreach (FileInfo f in info)
+        // Loop through each file in the directory/array.
+        foreach (FileInfo file in fileInfo)
         {
-            if (!f.Name.Contains(".meta"))
+            // Exlude meta files
+            if (!file.Name.Contains(".meta"))
             {
-                string[] fileName = f.Name.Split('.');
+                // Remove file extension from file name, get file from resouces and add to dictionary.
+                string[] fileName = file.Name.Split('.');
 
                 AudioClip temp = Resources.Load("Audio/" + fileName[0]) as AudioClip;
-                audioClips.Add(f.Name, temp);
+                audioClips.Add(fileName[0], temp);
             }
         }
     }
