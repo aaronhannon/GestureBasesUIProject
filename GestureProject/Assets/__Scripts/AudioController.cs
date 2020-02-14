@@ -10,8 +10,6 @@ public class AudioController : MonoBehaviour
 
     [SerializeField]
     private AudioSource sourceMusic;
-    //[SerializeField]
-    //private AudioSource sourceSFX;
     [SerializeField]
     private AudioSource sourceSFX;
 
@@ -34,9 +32,24 @@ public class AudioController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Load in all clips into memory, and start background music.
         LoadAllAudioClips();
-
         PlayAudio("background_2");
+    }
+
+    void Update()
+    {
+        // Check if game audio is off using player prefs, if so mute audiosource.
+        if (PlayerPrefs.GetString("Music") == "True")
+        {
+            sourceMusic.mute = false;
+            sourceSFX.mute = false;
+        }
+        else
+        {
+            sourceMusic.mute = true;
+            sourceSFX.mute = true;
+        }
     }
 
     // Play background music from Dictionary.
@@ -46,6 +59,7 @@ public class AudioController : MonoBehaviour
         sourceMusic.Play();
     }
     
+    // Play audio just once E.g collectables, jump etc.
     public void PlayAudioOnce(string fileName)
     {
         sourceSFX.PlayOneShot(audioClips[fileName]);
