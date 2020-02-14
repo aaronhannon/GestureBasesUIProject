@@ -473,7 +473,6 @@ GameObject:
   - component: {fileID: 50507859}
   - component: {fileID: 50507864}
   - component: {fileID: 50507865}
-  - component: {fileID: 50507866}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -598,20 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa36145c6e73904a897fbe43865e7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &50507866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50507858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381c9489ea532fe46836c7f86502a70d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TextMeshPro: {fileID: 3074613535602990665}
-  player: {fileID: 50507862}
 --- !u!1001 &59469058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16858,6 +16843,7 @@ GameObject:
   - component: {fileID: 1948535616227635}
   - component: {fileID: 1948535616227636}
   - component: {fileID: 1948535616227637}
+  - component: {fileID: 1948535616227638}
   m_Layer: 0
   m_Name: Low Poly Warrior
   m_TagString: Player
@@ -16920,6 +16906,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5224a1b1e1d03184b9c0af8ea245ef07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1948535616227638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948535616227633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381c9489ea532fe46836c7f86502a70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextMeshPro: {fileID: 3074613535602990665}
+  player: {fileID: 1948535616227633}
 --- !u!1 &1957902898712141
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,5 +57,12 @@ public class Collisions : MonoBehaviour
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
             helmet = true;
         }
+        else if (other.CompareTag("coin"))
+        {
+            other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
+
+            other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z); ;
+            ScoreScript.coinCounter++;
+        }
     }
 }

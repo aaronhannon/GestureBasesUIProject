@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\__Scripts\AmbientLight.cs" />
-    <Compile Include="Assets\__Scripts\CoinCollider.cs" />
     <Compile Include="Assets\__Scripts\CollectableGenerator.cs" />
     <Compile Include="Assets\__Scripts\Collisions.cs" />
     <Compile Include="Assets\__Scripts\ObstacleGenerator.cs" />

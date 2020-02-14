@@ -6,8 +6,9 @@ using UnityEngine;
 public class ScoreScript : MonoBehaviour
 {
     public TextMeshPro TextMeshPro;
-    public Camera player;
+    public GameObject player;
     private int score = -1;
+    public static int coinCounter = 0;
     private Vector3 _lastPosition;
     void Start()
     {
@@ -21,7 +22,6 @@ public class ScoreScript : MonoBehaviour
         {
             score++;
         }
-       
 
         _lastPosition = this.transform.position;
         TextMeshPro.text = "Score: "+score.ToString();

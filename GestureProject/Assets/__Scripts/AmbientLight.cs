@@ -37,7 +37,7 @@ public class AmbientLight : MonoBehaviour
             light.intensity -= offset;
             //Debug.Log("LightInt: " + light.intensity);
             RenderSettings.ambientIntensity -= offsetDiv;
-            Debug.Log("AmbLightInt: " + RenderSettings.ambientIntensity);
+            //Debug.Log("AmbLightInt: " + RenderSettings.ambientIntensity);
             mr.material.mainTextureOffset = new Vector2(mr.material.mainTextureOffset.x + offsetDiv, 0);
             if (light.intensity <= 0.0f)
             {
@@ -55,7 +55,7 @@ public class AmbientLight : MonoBehaviour
             light.intensity += offset;
             //Debug.Log("LightInt: " + light.intensity);
             RenderSettings.ambientIntensity += offsetDiv;
-            Debug.Log("AmbLightInt: " + RenderSettings.ambientIntensity);
+            //Debug.Log("AmbLightInt: " + RenderSettings.ambientIntensity);
             mr.material.mainTextureOffset = new Vector2(mr.material.mainTextureOffset.x - offsetDiv, 0);
             if (light.intensity >= 1.0f)
             {
