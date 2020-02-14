@@ -7,10 +7,11 @@ public class Collisions : MonoBehaviour
 {
     private int lives = 3;
     private bool helmet = false;
+    private ScoreScript scoreScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreScript = FindObjectOfType<ScoreScript>();
     }
 
     // Update is called once per frame
@@ -37,6 +38,8 @@ public class Collisions : MonoBehaviour
 
                 if (lives == 0)
                 {
+                    scoreScript.GenerateScore();
+                    scoreScript.ResetScore();
                     SceneManager.LoadScene(0);
                     Debug.Log("GameOver");
                 }
@@ -62,7 +65,7 @@ public class Collisions : MonoBehaviour
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
             other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z); ;
-            ScoreScript.coinCounter++;
+            scoreScript.IncreaseCoinCount();
         }
     }
 }
