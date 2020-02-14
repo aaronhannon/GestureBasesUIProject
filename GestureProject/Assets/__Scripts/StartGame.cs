@@ -86,6 +86,8 @@ public class StartGame : MonoBehaviour
     {
         playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
         animator.SetTrigger("Jump");
+
+        AudioController.Instance.PlayAudioOnce("jump");
     }
 
     private void MoveLeft()
@@ -93,9 +95,6 @@ public class StartGame : MonoBehaviour
         if(player.transform.position.x >= -5f)
         {
             player.transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
-
-            // Move camera to new player position.
-            //MoveCamera();
         }
     }
 
@@ -104,16 +103,8 @@ public class StartGame : MonoBehaviour
         if (player.transform.position.x <= 5f)
         {
             player.transform.position = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y, player.transform.position.z);
-
-            // Move camera to new player position.
-            //MoveCamera();
         }
     }
-
-    //private void MoveCamera()
-    //{
-    //    mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, mainCamera.transform.position.z);
-    //}
 
     public void SetPlayerSpeed(float speed)
     {

@@ -8,7 +8,12 @@ public class AudioController : MonoBehaviour
 {
     #region == Private Variables == 
 
-    private AudioSource source;
+    [SerializeField]
+    private AudioSource sourceMusic;
+    //[SerializeField]
+    //private AudioSource sourceSFX;
+    [SerializeField]
+    private AudioSource sourceSFX;
 
     // Dictionary which holds all audio files in memory.
     private Dictionary<string, AudioClip> audioClips = new Dictionary<string, AudioClip>();
@@ -29,21 +34,31 @@ public class AudioController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // Get AudioSource component and start background music playing.
-        source = GetComponent<AudioSource>();
-        loadAllAudioClips();
+        LoadAllAudioClips();
 
-        playAudio("background_2");
+        PlayAudio("background_2");
     }
 
-    // Play any sound from Dictionary.
-    public void playAudio(string fileName)
+    // Play background music from Dictionary.
+    public void PlayAudio(string fileName)
     {
-        source.clip = audioClips["background_2"];
-        source.Play();
+        sourceMusic.clip = audioClips[fileName];
+        sourceMusic.Play();
+    }
+    
+    public void PlayAudioOnce(string fileName)
+    {
+        sourceSFX.PlayOneShot(audioClips[fileName]);
     }
 
-    private void loadAllAudioClips()
+    // Play additional audio along with background music.
+    public void PlayRunAudio(string fileName)
+    {
+        sourceSFX.clip = audioClips[fileName];
+        sourceSFX.Play();
+    }
+
+    private void LoadAllAudioClips()
     {
         // Get all file names from Resources folder, and get file information about each.
         // Code adapted from: https://answers.unity.com/questions/16433/get-list-of-all-files-in-a-directory.html
