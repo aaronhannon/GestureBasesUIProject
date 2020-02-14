@@ -62,6 +62,7 @@
     <Compile Include="Assets\__Scripts\CollectableGenerator.cs" />
     <Compile Include="Assets\__Scripts\Collisions.cs" />
     <Compile Include="Assets\__Scripts\ObstacleGenerator.cs" />
+    <Compile Include="Assets\__Scripts\Options.cs" />
     <Compile Include="Assets\__Scripts\PathGenerator.cs" />
     <Compile Include="Assets\__Scripts\Pause.cs" />
     <Compile Include="Assets\__Scripts\ScoreScript.cs" />

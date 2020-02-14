@@ -21,9 +21,6 @@ public class StartGame : MonoBehaviour
         player = GameObject.Find("Low Poly Warrior");
         playerRb = player.GetComponent<Rigidbody>();
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
-
-        // Check if sound is on or not.
-        checkSound();
     }
 
     //4.347826
@@ -113,39 +110,12 @@ public class StartGame : MonoBehaviour
     {
         playerSpeed = speed;
     }
-
+    
     private void OnMouseDown()
     {
         gameStarted = true;
         Debug.Log("Game Started");
-        
+
         AudioController.Instance.PlayAudioOnce("horn");
-    }
-
-    // Check if sound option has been saved before.
-    // E.g if not the first time playing the game, or sound has never been turned off.
-    // If so then change toggle switch to false if sound is off.
-    // If not then set playerPref to true, for again.
-    private void checkSound()
-    {
-        // MUSIC
-        if (PlayerPrefs.HasKey("Music"))
-        {
-            // Change sound game object in world.
-            if (PlayerPrefs.GetString("Sound") == "True")
-            {
-                // Sound is on
-            }
-            else
-            {
-                // Sound is off
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetString("Music", "True");
-        }
-
-        // SFX
     }
 }
