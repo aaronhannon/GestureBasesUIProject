@@ -51,14 +51,16 @@ public class Collisions : MonoBehaviour
                 helmet = false;
             }
 
-
-            
-        }else if (other.CompareTag("helmet"))
+            AudioController.Instance.PlayAudioOnce("smash_fence");
+        }
+        else if (other.CompareTag("helmet"))
         {
             // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
             helmet = true;
+
+            AudioController.Instance.PlayAudioOnce("pickup_1");
         }
         else if (other.CompareTag("coin"))
         {
@@ -66,6 +68,8 @@ public class Collisions : MonoBehaviour
 
             other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z); ;
             scoreScript.IncreaseCoinCount();
+
+            AudioController.Instance.PlayAudioOnce("coin");
         }
     }
 }

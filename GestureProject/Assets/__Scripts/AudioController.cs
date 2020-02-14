@@ -51,8 +51,8 @@ public class AudioController : MonoBehaviour
         sourceSFX.PlayOneShot(audioClips[fileName]);
     }
 
-    // Play additional audio along with background music.
-    public void PlayRunAudio(string fileName)
+    // Play additional audio that will loop E.g Run along with background music.
+    public void PlayLoopAudio(string fileName)
     {
         sourceSFX.clip = audioClips[fileName];
         sourceSFX.Play();

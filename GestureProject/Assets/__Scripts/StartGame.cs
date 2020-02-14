@@ -47,8 +47,8 @@ public class StartGame : MonoBehaviour
 
                     heartcounter++;
                 }
-
-
+                
+                AudioController.Instance.PlayLoopAudio("running_ground");
             }
 
             // Check if player wants to jump, and if player is on the ground.
@@ -115,5 +115,7 @@ public class StartGame : MonoBehaviour
     {
         gameStarted = true;
         Debug.Log("Game Started");
+
+        AudioController.Instance.PlayAudioOnce("horn");
     }
 }
