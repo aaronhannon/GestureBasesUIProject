@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
     private float playerSpeed = 0.2f;
+    private float moveSpeed = 0.5f;
     private float distToGround;
     private GameObject mainCamera;
     private GameObject player;
@@ -25,7 +26,8 @@ public class StartGame : MonoBehaviour
 
     //4.347826
     // Update is called once per frame
-    void FixedUpdate()
+    // Fixed jump issue by using a LateUpdate as it's only called once per frame.
+    void LateUpdate()
     {
         if(gameStarted == true)
         {
@@ -70,7 +72,7 @@ public class StartGame : MonoBehaviour
             }
 
             // Trying to smooth out movement, will look into this further.
-            player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
+            //player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
         }
     }
     
@@ -94,7 +96,13 @@ public class StartGame : MonoBehaviour
     {
         if(player.transform.position.x >= -5f)
         {
-            player.transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
+            // Test attempts.
+            //player.transform.Translate(new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z) * Time.deltaTime);
+
+            //Vector3 movement = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
+            //playerRb.MovePosition(movement * Time.fixedDeltaTime);
+
+            player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
         }
     }
 
@@ -102,7 +110,9 @@ public class StartGame : MonoBehaviour
     {
         if (player.transform.position.x <= 5f)
         {
-            player.transform.position = new Vector3(player.transform.position.x + 0.5f, player.transform.position.y, player.transform.position.z);
+            //player.transform.Translate(new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z) * Time.deltaTime);
+
+            player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
         }
     }
 
