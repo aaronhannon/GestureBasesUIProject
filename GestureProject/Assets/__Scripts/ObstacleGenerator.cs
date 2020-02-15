@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObstacleGenerator : MonoBehaviour
 {
     // Single object for now, could use a list later.
-    public GameObject fence;
+    private GameObject fence;
+    private GameObject npc;
 
     void Start()
     {
@@ -14,6 +15,9 @@ public class ObstacleGenerator : MonoBehaviour
         {
             fence = Resources.Load("fence") as GameObject;
             Instantiate(fence, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity);
+
+            npc = Resources.Load("NPC_Man") as GameObject;
+            Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.Euler(0, -180, 0));
         }
     }
 }
