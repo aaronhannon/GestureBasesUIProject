@@ -15,9 +15,13 @@ public class ObstacleGenerator : MonoBehaviour
         {
             fence = Resources.Load("fence") as GameObject;
             Instantiate(fence, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity);
+        }
 
+        // Basic implementation for now, will need to be improved and randomized.
+        for (int i = 100; i < 800; i += 50)
+        {
             npc = Resources.Load("NPC_Man") as GameObject;
-            Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.Euler(0, -180, 0));
+            Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0));
         }
     }
 }

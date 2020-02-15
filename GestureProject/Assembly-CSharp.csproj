@@ -61,6 +61,7 @@
     <Compile Include="Assets\__Scripts\AudioController.cs" />
     <Compile Include="Assets\__Scripts\CollectableGenerator.cs" />
     <Compile Include="Assets\__Scripts\Collisions.cs" />
+    <Compile Include="Assets\__Scripts\MoveNPC.cs" />
     <Compile Include="Assets\__Scripts\ObstacleGenerator.cs" />
     <Compile Include="Assets\__Scripts\Options.cs" />
     <Compile Include="Assets\__Scripts\PathGenerator.cs" />
