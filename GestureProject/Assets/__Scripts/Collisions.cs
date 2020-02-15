@@ -8,6 +8,7 @@ public class Collisions : MonoBehaviour
     private int lives = 3;
     private bool helmet = false;
     private ScoreScript scoreScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,6 @@ public class Collisions : MonoBehaviour
     {
         if (other.CompareTag("obstacle"))
         {
-
             other.gameObject.GetComponent<Animator>().SetBool("collided", true);
 
             if(helmet == false)
@@ -70,6 +70,20 @@ public class Collisions : MonoBehaviour
             scoreScript.IncreaseCoinCount();
 
             AudioController.Instance.PlayAudioOnce("coin");
+        }
+        else if (other.CompareTag("controlsOn"))
+        {
+            // Turn on/off controls.
+            if (StartGame.ControlsOn == false)
+            {
+                Debug.Log("Controls on");
+                StartGame.ControlsOn = true;
+            }
+            else
+            {
+                Debug.Log("Controls off");
+                StartGame.ControlsOn = false;
+            }
         }
     }
 }

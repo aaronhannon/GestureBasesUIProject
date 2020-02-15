@@ -8,6 +8,7 @@ TagManager:
   - obstacle
   - helmet
   - coin
+  - controlsOn
   layers:
   - Default
   - TransparentFX

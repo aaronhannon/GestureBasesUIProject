@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
+    private static bool controlsOn = false;
+    public static bool ControlsOn
+    {
+        get { return controlsOn; }
+        set { controlsOn = value; }
+    }
+
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
     private float playerSpeed = 0.2f;
@@ -16,6 +23,7 @@ public class StartGame : MonoBehaviour
     public Animator animator;
     private bool fixedcamera = false;
     private int heartcounter = 1;
+
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera");
@@ -52,21 +60,21 @@ public class StartGame : MonoBehaviour
 
                 AudioController.Instance.PlayLoopAudio("running_ground");
             }
-
+            
             // Check if player wants to jump, and if player is on the ground.
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && controlsOn)
             {
                 PlayerJump();
             }
 
             // Check if player wants to move left
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && controlsOn)
             {
                 MoveLeft();
             }
 
             // Check if player wants to move right
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.RightArrow) && controlsOn)
             {
                 MoveRight();
             }
