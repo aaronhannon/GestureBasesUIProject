@@ -27,7 +27,7 @@ public class Collisions : MonoBehaviour
         {
             other.gameObject.GetComponent<Animator>().SetBool("collided", true);
 
-            if(helmet == false)
+            if (helmet == false)
             {
                 GameObject heart = GameObject.Find("heart" + lives);
                 Animator a = heart.GetComponent<Animator>();
@@ -56,6 +56,40 @@ public class Collisions : MonoBehaviour
             }
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<Animator>().SetBool("collided", true);
+
+            if (helmet == false)
+            {
+                GameObject heart = GameObject.Find("heart" + lives);
+                Animator a = heart.GetComponent<Animator>();
+                a.SetBool("Destroyed", true);
+                //Destroy(heart);
+
+                lives--;
+
+                if (lives == 0)
+                {
+                    scoreScript.GenerateScore();
+                    scoreScript.ResetScore();
+
+                    // Turn off controls again when player dies.
+                    StartGame.ControlsOn = false;
+
+                    SceneManager.LoadScene(0);
+                    Debug.Log("GameOver");
+                }
+            }
+            else
+            {
+                GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
+                GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
+                helmet = false;
+            }
+
+            //AudioController.Instance.PlayAudioOnce("smash_fence");
         }
         else if (other.CompareTag("helmet"))
         {
