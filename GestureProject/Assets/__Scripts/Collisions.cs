@@ -40,6 +40,10 @@ public class Collisions : MonoBehaviour
                 {
                     scoreScript.GenerateScore();
                     scoreScript.ResetScore();
+
+                    // Turn off controls again when player dies.
+                    StartGame.ControlsOn = false;
+
                     SceneManager.LoadScene(0);
                     Debug.Log("GameOver");
                 }
