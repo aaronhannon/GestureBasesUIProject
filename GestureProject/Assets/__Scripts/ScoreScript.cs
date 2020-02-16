@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,8 +11,48 @@ public class ScoreScript : MonoBehaviour
     private int highScore = 0;
     private int coinCounter = 0;
     private Vector3 lastPosition;
+    private ArrayList numbers;
+    private GameObject scorecontainer;
     void Start()
     {
+        //string test = "0";
+        //scorecontainer = GameObject.Find("ScoreNumbers");
+
+        //numbers = new ArrayList();
+
+        //for (int i = 0; i <= 9; i++)
+        //{
+            
+        //    numbers.Add(Resources.Load("Numbers/" + i.ToString()) as GameObject);
+            
+
+
+        //}
+
+        //char[] toChar = test.ToCharArray();
+
+        //float x = 5f;
+
+        //scorecontainer.transform.parent = null;
+
+        ////foreach(Transform child in scorecontainer.transform)
+        ////{
+        ////    Destroy(child.gameObject);
+        ////}
+
+        //foreach (char letter in toChar)
+        //{
+
+
+        //    Instantiate(numbers.ToArray()[Int32.Parse(letter.ToString())] as GameObject, new Vector3(x, 10f, -30f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
+        //    x += 1f;
+        //}
+
+
+        //foreach (GameObject number in numbers)
+        //{
+        //     Instantiate(number, new Vector3(0f, 5f, 0f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
+        //}
         //set last position to current start position of player
         lastPosition = this.transform.position;
         //if a highscore exists, then set it to highscore
@@ -36,6 +77,21 @@ public class ScoreScript : MonoBehaviour
 
         //set score update on TextMeshPro
         TextMeshPro.text = "Score: "+score.ToString();
+
+        //char[] toChar = score.ToString().ToCharArray();
+
+        //float x = 5f;
+
+        ////Debug.Log(toChar);
+
+        //foreach (char letter in toChar)
+        //{
+
+
+        //    Instantiate(numbers.ToArray()[Int32.Parse(letter.ToString())] as GameObject, new Vector3(x, 10f, -30f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
+        //    x += 1f;
+        //}
+
     }
 
     //Increase the coin count when user collects a coin

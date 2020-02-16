@@ -14,7 +14,7 @@ public class StartGame : MonoBehaviour
 
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
-    private float playerSpeed = 3f;
+    private float playerSpeed = .5f;
     private float moveSpeed = 0.5f;
     private float distToGround;
     private GameObject mainCamera;
