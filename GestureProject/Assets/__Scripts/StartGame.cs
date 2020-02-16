@@ -79,6 +79,11 @@ public class StartGame : MonoBehaviour
                 MoveRight();
             }
 
+            if (Input.GetMouseButtonDown(0) && controlsOn)
+            {
+                PlayerAttack();
+            }
+
             // Trying to smooth out movement, will look into this further.
             //player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
         }
@@ -128,7 +133,12 @@ public class StartGame : MonoBehaviour
     {
         playerSpeed = speed;
     }
-    
+
+    private void PlayerAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
     private void OnMouseDown()
     {
         gameStarted = true;
