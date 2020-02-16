@@ -9,6 +9,8 @@ TagManager:
   - helmet
   - coin
   - controlsOn
+  - weapon
+  - Enemy
   layers:
   - Default
   - TransparentFX

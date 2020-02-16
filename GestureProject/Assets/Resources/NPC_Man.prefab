@@ -120,7 +120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780424665802740, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_TagString
-      value: obstacle
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4308763113265982, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_LocalPosition.x
