@@ -7,6 +7,7 @@ public class GenerateChunks : MonoBehaviour
     GameObject villageChunk;
     GameObject forestChunk;
     GameObject riverChunk;
+    GameObject riverChunkNoBoat;
     float currentZ= 0 ;
     string previousChunk;
 
@@ -16,6 +17,7 @@ public class GenerateChunks : MonoBehaviour
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
+        riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
         for (int i = 0; i < 4; i++)
         {
             int rand = Random.Range(0, 3);
@@ -59,22 +61,26 @@ public class GenerateChunks : MonoBehaviour
                 if(previousChunk == "forest")
                 {
                     currentZ += 250;
+                    Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
                 }
                 else if(previousChunk == "village")
                 {
                     currentZ += 180;
+                    Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
 
                 }
                 else if(previousChunk == "river")
                 {
                     currentZ += 650;
+                    Instantiate(riverChunkNoBoat, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
                 }
                 else
                 {
                     currentZ = 110f;
+                    Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
                 }
                 
-                Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
+                
                 previousChunk = "river";
             }
 
