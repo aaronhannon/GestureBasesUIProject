@@ -12,28 +12,29 @@ public class ScoreScript : MonoBehaviour
     private int coinCounter = 0;
     private Vector3 lastPosition;
     private ArrayList numbers;
-    private GameObject scorecontainer;
+    private GameObject camera;
     void Start()
     {
-        //string test = "0";
-        //scorecontainer = GameObject.Find("ScoreNumbers");
 
-        //numbers = new ArrayList();
-
-        //for (int i = 0; i <= 9; i++)
-        //{
-            
-        //    numbers.Add(Resources.Load("Numbers/" + i.ToString()) as GameObject);
-            
+        camera = GameObject.Find("Main Camera");
 
 
-        //}
+        numbers = new ArrayList();
+
+        for (int i = 0; i <= 9; i++)
+        {
+
+            numbers.Add(Resources.Load("Numbers/" + i.ToString()) as GameObject);
+
+
+
+        }
 
         //char[] toChar = test.ToCharArray();
 
         //float x = 5f;
 
-        //scorecontainer.transform.parent = null;
+
 
         ////foreach(Transform child in scorecontainer.transform)
         ////{
@@ -51,7 +52,7 @@ public class ScoreScript : MonoBehaviour
 
         //foreach (GameObject number in numbers)
         //{
-        //     Instantiate(number, new Vector3(0f, 5f, 0f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
+        //    Instantiate(number, new Vector3(0f, 5f, 0f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
         //}
         //set last position to current start position of player
         lastPosition = this.transform.position;
@@ -64,8 +65,12 @@ public class ScoreScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        
+
+        //
+        //Instantiate(scorecontainer);
         //if player z axis is increased beyond previous z axis position then increase the score
         if ((this.transform.position.z - lastPosition.z) > 0)
         {
@@ -78,11 +83,12 @@ public class ScoreScript : MonoBehaviour
         //set score update on TextMeshPro
         TextMeshPro.text = "Score: "+score.ToString();
 
-        //char[] toChar = score.ToString().ToCharArray();
 
-        //float x = 5f;
 
-        ////Debug.Log(toChar);
+
+        float x = 3f;
+
+        //Debug.Log(toChar);
 
         //foreach (char letter in toChar)
         //{
@@ -91,6 +97,33 @@ public class ScoreScript : MonoBehaviour
         //    Instantiate(numbers.ToArray()[Int32.Parse(letter.ToString())] as GameObject, new Vector3(x, 10f, -30f), Quaternion.Euler(0, 180, 0)).transform.parent = scorecontainer.transform;
         //    x += 1f;
         //}
+        //if (GameObject.Find("ScoreC") == null)
+        //{
+            
+        //    GameObject scorec = new GameObject("ScoreC");
+        //    scorec.transform.parent = camera.transform;
+
+        //    string s = "2032";
+        //    //Debug.Log("SCORE TEST: " + s);
+        //    char[] toChar = s.ToCharArray();
+
+        //    //foreach (var item in toChar)
+        //    //{
+        //    //    Debug.Log(item);
+        //    //}
+        //    foreach (char letter in toChar)
+        //    {
+
+
+        //        Instantiate(numbers.ToArray()[Int32.Parse(letter.ToString())] as GameObject, new Vector3(x, 10f, -32f), Quaternion.Euler(0, 180, 0)).transform.parent = scorec.transform;
+        //        x += 1f;
+        //    }
+        //}
+        //else
+        //{
+        //    Destroy(GameObject.Find("ScoreC"));
+        //}
+
 
     }
 
