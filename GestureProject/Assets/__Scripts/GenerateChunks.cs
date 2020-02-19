@@ -45,7 +45,7 @@ public class GenerateChunks : MonoBehaviour
 
                 if (previousChunk == "river")
                 {
-                    currentZ += 800;
+                    currentZ += 680;
                 }
                 else
                 {
