@@ -18,10 +18,12 @@ public class GenerateChunks : MonoBehaviour
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
         riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
+        int rand = 0;
         for (int i = 0; i < 4; i++)
         {
-            int rand = Random.Range(0, 3);
+            
             Debug.Log("RANDOM: " + rand);
+            //VILLAGE
             if(rand == 0)
             {
                 if(previousChunk == "forest")
@@ -40,6 +42,7 @@ public class GenerateChunks : MonoBehaviour
                 Instantiate(villageChunk, new Vector3(-18f, 1f, currentZ), Quaternion.Euler(0, 90, 0));
                 previousChunk = "village";
             }
+            //FOREST
             else if(rand == 1)
             {
 
@@ -55,7 +58,9 @@ public class GenerateChunks : MonoBehaviour
                 
                 Instantiate(forestChunk, new Vector3(-22f, 0f, currentZ), Quaternion.Euler(0, 90, 0));
                 previousChunk = "forest";
-            }else if (rand == 2)
+            }
+            //RIVER
+            else if (rand == 2)
             {
 
                 if(previousChunk == "forest")
@@ -84,13 +89,14 @@ public class GenerateChunks : MonoBehaviour
                 previousChunk = "river";
             }
 
+            rand = Random.Range(0, 3);
 
         }
 
         //spawn village Add 360 every time to Z coord
 
-        
-        
+
+
     }
 
     // Update is called once per frame

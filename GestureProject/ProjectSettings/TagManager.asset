@@ -12,6 +12,7 @@ TagManager:
   - weapon
   - Enemy
   - boat
+  - boatPre
   layers:
   - Default
   - TransparentFX

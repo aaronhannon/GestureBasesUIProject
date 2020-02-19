@@ -41,7 +41,7 @@ public class StartGame : MonoBehaviour
         {
             if(mainCamera.transform.position.x < 0 && fixedcamera == false)
             {
-                mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.02f, mainCamera.transform.position.y, mainCamera.transform.position.z);
+                mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.03f, mainCamera.transform.position.y, mainCamera.transform.position.z);
             }
             else
             {

@@ -7,17 +7,33 @@ public class Collisions : MonoBehaviour
 {
     private int lives = 3;
     private bool helmet = false;
+    private float jumpSpeed = 2.5f;
     private ScoreScript scoreScript;
+    private Rigidbody playerRb;
+    private bool inboat = false;
 
     // Start is called before the first frame update
     void Start()
     {
         scoreScript = FindObjectOfType<ScoreScript>();
+        playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        if (inboat)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
+            GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
+            
+        }
+
+    }
+
+    public void PlayerJump()
+    {
+        playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
         
     }
 
@@ -57,6 +73,30 @@ public class Collisions : MonoBehaviour
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
         }
+        
+        if(other.CompareTag("boat"))
+        {
+            Debug.Log("BOAT!!");
+            gameObject.GetComponent<Animator>().SetTrigger("inboat");
+            
+            PlayerJump();
+
+            
+
+            
+
+        }
+
+        if (other.CompareTag("boatPre"))
+        {
+            inboat = true;
+            GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
+            gameObject.GetComponent<Animator>().SetBool("stopRun",true);
+            //GameObject.Find("boat").transform.parent = gameObject.transform;
+            GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
+            //playerRb.useGravity = false;
+        }
+
         if (other.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Animator>().SetBool("collided", true);
