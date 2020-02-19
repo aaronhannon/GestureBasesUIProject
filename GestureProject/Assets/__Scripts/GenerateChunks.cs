@@ -19,7 +19,7 @@ public class GenerateChunks : MonoBehaviour
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
         riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
         int rand = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 2; i++)
         {
             
             Debug.Log("RANDOM: " + rand);
@@ -89,7 +89,8 @@ public class GenerateChunks : MonoBehaviour
                 previousChunk = "river";
             }
 
-            rand = Random.Range(0, 3);
+            //rand = Random.Range(0, 3);
+            rand = 2;
 
         }
 

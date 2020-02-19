@@ -24,7 +24,11 @@ public class Collisions : MonoBehaviour
     {
         if (inboat)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z);
+
+            //Debug.Log("BOAT " + GameObject.Find("boat").transform.position.x + " " + GameObject.Find("boat").transform.position.y + " " + GameObject.Find("boat").transform.position.z);
+            //Debug.Log("Player " + gameObject.transform.position.x + " " + gameObject.transform.position.y + " " + gameObject.transform.position.z);
+
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             
         }
@@ -78,23 +82,23 @@ public class Collisions : MonoBehaviour
         {
             Debug.Log("BOAT!!");
             gameObject.GetComponent<Animator>().SetTrigger("inboat");
-            
-            PlayerJump();
+
+            //PlayerJump();
 
             
 
-            
+
 
         }
 
         if (other.CompareTag("boatPre"))
         {
             inboat = true;
-            GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
+            //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
             gameObject.GetComponent<Animator>().SetBool("stopRun",true);
-            //GameObject.Find("boat").transform.parent = gameObject.transform;
-            GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
-            //playerRb.useGravity = false;
+            ////GameObject.Find("boat").transform.parent = gameObject.transform;
+            //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
+            ////playerRb.useGravity = false;
         }
 
         if (other.CompareTag("Enemy"))
