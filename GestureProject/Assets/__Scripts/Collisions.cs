@@ -10,6 +10,7 @@ public class Collisions : MonoBehaviour
     private float jumpSpeed = 2.5f;
     private ScoreScript scoreScript;
     private Rigidbody playerRb;
+    private Animator playerAnimator;
     private bool inboat = false;
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class Collisions : MonoBehaviour
     {
         scoreScript = FindObjectOfType<ScoreScript>();
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
+        playerAnimator = GameObject.Find("Low Poly Warrior").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,7 +26,6 @@ public class Collisions : MonoBehaviour
     {
         if (inboat)
         {
-
             //Debug.Log("BOAT " + GameObject.Find("boat").transform.position.x + " " + GameObject.Find("boat").transform.position.y + " " + GameObject.Find("boat").transform.position.z);
             //Debug.Log("Player " + gameObject.transform.position.x + " " + gameObject.transform.position.y + " " + gameObject.transform.position.z);
 
@@ -103,37 +104,43 @@ public class Collisions : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Animator>().SetBool("collided", true);
-
-            if (helmet == false)
+            if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                GameObject heart = GameObject.Find("heart" + lives);
-                Animator a = heart.GetComponent<Animator>();
-                a.SetBool("Destroyed", true);
-                //Destroy(heart);
-
-                lives--;
-
-                if (lives == 0)
-                {
-                    scoreScript.GenerateScore();
-                    scoreScript.ResetScore();
-
-                    // Turn off controls again when player dies.
-                    StartGame.ControlsOn = false;
-
-                    SceneManager.LoadScene(0);
-                    Debug.Log("GameOver");
-                }
+                // Kill NPC
             }
             else
             {
-                GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
-                GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
-                helmet = false;
-            }
+                other.gameObject.GetComponent<Animator>().SetBool("collided", true);
 
-            //AudioController.Instance.PlayAudioOnce("smash_fence");
+                if (helmet == false)
+                {
+                    GameObject heart = GameObject.Find("heart" + lives);
+                    Animator a = heart.GetComponent<Animator>();
+                    a.SetBool("Destroyed", true);
+                    //Destroy(heart);
+
+                    lives--;
+
+                    if (lives == 0)
+                    {
+                        scoreScript.GenerateScore();
+                        scoreScript.ResetScore();
+
+                        // Turn off controls again when player dies.
+                        StartGame.ControlsOn = false;
+
+                        SceneManager.LoadScene(0);
+                        Debug.Log("GameOver");
+                    }
+                }
+                else
+                {
+                    GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
+                    GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
+                    helmet = false;
+                }
+            }
+            
         }
         else if (other.CompareTag("helmet"))
         {
