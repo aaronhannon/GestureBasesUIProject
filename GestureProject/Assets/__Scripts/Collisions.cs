@@ -157,6 +157,9 @@ public class Collisions : MonoBehaviour
 
         playerAnimator.SetBool("Death", true);
 
+        AudioController.Instance.PlayAudioOnce("playerDeath");
+
+
         Invoke("GameRestart", 1);
     }
 
