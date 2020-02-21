@@ -104,14 +104,15 @@ public class Collisions : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
+            // Check if attack animation is playing.
             if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 // Kill NPC
+                other.gameObject.GetComponent<Animator>().SetTrigger("Death");
+                AudioController.Instance.PlayAudioOnce("death_1");
             }
             else
             {
-                other.gameObject.GetComponent<Animator>().SetBool("collided", true);
-
                 if (helmet == false)
                 {
                     GameObject heart = GameObject.Find("heart" + lives);

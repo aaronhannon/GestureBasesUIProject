@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &1726146554
+--- !u!136 &786616771
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.88, z: 0}
+  m_Center: {x: 0, y: 1, z: 0.09}
 --- !u!114 &-8354665554764184598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,15 +124,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4308763113265982, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.098
+      value: -2.9699173
       objectReference: {fileID: 0}
     - target: {fileID: 4308763113265982, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52
+      value: 0.34912342
       objectReference: {fileID: 0}
     - target: {fileID: 4308763113265982, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.767788
+      value: -1.4253159
       objectReference: {fileID: 0}
     - target: {fileID: 4308763113265982, guid: 7fffcfe153453e644b78633b71669399, type: 3}
       propertyPath: m_LocalRotation.x
