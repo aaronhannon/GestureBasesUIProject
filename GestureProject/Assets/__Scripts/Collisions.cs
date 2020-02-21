@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,9 +32,7 @@ public class Collisions : MonoBehaviour
 
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
-            
         }
-
     }
 
     public void PlayerJump()
@@ -48,33 +47,8 @@ public class Collisions : MonoBehaviour
         {
             other.gameObject.GetComponent<Animator>().SetBool("collided", true);
 
-            if (helmet == false)
-            {
-                GameObject heart = GameObject.Find("heart" + lives);
-                Animator a = heart.GetComponent<Animator>();
-                a.SetBool("Destroyed", true);
-                //Destroy(heart);
-
-                lives--;
-
-                if (lives == 0)
-                {
-                    scoreScript.GenerateScore();
-                    scoreScript.ResetScore();
-
-                    // Turn off controls again when player dies.
-                    StartGame.ControlsOn = false;
-
-                    SceneManager.LoadScene(0);
-                    Debug.Log("GameOver");
-                }
-            }
-            else
-            {
-                GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
-                GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
-                helmet = false;
-            }
+            // Check if player has helmet, else remove one life.
+            CheckForHelmet();
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
         }
@@ -85,9 +59,7 @@ public class Collisions : MonoBehaviour
             gameObject.GetComponent<Animator>().SetTrigger("inboat");
 
             //PlayerJump();
-
             
-
 
 
         }
@@ -113,33 +85,8 @@ public class Collisions : MonoBehaviour
             }
             else
             {
-                if (helmet == false)
-                {
-                    GameObject heart = GameObject.Find("heart" + lives);
-                    Animator a = heart.GetComponent<Animator>();
-                    a.SetBool("Destroyed", true);
-                    //Destroy(heart);
-
-                    lives--;
-
-                    if (lives == 0)
-                    {
-                        scoreScript.GenerateScore();
-                        scoreScript.ResetScore();
-
-                        // Turn off controls again when player dies.
-                        StartGame.ControlsOn = false;
-
-                        SceneManager.LoadScene(0);
-                        Debug.Log("GameOver");
-                    }
-                }
-                else
-                {
-                    GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
-                    GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
-                    helmet = false;
-                }
+                // Check if player has helmet, else remove one life.
+                CheckForHelmet();
             }
             
         }
@@ -174,6 +121,38 @@ public class Collisions : MonoBehaviour
                 Debug.Log("Controls off");
                 StartGame.ControlsOn = false;
             }
+        }
+    }
+
+    // Check if player has helmet, else remove one life.
+    private void CheckForHelmet()
+    {
+        if (helmet == false)
+        {
+            GameObject heart = GameObject.Find("heart" + lives);
+            Animator a = heart.GetComponent<Animator>();
+            a.SetBool("Destroyed", true);
+            //Destroy(heart);
+
+            lives--;
+
+            if (lives == 0)
+            {
+                scoreScript.GenerateScore();
+                scoreScript.ResetScore();
+
+                // Turn off controls again when player dies.
+                StartGame.ControlsOn = false;
+
+                SceneManager.LoadScene(0);
+                Debug.Log("GameOver");
+            }
+        }
+        else
+        {
+            GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", false);
+            GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
+            helmet = false;
         }
     }
 }
