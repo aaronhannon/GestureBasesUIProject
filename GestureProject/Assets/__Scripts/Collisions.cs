@@ -38,7 +38,6 @@ public class Collisions : MonoBehaviour
     public void PlayerJump()
     {
         playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
-        
     }
 
     private void OnTriggerEnter(Collider other)
