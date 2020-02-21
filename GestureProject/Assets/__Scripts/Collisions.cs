@@ -84,6 +84,12 @@ public class Collisions : MonoBehaviour
             }
             else
             {
+                //player takes damage then add damage audio
+                if (lives > 1)
+                {
+                    AudioController.Instance.PlayAudioOnce("playerDamage");
+                }
+                
                 // Check if player has helmet, else remove one life.
                 CheckForHelmet();
             }
