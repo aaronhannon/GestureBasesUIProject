@@ -155,7 +155,9 @@ public class Collisions : MonoBehaviour
         // Turn off controls again when player dies.
         StartGame.ControlsOn = false;
 
-        GameRestart();
+        playerAnimator.SetBool("Death", true);
+
+        Invoke("GameRestart", 1);
     }
 
     private void GameRestart()
