@@ -9,6 +9,7 @@ public class ObstacleGenerator : MonoBehaviour
     private GameObject npc;
     private GameObject coin;
     private GameObject container;
+    private GameObject revivePotion;
 
     void Start()
     {
@@ -33,6 +34,12 @@ public class ObstacleGenerator : MonoBehaviour
         {
             coin = Resources.Load("coin") as GameObject;
             Instantiate(coin, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+        }
+        // Basic implementation for now, will need to be improved and randomized.
+        for (int i = 0; i < 300; i += 100)
+        {
+            revivePotion = Resources.Load("RevivePotion") as GameObject;
+            Instantiate(revivePotion, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
 }

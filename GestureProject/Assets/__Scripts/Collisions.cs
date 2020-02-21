@@ -13,6 +13,7 @@ public class Collisions : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnimator;
     private bool inboat = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -108,10 +109,16 @@ public class Collisions : MonoBehaviour
         {
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
-            other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z); ;
+            other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
             scoreScript.IncreaseCoinCount();
 
             AudioController.Instance.PlayAudioOnce("coin");
+        }
+        else if (other.CompareTag("revive"))
+        {
+            Destroy(other);
+
+            AudioController.Instance.PlayAudioOnce("ReviveCollect");
         }
         else if (other.CompareTag("controlsOn"))
         {
@@ -137,7 +144,7 @@ public class Collisions : MonoBehaviour
             GameObject heart = GameObject.Find("heart" + lives);
             Animator a = heart.GetComponent<Animator>();
             a.SetBool("Destroyed", true);
-            //Destroy(heart);
+            //Destroy(heart);Destroy(heart);
 
             lives--;
 
