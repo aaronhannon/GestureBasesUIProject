@@ -84,7 +84,7 @@ public class Collisions : MonoBehaviour
             }
             else
             {
-                //player takes damage then add damage audio
+                //player takes damage then add damage audio for hit - 1 life and take hit plays death sound
                 if (lives > 1)
                 {
                     AudioController.Instance.PlayAudioOnce("playerDamage");
