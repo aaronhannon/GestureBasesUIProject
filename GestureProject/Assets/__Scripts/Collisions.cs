@@ -137,14 +137,7 @@ public class Collisions : MonoBehaviour
 
             if (lives == 0)
             {
-                scoreScript.GenerateFinalScore();
-                scoreScript.ResetScore();
-
-                // Turn off controls again when player dies.
-                StartGame.ControlsOn = false;
-
-                SceneManager.LoadScene(0);
-                Debug.Log("GameOver");
+                ResetGame();
             }
         }
         else
@@ -153,5 +146,20 @@ public class Collisions : MonoBehaviour
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm", false);
             helmet = false;
         }
+    }
+
+    private void ResetGame() {
+        scoreScript.GenerateFinalScore();
+        scoreScript.ResetScore();
+
+        // Turn off controls again when player dies.
+        StartGame.ControlsOn = false;
+
+        GameRestart();
+    }
+
+    private void GameRestart()
+    {
+        SceneManager.LoadScene(0);
     }
 }
