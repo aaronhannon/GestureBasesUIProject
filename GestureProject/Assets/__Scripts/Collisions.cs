@@ -137,7 +137,7 @@ public class Collisions : MonoBehaviour
 
             if (lives == 0)
             {
-                scoreScript.GenerateScore();
+                scoreScript.GenerateFinalScore();
                 scoreScript.ResetScore();
 
                 // Turn off controls again when player dies.
