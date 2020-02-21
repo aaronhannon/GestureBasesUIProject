@@ -79,6 +79,12 @@ public class StartGame : MonoBehaviour
                 MoveRight();
             }
 
+            // Check if player is sliding.
+            if (Input.GetKeyDown(KeyCode.S) && controlsOn)
+            {
+                Slide();
+            }
+
             if (Input.GetMouseButtonDown(0) && controlsOn)
             {
                 PlayerAttack();
@@ -127,6 +133,13 @@ public class StartGame : MonoBehaviour
 
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
         }
+    }
+    
+    private void Slide()
+    {
+        animator.SetTrigger("Slide");
+
+        //AudioController.Instance.PlayAudioOnce("slide");
     }
 
     public void SetPlayerSpeed(float speed)
