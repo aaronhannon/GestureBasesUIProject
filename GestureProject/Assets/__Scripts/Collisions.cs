@@ -171,21 +171,30 @@ public class Collisions : MonoBehaviour
 
         AudioController.Instance.PlayAudioOnce("playerDeath");
 
+        // if user has collected a revive potion
         if (revive)
         {
-            print("revive");
+            //trigger revive animation transition
             playerAnimator.SetTrigger("Revive");
+            //reset lives to one
             lives = 1;
+
+            //Reset last heart to match new lives
+            GameObject heart = GameObject.Find("heart" + lives);
+            Animator a = heart.GetComponent<Animator>();
+            a.SetBool("Destroyed", false);
 
             // Turn off controls again when player dies.
             StartGame.ControlsOn = true;
+            //revive used - set false
             revive = false;
         }
         else {
-            print("no revives");
+            //generate score using coins collected and reset score
             scoreScript.GenerateFinalScore();
             scoreScript.ResetScore();
 
+            //after 1 second - restart game (allow death animation to be seen)
             Invoke("GameRestart", 1);
         }
     }
