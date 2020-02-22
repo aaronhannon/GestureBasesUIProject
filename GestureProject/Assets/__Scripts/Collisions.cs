@@ -94,7 +94,21 @@ public class Collisions : MonoBehaviour
                 // Check if player has helmet, else remove one life.
                 CheckForHelmet();
             }
-            
+        }
+        else if (other.CompareTag("roll"))
+        {
+            // Check if roll animation is playing.
+            if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("RollForward"))
+            {
+                //player takes damage then add damage audio for hit - 1 life and take hit plays death sound
+                if (lives > 1)
+                {
+                    AudioController.Instance.PlayAudioOnce("playerDamage");
+                }
+
+                // Check if player has helmet, else remove one life.
+                CheckForHelmet();
+            }
         }
         else if (other.CompareTag("helmet"))
         {
