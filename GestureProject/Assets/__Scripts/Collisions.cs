@@ -13,7 +13,7 @@ public class Collisions : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnimator;
     private bool inboat = false;
-    
+    private bool revive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +117,7 @@ public class Collisions : MonoBehaviour
         else if (other.CompareTag("revive"))
         {
             Destroy(other);
+            revive = true;
 
             AudioController.Instance.PlayAudioOnce("ReviveCollect");
         }
@@ -162,18 +163,31 @@ public class Collisions : MonoBehaviour
     }
 
     private void ResetGame() {
-        scoreScript.GenerateFinalScore();
-        scoreScript.ResetScore();
+        playerAnimator.SetTrigger("Death");
+
 
         // Turn off controls again when player dies.
         StartGame.ControlsOn = false;
 
-        playerAnimator.SetBool("Death", true);
-
         AudioController.Instance.PlayAudioOnce("playerDeath");
 
+        if (revive)
+        {
+            print("revive");
+            playerAnimator.SetTrigger("Revive");
+            lives = 1;
 
-        Invoke("GameRestart", 1);
+            // Turn off controls again when player dies.
+            StartGame.ControlsOn = true;
+            revive = false;
+        }
+        else {
+            print("no revives");
+            scoreScript.GenerateFinalScore();
+            scoreScript.ResetScore();
+
+            Invoke("GameRestart", 1);
+        }
     }
 
     private void GameRestart()
