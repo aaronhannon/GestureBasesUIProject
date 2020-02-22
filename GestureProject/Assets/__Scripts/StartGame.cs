@@ -92,26 +92,7 @@ public class StartGame : MonoBehaviour
             {
                 PlayerAttack();
             }
-
-            // Check if roll animation is playing test
-            //if (animator.GetCurrentAnimatorStateInfo(0).IsName("RollForward"))
-            //{
-            //    if (!isRolling)
-            //    {
-            //        isRolling = true;
-            //        Debug.Log("Test");
-            //        playerCollider.center = new Vector3(0f, 0f, 0f);
-            //        //playerCollider.center = playerCollider.center - new Vector3(0, 1f, 0);
-            //    }
-            //}
-            //else
-            //{
-            //    Debug.Log("Test2");
-            //    playerCollider.center = new Vector3(0f, 1f, 0f);
-            //    //playerCollider.center = playerCollider.center + new Vector3(0, 1f, 0);
-            //    isRolling = false;
-            //}
-
+           
             // Trying to smooth out movement, will look into this further.
             //player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
         }

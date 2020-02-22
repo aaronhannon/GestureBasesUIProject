@@ -110,6 +110,15 @@ public class Collisions : MonoBehaviour
                 CheckForHelmet();
             }
         }
+        else if (other.CompareTag("trigger"))
+        {
+            Debug.Log("Trigger");
+
+            // Get child of collider E.g tree, and trigger animation.s
+            GameObject tree = other.transform.GetChild(0).gameObject;
+
+            tree.GetComponent<Animator>().SetTrigger("TreeFall");
+        }
         else if (other.CompareTag("helmet"))
         {
             // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002

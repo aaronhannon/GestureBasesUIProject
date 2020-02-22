@@ -15,6 +15,7 @@ TagManager:
   - boatPre
   - revive
   - roll
+  - trigger
   layers:
   - Default
   - TransparentFX
