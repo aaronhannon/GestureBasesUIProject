@@ -112,12 +112,12 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("trigger"))
         {
-            Debug.Log("Trigger");
-
-            // Get child of collider E.g tree, and trigger animation.s
+            // Get child of collider E.g tree, trigger animation and play sound.
             GameObject tree = other.transform.GetChild(0).gameObject;
 
             tree.GetComponent<Animator>().SetTrigger("TreeFall");
+
+            AudioController.Instance.PlayAudioOnce("falling_tree");
         }
         else if (other.CompareTag("helmet"))
         {

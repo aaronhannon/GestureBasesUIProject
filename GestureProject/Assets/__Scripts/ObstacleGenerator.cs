@@ -6,6 +6,7 @@ public class ObstacleGenerator : MonoBehaviour
 {
     // Single object for now, could use a list later.
     private GameObject fence;
+    private GameObject fallingTree;
     private GameObject npc;
     private GameObject coin;
     private GameObject container;
@@ -27,6 +28,13 @@ public class ObstacleGenerator : MonoBehaviour
         {
             npc = Resources.Load("NPC_Man") as GameObject;
             Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+        }
+
+        // Basic implementation for now, will need to be improved and randomized.
+        for (int i = 50; i < 450; i += 100)
+        {
+            fallingTree = Resources.Load("TriggerObstacle") as GameObject;
+            Instantiate(fallingTree, new Vector3(0.2f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Basic implementation for now, will need to be improved and randomized.
