@@ -48,6 +48,8 @@ public class Collisions : MonoBehaviour
     {
         if (other.CompareTag("obstacle"))
         {
+            Debug.Log("Obstacle");
+
             if (!other.gameObject.name.Contains("tree")) {
                 other.gameObject.GetComponent<Animator>().SetBool("collided", true);
             }
@@ -57,16 +59,14 @@ public class Collisions : MonoBehaviour
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
         }
-        
-        if(other.CompareTag("boat"))
+        else if (other.CompareTag("boat"))
         {
             Debug.Log("BOAT!!");
             gameObject.GetComponent<Animator>().SetTrigger("inboat");
 
             //PlayerJump();
         }
-
-        if (other.CompareTag("boatPre"))
+        else if (other.CompareTag("boatPre"))
         {
             inboat = true;
             //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
@@ -75,9 +75,10 @@ public class Collisions : MonoBehaviour
             //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
             ////playerRb.useGravity = false;
         }
-
-        if (other.CompareTag("Enemy"))
+        else if (other.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy");
+
             // Check if attack animation is playing.
             if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
@@ -99,6 +100,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("roll"))
         {
+            Debug.Log("Roll");
+
             // Check if roll animation is playing.
             if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("RollForward"))
             {
@@ -114,6 +117,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("trigger"))
         {
+            Debug.Log("TreeTrigger");
+
             // Get child of collider E.g tree, trigger animation and play sound.
             GameObject tree = other.transform.GetChild(0).gameObject;
 
@@ -123,6 +128,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("helmet"))
         {
+            Debug.Log("Helmet");
+
             // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
@@ -132,6 +139,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("coin"))
         {
+            Debug.Log("Coin");
+
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
             other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
@@ -141,6 +150,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("revive"))
         {
+            Debug.Log("Revive");
+
             Destroy(other);
             revive = true;
             reviveDisplay.SetActive(true);
