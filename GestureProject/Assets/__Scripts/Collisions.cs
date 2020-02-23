@@ -51,7 +51,7 @@ public class Collisions : MonoBehaviour
             other.gameObject.GetComponent<Animator>().SetBool("collided", true);
 
             // Check if player has helmet, else remove one life.
-            CheckForHelmet();
+            TakeDamage();
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
         }
@@ -95,7 +95,7 @@ public class Collisions : MonoBehaviour
                 }
                 
                 // Check if player has helmet, else remove one life.
-                CheckForHelmet();
+                TakeDamage();
             }
         }
         else if (other.CompareTag("roll"))
@@ -110,7 +110,7 @@ public class Collisions : MonoBehaviour
                 }
 
                 // Check if player has helmet, else remove one life.
-                CheckForHelmet();
+                TakeDamage();
             }
         }
         else if (other.CompareTag("trigger"))
@@ -165,7 +165,7 @@ public class Collisions : MonoBehaviour
     }
 
     // Check if player has helmet, else remove one life.
-    private void CheckForHelmet()
+    private void TakeDamage()
     {
         if (helmet == false)
         {
