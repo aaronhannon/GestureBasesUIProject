@@ -7,6 +7,7 @@ public class ObstacleGenerator : MonoBehaviour
     // Single object for now, could use a list later.
     private GameObject obstacle;
     private GameObject fallingTree;
+    private GameObject rock;
     private GameObject npc;
     private GameObject coin;
     private GameObject container;
@@ -17,7 +18,7 @@ public class ObstacleGenerator : MonoBehaviour
         container = GameObject.Find("GeneratedObjects");
 
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = 0; i < 400; i += 27)
+        for (int i = 30; i < 400; i += 27)
         {
             int rand = Random.Range(0, 2);
 
@@ -35,27 +36,35 @@ public class ObstacleGenerator : MonoBehaviour
         }
 
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = 100; i < 500; i += 50)
+        for (int i = 500; i < 900; i += 55)
         {
-            npc = Resources.Load("NPC_Man") as GameObject;
-            Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+            rock = Resources.Load("rock") as GameObject;
+            Instantiate(rock, new Vector3(Random.Range(-4f, 4f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = 50; i < 450; i += 100)
-        {
-            fallingTree = Resources.Load("TriggerObstacle") as GameObject;
-            Instantiate(fallingTree, new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
-        }
+        //for (int i = 100; i < 500; i += 50)
+        //{
+        //    npc = Resources.Load("NPC_Man") as GameObject;
+        //    Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+        //}
 
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = 0; i < 300; i += 50)
+        //for (int i = 50; i < 500; i += 150)
+        //{
+        //    fallingTree = Resources.Load("TriggerObstacle") as GameObject;
+        //    Instantiate(fallingTree, new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+        //}
+
+        // Basic implementation for now, will need to be improved and randomized.
+        for (int i = 30; i < 300; i += 50)
         {
             coin = Resources.Load("coin") as GameObject;
             Instantiate(coin, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
+
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = 0; i < 300; i += 100)
+        for (int i = 30; i < 300; i += 100)
         {
             revivePotion = Resources.Load("RevivePotion") as GameObject;
             Instantiate(revivePotion, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
