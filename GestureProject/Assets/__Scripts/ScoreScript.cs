@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class ScoreScript : MonoBehaviour
 {
-    public TextMeshPro TextMeshPro;
+    public TextMeshPro scoreDisplay;
     private int score = 0;
     private int highScore = 0;
     private int coinCounter = 0;
     private Vector3 lastPosition;
+    public TextMeshPro coinCountDisplay;
     void Start()
     {
         //set last position to current start position of player
@@ -29,6 +30,7 @@ public class ScoreScript : MonoBehaviour
         //if player z axis is increased beyond previous z axis position then increase the score
         if ((this.transform.position.z - lastPosition.z) > 0 && StartGame.ControlsOn)
         {
+            //increase score when player progresses in game
             score++;
         }
 
@@ -36,12 +38,16 @@ public class ScoreScript : MonoBehaviour
         lastPosition = this.transform.position;
 
         //set score update on TextMeshPro
-        TextMeshPro.text = "Score: "+score.ToString();
+        scoreDisplay.text = "Score: "+score.ToString();
+
+        //set coin count update on TextMeshPro
+        coinCountDisplay.text = coinCounter.ToString();
     }
 
     //Increase the coin count when user collects a coin
     public void IncreaseCoinCount()
     {
+        //increase coin count when coin is collected
         coinCounter++;
     }
 
@@ -63,6 +69,7 @@ public class ScoreScript : MonoBehaviour
     
     //reset score when user dies
     public void ResetScore() {
+        //reset score to 0
         score = 0;
     }
 }
