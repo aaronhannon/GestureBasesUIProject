@@ -48,7 +48,9 @@ public class Collisions : MonoBehaviour
     {
         if (other.CompareTag("obstacle"))
         {
-            other.gameObject.GetComponent<Animator>().SetBool("collided", true);
+            if (!other.gameObject.name.Contains("tree")) {
+                other.gameObject.GetComponent<Animator>().SetBool("collided", true);
+            }
 
             // Check if player has helmet, else remove one life.
             TakeDamage();
@@ -62,9 +64,6 @@ public class Collisions : MonoBehaviour
             gameObject.GetComponent<Animator>().SetTrigger("inboat");
 
             //PlayerJump();
-            
-
-
         }
 
         if (other.CompareTag("boatPre"))
