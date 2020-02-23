@@ -196,14 +196,16 @@ public class Collisions : MonoBehaviour
         // Turn off controls again when player dies.
         StartGame.ControlsOn = false;
 
-        AudioController.Instance.PlayAudioOnce("playerDeath");
+        //AudioController.Instance.PlayAudioOnce("playerDeath");
 
         // if user has collected a revive potion
         if (revive)
         {
+            reviveDisplay.GetComponent<Animator>().SetTrigger("UseRevive");
             startgame.SetMovementState(false);
             //trigger revive animation transition
             playerAnimator.SetTrigger("Revive");
+            AudioController.Instance.PlayAudioOnce("GlassBreak");
             //reset lives to one
             lives = 1;
 
@@ -216,10 +218,11 @@ public class Collisions : MonoBehaviour
             StartGame.ControlsOn = true;
             //revive used - set false
             revive = false;
-            reviveDisplay.SetActive(false);
+            Invoke("SetReviveDisplayInactive", 0.3f);
             Invoke("SetMovementStateTrue", 2);
         }
         else {
+            AudioController.Instance.PlayAudioOnce("playerDeath");
             startgame.SetMovementState(false);
             //generate score using coins collected and reset score
             scoreScript.GenerateFinalScore();
@@ -233,6 +236,11 @@ public class Collisions : MonoBehaviour
     private void SetMovementStateTrue()
     {
         startgame.SetMovementState(true);
+    }
+
+    private void SetReviveDisplayInactive()
+    {
+        reviveDisplay.SetActive(false);
     }
 
     private void GameRestart()
