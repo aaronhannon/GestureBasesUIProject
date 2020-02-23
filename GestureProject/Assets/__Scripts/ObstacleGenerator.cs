@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
@@ -8,20 +10,16 @@ public class ObstacleGenerator : MonoBehaviour
     private const int chunkLenghtForest = 500;
     private int start = 0;
     private int end = 0;
-
-    // Single object for now, could use a list later.
-    private GameObject fence;
-    private GameObject npc;
-    private GameObject fallingTree;
-    private GameObject logs;
-    private GameObject rock;
-    private GameObject coin;
-    private GameObject revivePotion;
+    
+    // Dictionary which holds all game objects in memory rather than loading them all the time.
+    private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
 
     private GameObject container;
 
     void Start()
     {
+        LoadAllGameObjects();
+
         container = GameObject.Find("GeneratedObjects");
 
         // Testing, will be called randomly from chunk generator.
@@ -36,23 +34,20 @@ public class ObstacleGenerator : MonoBehaviour
         // Get start and end values to load objects from, so it aligns with each chunk.
         UpdateStartEndValues(chunkLenghtVillage);
 
-        for (int i = start; i < end; i += 60)
+        for (int i = start; i < end; i += 100)
         {
-            npc = Resources.Load("NPC_Man") as GameObject;
-            Instantiate(npc, new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+            Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
         }
         
         for (int i = start + 30; i < end; i += 27)
         {
-            fence = Resources.Load("fence") as GameObject;
-            Instantiate(fence, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Testing to show trees.
         //for (int i = start; i < end; i += 150)
         //{
-        //    fallingTree = Resources.Load("TriggerObstacle") as GameObject;
-        //    Instantiate(fallingTree, new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+        //    Instantiate(gameObstacles["TriggerObstacle"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
         //}
 
         SpawnCoins(start, end);
@@ -65,10 +60,9 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtRiver);
 
-        for (int i = start + 30; i < end; i += 55)
+        for (int i = start; i < end; i += 55)
         {
-            rock = Resources.Load("rock") as GameObject;
-            Instantiate(rock, new Vector3(Random.Range(-4f, 4f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-4f, 4f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         SpawnCoins(start, end);
@@ -83,14 +77,12 @@ public class ObstacleGenerator : MonoBehaviour
 
         for (int i = start + 30; i < end; i += 27)
         {
-            logs = Resources.Load("logs") as GameObject;
-            Instantiate(logs, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         for (int i = start + 30; i < end; i += 150)
         {
-            fallingTree = Resources.Load("TriggerObstacle") as GameObject;
-            Instantiate(fallingTree, new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["TriggerObstacle"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         SpawnCoins(start, end);
@@ -112,8 +104,7 @@ public class ObstacleGenerator : MonoBehaviour
         // Basic implementation for now, will need to be improved and randomized.
         for (int i = start; i < end; i += 150)
         {
-            revivePotion = Resources.Load("RevivePotion") as GameObject;
-            Instantiate(revivePotion, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["RevivePotion"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
 
@@ -121,8 +112,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         for (int i = start ; i < end; i += 50)
         {
-            coin = Resources.Load("coin") as GameObject;
-            Instantiate(coin, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["coin"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
     #endregion
@@ -132,5 +122,27 @@ public class ObstacleGenerator : MonoBehaviour
         // Get start and end values to load objects from, so it aligns with each chunk.
         start = (numberOfChunks - 1) * chunkLenght;
         end = numberOfChunks * chunkLenght;
+    }
+
+    private void LoadAllGameObjects()
+    {
+        // Get all file names from Resources folder, and get file information about each.
+        // Code adapted from: https://answers.unity.com/questions/16433/get-list-of-all-files-in-a-directory.html
+        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/Obstacles");
+        FileInfo[] fileInfo = dir.GetFiles();
+
+        // Loop through each file in the directory/array.
+        foreach (FileInfo file in fileInfo)
+        {
+            // Exlude meta files
+            if (!file.Name.Contains(".meta"))
+            {
+                // Remove file extension from file name, get file from resouces and add to dictionary.
+                string[] fileName = file.Name.Split('.');
+
+                GameObject temp = Resources.Load("Obstacles/" + fileName[0]) as GameObject;
+                gameObstacles.Add(fileName[0], temp);
+            }
+        }
     }
 }
