@@ -14,6 +14,7 @@ public class Collisions : MonoBehaviour
     private Animator playerAnimator;
     private bool inboat = false;
     private bool revive = false;
+    public GameObject reviveDisplay;
 
     // Start is called before the first frame update
     void Start()
@@ -141,6 +142,7 @@ public class Collisions : MonoBehaviour
         {
             Destroy(other);
             revive = true;
+            reviveDisplay.SetActive(true);
 
             AudioController.Instance.PlayAudioOnce("ReviveCollect");
         }
@@ -211,6 +213,7 @@ public class Collisions : MonoBehaviour
             StartGame.ControlsOn = true;
             //revive used - set false
             revive = false;
+            reviveDisplay.SetActive(false);
         }
         else {
             //generate score using coins collected and reset score
