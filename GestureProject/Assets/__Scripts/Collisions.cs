@@ -15,11 +15,13 @@ public class Collisions : MonoBehaviour
     private bool inboat = false;
     private bool revive = false;
     public GameObject reviveDisplay;
+    private StartGame startgame;
 
     // Start is called before the first frame update
     void Start()
     {
         scoreScript = FindObjectOfType<ScoreScript>();
+        startgame = FindObjectOfType<StartGame>();
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
         playerAnimator = GameObject.Find("Low Poly Warrior").GetComponent<Animator>();
     }
@@ -199,6 +201,7 @@ public class Collisions : MonoBehaviour
         // if user has collected a revive potion
         if (revive)
         {
+            startgame.SetMovementState(false);
             //trigger revive animation transition
             playerAnimator.SetTrigger("Revive");
             //reset lives to one
@@ -214,8 +217,10 @@ public class Collisions : MonoBehaviour
             //revive used - set false
             revive = false;
             reviveDisplay.SetActive(false);
+            Invoke("SetMovementStateTrue", 2);
         }
         else {
+            startgame.SetMovementState(false);
             //generate score using coins collected and reset score
             scoreScript.GenerateFinalScore();
             scoreScript.ResetScore();
@@ -223,6 +228,11 @@ public class Collisions : MonoBehaviour
             //after 1 second - restart game (allow death animation to be seen)
             Invoke("GameRestart", 1);
         }
+    }
+
+    private void SetMovementStateTrue()
+    {
+        startgame.SetMovementState(true);
     }
 
     private void GameRestart()

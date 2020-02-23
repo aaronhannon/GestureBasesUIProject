@@ -25,6 +25,7 @@ public class StartGame : MonoBehaviour
     private bool fixedcamera = false;
     private bool isRolling = false;
     private int heartcounter = 1;
+    private bool playerMovement;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class StartGame : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<CapsuleCollider>();
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
+        playerMovement = true;
     }
 
     //4.347826
@@ -49,7 +51,9 @@ public class StartGame : MonoBehaviour
             else
             {
                 animator.SetBool("Started", true);
-                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + playerSpeed);
+                if (playerMovement) {
+                    player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + playerSpeed);
+                }
                 fixedcamera = true;
 
                 if(heartcounter < 4)
@@ -162,4 +166,10 @@ public class StartGame : MonoBehaviour
 
         AudioController.Instance.PlayAudioOnce("horn");
     }
+
+    public void SetMovementState(bool boolVal)
+    {
+        playerMovement = boolVal;
+    }
+
 }
