@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
+    private static int numberOfChunks = 0;
+
     // Single object for now, could use a list later.
     private GameObject obstacle;
     private GameObject fallingTree;
@@ -15,6 +16,10 @@ public class ObstacleGenerator : MonoBehaviour
 
     void Start()
     {
+        GenerateVillageObjects();
+        GenerateRiverObjects();
+        //GenerateForestObjects();
+
         container = GameObject.Find("GeneratedObjects");
 
         // Basic implementation for now, will need to be improved and randomized.
@@ -34,6 +39,12 @@ public class ObstacleGenerator : MonoBehaviour
 
             Instantiate(obstacle, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
+
+        SpawnNPCS();
+        SpawnTrees();
+        SpawnCoins();
+        SpawnHelmets();
+        SpawnPotions();
 
         // Basic implementation for now, will need to be improved and randomized.
         for (int i = 500; i < 900; i += 55)
@@ -63,6 +74,35 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(coin, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
+    }
+
+    #region == Chunk Object Generators == 
+    public void GenerateVillageObjects()
+    {
+
+        numberOfChunks++;
+    }
+
+    public void GenerateForestObjects()
+    {
+
+        numberOfChunks++;
+    }
+
+    public void GenerateRiverObjects()
+    {
+
+        numberOfChunks++;
+    }
+    #endregion
+
+    #region == Single Object Spawners == 
+    private void SpawnHelmets()
+    {
+    }
+
+    private void SpawnPotions()
+    {
         // Basic implementation for now, will need to be improved and randomized.
         for (int i = 30; i < 300; i += 100)
         {
@@ -70,4 +110,17 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(revivePotion, new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
+
+    private void SpawnCoins()
+    {
+    }
+
+    private void SpawnTrees()
+    {
+    }
+
+    private void SpawnNPCS()
+    {
+    }
+    #endregion
 }
