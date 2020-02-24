@@ -239,7 +239,8 @@ public class Collisions : MonoBehaviour
             scoreScript.ResetScore();
 
             //after 1 second - restart game (allow death animation to be seen)
-            Invoke("GameRestart", 1);
+            GameObject.Find("Image").GetComponent<Animator>().SetTrigger("gameover");
+            Invoke("GameRestart", 2);
         }
     }
 
@@ -255,6 +256,10 @@ public class Collisions : MonoBehaviour
 
     private void GameRestart()
     {
-        SceneManager.LoadScene(0);
+        if (revive == false)
+        {
+            SceneManager.LoadScene(1);
+        }
+        
     }
 }
