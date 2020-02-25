@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
-    private static int numberOfChunks = 1;
+    private static int numberOfChunks;
     private const int chunkLenghtVillage = 420;
     private const int chunkLenghtRiver = 520;
     private const int chunkLenghtForest = 500;
@@ -18,6 +18,9 @@ public class ObstacleGenerator : MonoBehaviour
 
     void Start()
     {
+        // Reset on each game load.
+        numberOfChunks = 1;
+
         LoadAllGameObjects();
 
         container = GameObject.Find("GeneratedObjects");
