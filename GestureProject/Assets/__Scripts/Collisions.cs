@@ -16,6 +16,7 @@ public class Collisions : MonoBehaviour
     private bool revive = false;
     public GameObject reviveDisplay;
     private StartGame startgame;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Collisions : MonoBehaviour
         startgame = FindObjectOfType<StartGame>();
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
         playerAnimator = GameObject.Find("Low Poly Warrior").GetComponent<Animator>();
+        player = GameObject.Find("Low Poly Warrior");
     }
 
     // Update is called once per frame
@@ -55,7 +57,7 @@ public class Collisions : MonoBehaviour
             }
 
             // Check if player has helmet, else remove one life.
-            TakeDamage();
+            TakeDamage(other);
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
         }
@@ -95,7 +97,7 @@ public class Collisions : MonoBehaviour
                 }
                 
                 // Check if player has helmet, else remove one life.
-                TakeDamage();
+                TakeDamage(other);
             }
         }
         else if (other.CompareTag("roll"))
@@ -112,7 +114,7 @@ public class Collisions : MonoBehaviour
                 }
 
                 // Check if player has helmet, else remove one life.
-                TakeDamage();
+                TakeDamage(other);
             }
         }
         else if (other.CompareTag("trigger"))
@@ -175,7 +177,7 @@ public class Collisions : MonoBehaviour
     }
 
     // Check if player has helmet, else remove one life.
-    private void TakeDamage()
+    private void TakeDamage(Collider collisionItem)
     {
         if (helmet == false)
         {
@@ -188,7 +190,7 @@ public class Collisions : MonoBehaviour
 
             if (lives == 0)
             {
-                ResetGame();
+                ResetGame(collisionItem);
             }
         }
         else
@@ -199,9 +201,11 @@ public class Collisions : MonoBehaviour
         }
     }
 
-    private void ResetGame() {
+    private void ResetGame(Collider collisionItem) {
         playerAnimator.SetTrigger("Death");
 
+        //destroy collision item to avoid extra hearts damage upon revival if user has one
+        Destroy(collisionItem);
 
         // Turn off controls again when player dies.
         StartGame.ControlsOn = false;
@@ -240,7 +244,7 @@ public class Collisions : MonoBehaviour
 
             //after 1 second - restart game (allow death animation to be seen)
             GameObject.Find("Image").GetComponent<Animator>().SetTrigger("gameover");
-            Invoke("GameRestart", 2);
+            Invoke("GameOver", 2);
         }
     }
 
@@ -254,12 +258,9 @@ public class Collisions : MonoBehaviour
         reviveDisplay.SetActive(false);
     }
 
-    private void GameRestart()
+    private void GameOver()
     {
-        if (revive == false)
-        {
-            SceneManager.LoadScene(1);
-        }
-        
+        //load death scene
+        SceneManager.LoadScene(1);
     }
 }
