@@ -15,7 +15,7 @@ public class StartGame : MonoBehaviour
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
     private float playerSpeed = .5f;
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 2.5f;
     private float distToGround;
     private GameObject mainCamera;
     private GameObject player;
@@ -120,24 +120,16 @@ public class StartGame : MonoBehaviour
 
     private void MoveLeft()
     {
-        if(player.transform.position.x >= -5f)
+        if(player.transform.position.x >= -2f)
         {
-            // Test attempts.
-            //player.transform.Translate(new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z) * Time.deltaTime);
-
-            //Vector3 movement = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
-            //playerRb.MovePosition(movement * Time.fixedDeltaTime);
-
             player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
         }
     }
 
     private void MoveRight()
     {
-        if (player.transform.position.x <= 5f)
+        if (player.transform.position.x <= 2f)
         {
-            //player.transform.Translate(new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z) * Time.deltaTime);
-
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
         }
     }
