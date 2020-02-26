@@ -39,12 +39,12 @@ public class ObstacleGenerator : MonoBehaviour
 
         for (int i = start; i < end; i += 100)
         {
-            Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-3f, 3f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+            Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
         }
         
         for (int i = start + 30; i < end; i += 27)
         {
-            Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Testing to show trees.
@@ -65,7 +65,7 @@ public class ObstacleGenerator : MonoBehaviour
 
         for (int i = start; i < end; i += 55)
         {
-            Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-4f, 4f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-2.5f, 2.5f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         SpawnCoins(start, end);
@@ -80,7 +80,7 @@ public class ObstacleGenerator : MonoBehaviour
 
         for (int i = start + 30; i < end; i += 27)
         {
-            Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         for (int i = start + 30; i < end; i += 150)
@@ -105,9 +105,9 @@ public class ObstacleGenerator : MonoBehaviour
     private void SpawnPotions(int start, int end)
     {
         // Basic implementation for now, will need to be improved and randomized.
-        for (int i = start; i < end; i += 150)
+        for (int i = start; i < end; i += 170)
         {
-            Instantiate(gameObstacles["RevivePotion"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["RevivePotion"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
 
@@ -115,7 +115,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         for (int i = start ; i < end; i += 50)
         {
-            Instantiate(gameObstacles["coin"], new Vector3(Random.Range(-3f, 3f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+            Instantiate(gameObstacles["coin"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
     #endregion

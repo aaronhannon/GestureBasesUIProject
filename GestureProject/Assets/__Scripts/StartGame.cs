@@ -123,6 +123,7 @@ public class StartGame : MonoBehaviour
         if(player.transform.position.x >= -2f)
         {
             player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
+            animator.SetTrigger("RollLeft");
         }
     }
 
@@ -131,6 +132,7 @@ public class StartGame : MonoBehaviour
         if (player.transform.position.x <= 2f)
         {
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
+            animator.SetTrigger("RollRight");
         }
     }
     
