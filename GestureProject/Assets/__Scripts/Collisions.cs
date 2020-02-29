@@ -26,6 +26,7 @@ public class Collisions : MonoBehaviour
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
         playerAnimator = GameObject.Find("Low Poly Warrior").GetComponent<Animator>();
         player = GameObject.Find("Low Poly Warrior");
+        
     }
 
     // Update is called once per frame
@@ -63,8 +64,13 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("boat"))
         {
-            Debug.Log("BOAT!!");
-            gameObject.GetComponent<Animator>().SetTrigger("inboat");
+            if(inboat == false)
+            {
+                Debug.Log("BOAT!!");
+                gameObject.GetComponent<Animator>().SetTrigger("inboat");
+            }
+
+
 
             //PlayerJump();
         }
@@ -76,6 +82,13 @@ public class Collisions : MonoBehaviour
             ////GameObject.Find("boat").transform.parent = gameObject.transform;
             //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
             ////playerRb.useGravity = false;
+        }else if (other.CompareTag("outboat"))
+        {
+
+            inboat = false;
+            gameObject.GetComponent<Animator>().SetBool("outboat", true);
+            gameObject.GetComponent<Animator>().SetBool("stopRun", false);
+            Destroy(GameObject.Find("boat"));
         }
         else if (other.CompareTag("Enemy"))
         {
