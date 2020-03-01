@@ -14,6 +14,8 @@ public class ObstacleGenerator : MonoBehaviour
     private bool firstChunk = true;
     private int previousChunkLength = 0;
     private ArrayList chunks;
+    private GameObject pathway;
+    private int currentChunk = 0;
     
     // Dictionary which holds all game objects in memory rather than loading them all the time.
     private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
@@ -22,6 +24,7 @@ public class ObstacleGenerator : MonoBehaviour
 
     void Start()
     {
+        pathway = GameObject.Find("pathway");
         // Reset on each game load.
         numberOfChunks = 1;
 
@@ -35,6 +38,8 @@ public class ObstacleGenerator : MonoBehaviour
         //GenerateVillageObjects();
         //GenerateRiverObjects();
         //GenerateForestObjects();
+
+
 
         foreach (int item in chunks)
         {
@@ -50,6 +55,7 @@ public class ObstacleGenerator : MonoBehaviour
                     GenerateRiverObjects();
                     break;
             }
+            currentChunk++;
         }
 
         Debug.Log("Obstacles Generated");
@@ -79,7 +85,7 @@ public class ObstacleGenerator : MonoBehaviour
 
         SpawnCoins(start, end);
         SpawnPotions(start, end);
-
+        GeneratePathway(start, end);
         numberOfChunks++;
     }
     
@@ -94,7 +100,7 @@ public class ObstacleGenerator : MonoBehaviour
 
         SpawnCoins(start, end);
         SpawnPotions(start, end);
-
+        
         numberOfChunks++;
     }
 
@@ -114,10 +120,46 @@ public class ObstacleGenerator : MonoBehaviour
 
         SpawnCoins(start, end);
         SpawnPotions(start, end);
+        GeneratePathway(start, end);
 
         numberOfChunks++;
     }
     #endregion
+
+    public void GeneratePathway(int start,int end)
+    {
+        int[] chunksArray = (int[])chunks.ToArray(typeof(int));
+        int nextChunk;
+
+        try
+        {
+            nextChunk = chunksArray[currentChunk + 1];
+        }
+        catch (System.IndexOutOfRangeException)
+        {
+
+            nextChunk = 0;
+        }  
+
+        if(nextChunk == 2)
+        {
+            for (int i = start; i < end-10; i += 1)
+            {
+                pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
+                Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
+            }
+        }
+        else
+        {
+            for (int i = start+10; i < end + 50; i += 1)
+            {
+                pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
+                Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
+            }
+        }
+
+    }
+
 
     #region == Single Object Spawners == 
    
