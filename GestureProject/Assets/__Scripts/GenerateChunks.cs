@@ -14,14 +14,15 @@ public class GenerateChunks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int[] ChunkPatterns = { 0, 2, 1 };
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
         riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
-        int rand = 0;
-        for (int i = 0; i < 4; i++)
+        //int rand = 0;
+        for (int i = 0; i < 3; i++)
         {
-            
+            int rand = ChunkPatterns[i];
             Debug.Log("RANDOM: " + rand);
             //VILLAGE
             if(rand == 0)
@@ -89,7 +90,7 @@ public class GenerateChunks : MonoBehaviour
                 previousChunk = "river";
             }
 
-            rand = Random.Range(0, 3);
+            //rand = Random.Range(0, 3);
             
             if(rand == 2 && previousChunk == "river")
             {

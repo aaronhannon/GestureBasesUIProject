@@ -39,6 +39,7 @@ public class Collisions : MonoBehaviour
 
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
+            startgame.SetPlayerSpeed(1f);
         }
     }
 
@@ -84,7 +85,7 @@ public class Collisions : MonoBehaviour
             ////playerRb.useGravity = false;
         }else if (other.CompareTag("outboat"))
         {
-
+            startgame.SetPlayerSpeed(.5f);
             inboat = false;
             gameObject.GetComponent<Animator>().SetBool("outboat", true);
             gameObject.GetComponent<Animator>().SetBool("stopRun", false);

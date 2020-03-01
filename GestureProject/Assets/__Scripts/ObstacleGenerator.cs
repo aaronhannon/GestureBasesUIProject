@@ -6,10 +6,12 @@ public class ObstacleGenerator : MonoBehaviour
 {
     private static int numberOfChunks;
     private const int chunkLenghtVillage = 420;
-    private const int chunkLenghtRiver = 520;
-    private const int chunkLenghtForest = 500;
+    private const int chunkLenghtRiver = 640;
+    private const int chunkLenghtForest = 420;
     private int start = 0;
     private int end = 0;
+    private bool firstChunk = true;
+    private int previousChunkLength = 0;
     
     // Dictionary which holds all game objects in memory rather than loading them all the time.
     private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
@@ -63,7 +65,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtRiver);
 
-        for (int i = start; i < end; i += 55)
+        for (int i = start+50; i < end; i += 55)
         {
             Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-2.5f, 2.5f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
@@ -78,7 +80,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtForest);
 
-        for (int i = start + 30; i < end; i += 27)
+        for (int i = start + 30; i < end; i += 50)
         {
             Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
@@ -123,8 +125,21 @@ public class ObstacleGenerator : MonoBehaviour
     private void UpdateStartEndValues(int chunkLenght)
     {
         // Get start and end values to load objects from, so it aligns with each chunk.
-        start = (numberOfChunks - 1) * chunkLenght;
-        end = numberOfChunks * chunkLenght;
+        if(firstChunk == true)
+        {
+            start = 0;
+            end = chunkLenght;
+            firstChunk = false;
+            
+        }
+        else
+        {
+            start += previousChunkLength;
+            end += chunkLenght;
+        }
+        previousChunkLength = chunkLenght;
+        //start = (numberOfChunks - 1) * chunkLenght;
+        //end = numberOfChunks * chunkLenght;
     }
 
     private void LoadAllGameObjects()

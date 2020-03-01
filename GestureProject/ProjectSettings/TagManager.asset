@@ -16,6 +16,7 @@ TagManager:
   - revive
   - roll
   - trigger
+  - outboat
   layers:
   - Default
   - TransparentFX
