@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -7,11 +8,12 @@ public class ObstacleGenerator : MonoBehaviour
     private static int numberOfChunks;
     private const int chunkLenghtVillage = 420;
     private const int chunkLenghtRiver = 640;
-    private const int chunkLenghtForest = 420;
+    private const int chunkLenghtForest = 320;
     private int start = 0;
     private int end = 0;
     private bool firstChunk = true;
     private int previousChunkLength = 0;
+    private ArrayList chunks;
     
     // Dictionary which holds all game objects in memory rather than loading them all the time.
     private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
@@ -27,10 +29,30 @@ public class ObstacleGenerator : MonoBehaviour
 
         container = GameObject.Find("GeneratedObjects");
 
+        this.chunks = gameObject.GetComponent<GenerateChunks>().GetChunkOrder();
+
         // Testing, will be called randomly from chunk generator.
-        GenerateVillageObjects();
-        GenerateRiverObjects();
-        GenerateForestObjects();
+        //GenerateVillageObjects();
+        //GenerateRiverObjects();
+        //GenerateForestObjects();
+
+        foreach (int item in chunks)
+        {
+            switch (item)
+            {
+                case 0:
+                    GenerateVillageObjects();
+                    break;
+                case 1:
+                    GenerateForestObjects();
+                    break;
+                case 2:
+                    GenerateRiverObjects();
+                    break;
+            }
+        }
+
+        Debug.Log("Obstacles Generated");
     }
 
     #region == Chunk Object Generators == 

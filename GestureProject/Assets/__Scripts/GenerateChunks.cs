@@ -10,17 +10,22 @@ public class GenerateChunks : MonoBehaviour
     GameObject riverChunkNoBoat;
     float currentZ= 0 ;
     string previousChunk;
+    ArrayList chunks;
 
     // Start is called before the first frame update
     void Start()
     {
-        int[] ChunkPatterns = { 0, 2, 1 };
+        chunks = new ArrayList();
+        //Hardcode order you want to test chunks
+        int[] ChunkPatterns = { 0, 1, 0, 2};
+
+
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
         riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
         //int rand = 0;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < ChunkPatterns.Length; i++)
         {
             int rand = ChunkPatterns[i];
             Debug.Log("RANDOM: " + rand);
@@ -41,6 +46,7 @@ public class GenerateChunks : MonoBehaviour
                 }
                 
                 Instantiate(villageChunk, new Vector3(-18f, 1f, currentZ), Quaternion.Euler(0, 90, 0));
+                chunks.Add(0);
                 previousChunk = "village";
             }
             //FOREST
@@ -56,7 +62,7 @@ public class GenerateChunks : MonoBehaviour
                     currentZ += 230;
                 }
 
-                
+                chunks.Add(1);
                 Instantiate(forestChunk, new Vector3(-22f, 0f, currentZ), Quaternion.Euler(0, 90, 0));
                 previousChunk = "forest";
             }
@@ -85,8 +91,8 @@ public class GenerateChunks : MonoBehaviour
                     currentZ = 110f;
                     Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
                 }
-                
-                
+
+                chunks.Add(2);
                 previousChunk = "river";
             }
 
@@ -103,8 +109,14 @@ public class GenerateChunks : MonoBehaviour
 
         //spawn village Add 360 every time to Z coord
 
+        Debug.Log("Chunks Generated");
+        gameObject.AddComponent<ObstacleGenerator>();
 
+    }
 
+    public ArrayList GetChunkOrder()
+    {
+        return chunks;
     }
 
     // Update is called once per frame
