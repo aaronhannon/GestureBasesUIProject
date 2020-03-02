@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8819312343647130615}
   - component: {fileID: 8819312343647130612}
   - component: {fileID: 8819312343647130613}
+  - component: {fileID: 8540131941434251883}
   m_Layer: 0
   m_Name: Platonic
   m_TagString: Untagged
@@ -93,6 +94,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8844700393703326736, guid: 84bd066e8c7cb6f41a340282edb250e9, type: 3}
+--- !u!114 &8540131941434251883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8819312343647130619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1a1c7b71b3c3f449ab0b4417e41989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8819312343667454098
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +118,7 @@ GameObject:
   - component: {fileID: 8819312343667454317}
   m_Layer: 0
   m_Name: pathway
-  m_TagString: Untagged
+  m_TagString: pathway
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

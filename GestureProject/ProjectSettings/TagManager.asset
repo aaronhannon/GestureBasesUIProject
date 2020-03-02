@@ -17,6 +17,7 @@ TagManager:
   - roll
   - trigger
   - outboat
+  - river
   layers:
   - Default
   - TransparentFX
