@@ -12,10 +12,10 @@ public class DestroyPaths : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("DESTROY");
+        //Debug.Log("DESTROY");
         if (other.CompareTag("river"))
         {
-            Debug.Log("PathwayDestroyed");
+            //Debug.Log("PathwayDestroyed");
             Destroy(gameObject);
 
         }

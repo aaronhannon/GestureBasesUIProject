@@ -35,7 +35,10 @@ public class StartGame : MonoBehaviour
         playerCollider = player.GetComponent<CapsuleCollider>();
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
         playerMovement = true;
+        //KManager.OnSwipeUpDown += new KManager.SimpleEvent(KinectManagerScript_OnSwipeUpDown);
     }
+
+
 
     //4.347826
     // Update is called once per frame
@@ -110,7 +113,7 @@ public class StartGame : MonoBehaviour
     }
 
     // Make the player jump, and trigger animation.
-    private void PlayerJump()
+    public void PlayerJump()
     {
         playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
         animator.SetTrigger("Jump");
@@ -153,7 +156,7 @@ public class StartGame : MonoBehaviour
         animator.SetTrigger("Attack");
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         gameStarted = true;
         Debug.Log("Game Started");

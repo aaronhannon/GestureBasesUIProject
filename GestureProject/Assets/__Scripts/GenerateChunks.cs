@@ -28,7 +28,7 @@ public class GenerateChunks : MonoBehaviour
         for (int i = 0; i < ChunkPatterns.Length; i++)
         {
             //int rand = ChunkPatterns[i];
-            Debug.Log("RANDOM: " + rand);
+           // Debug.Log("RANDOM: " + rand);
             //VILLAGE
             if(rand == 0)
             {

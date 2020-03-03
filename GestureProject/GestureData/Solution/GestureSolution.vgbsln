@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SolutionFile>
+		<Header>
+			<Date>2020-03-03</Date>
+			<Time>21:48:18.8191662+00:00</Time>
+			<Version>1</Version>
+			<Type>Solution</Type>
+			<ID>7e0cc4f0-4859-43dd-91c3-97bf2522756d</ID>
+		</Header>
+		<Solution_Data>
+			<Files>
+				<Name />
+				<Content>
+					<Items>
+						<File>../Projects/ArmUp.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/ArmUp.a.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Jump.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Jump.a.vgbproj</File>
+					</Items>
+				</Content>
+			</Files>
+		</Solution_Data>
+		<UI_State />
+		<Attributes />
+	</SolutionFile>
+</GestureBuilderFile>
