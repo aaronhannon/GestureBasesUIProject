@@ -115,6 +115,7 @@ public class StartGame : MonoBehaviour
     // Make the player jump, and trigger animation.
     public void PlayerJump()
     {
+        //Jump method only gets called when user is sprinting this prevents KManager calling method multiple times in one gesture
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")){
             playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
             animator.SetTrigger("Jump");
@@ -126,7 +127,7 @@ public class StartGame : MonoBehaviour
 
     private void MoveLeft()
     {
-        if(player.transform.position.x >= -2f)
+        if(player.transform.position.x >= -2f && animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
         {
             player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
             animator.SetTrigger("RollLeft");
@@ -135,7 +136,7 @@ public class StartGame : MonoBehaviour
 
     private void MoveRight()
     {
-        if (player.transform.position.x <= 2f)
+        if (player.transform.position.x <= 2f && animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
         {
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
             animator.SetTrigger("RollRight");

@@ -2,8 +2,8 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<SolutionFile>
 		<Header>
-			<Date>2020-03-03</Date>
-			<Time>22:20:31.8747523+00:00</Time>
+			<Date>2020-03-04</Date>
+			<Time>20:26:35.4218961+00:00</Time>
 			<Version>1</Version>
 			<Type>Solution</Type>
 			<ID>7e0cc4f0-4859-43dd-91c3-97bf2522756d</ID>
@@ -23,6 +23,18 @@
 					</Items>
 					<Items>
 						<File>../Projects/Jump.a.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Move_Left.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Move_Left.a.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Move_Right.vgbproj</File>
+					</Items>
+					<Items>
+						<File>../Projects/Move_Right.a.vgbproj</File>
 					</Items>
 				</Content>
 			</Files>
