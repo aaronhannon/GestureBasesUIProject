@@ -14,6 +14,7 @@ public class KManager : MonoBehaviour
     VisualGestureBuilderFrameReader _gestureFrameReader;
     Windows.Kinect.BodyFrameReader _bodyFrameReader;
     Gesture _jump; // наш жест
+    Gesture _armRaise;
     Windows.Kinect.Body[] _bodies; // все пользователи, найденные Kinect'ом
     Windows.Kinect.Body _currentBody = null; //Текущий пользователь, жесты которого мы отслеживаем
     private string _getsureBasePath; //Путь до нашей обученной модели
@@ -47,6 +48,9 @@ public class KManager : MonoBehaviour
             if (gest.Name == "Jump")
             {
                 _jump = gest;
+                Debug.Log("Added:" + gest.Name);
+            }else if(gest.Name == "ArmUp"){
+                _armRaise = gest;
                 Debug.Log("Added:" + gest.Name);
             }
         }
@@ -105,24 +109,25 @@ public class KManager : MonoBehaviour
                     if (results != null && results.Count > 0)
                     {
                         DiscreteGestureResult jumpResult;
+                        DiscreteGestureResult armRaiseResult;
                         results.TryGetValue(_jump, out jumpResult);
+                        results.TryGetValue(_armRaise, out armRaiseResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
-                        if (jumpResult.Confidence > 0.2)
+                        if (jumpResult.FirstFrameDetected)
                         {
                             gestureDetected = true;
                             Debug.Log("Jump Gesture");
+
+                            startgame.GetComponent<StartGame>().PlayerJump();
+                            
+                        }else if(armRaiseResult.FirstFrameDetected){
+                            gestureDetected = true;
+                            Debug.Log("Arm raised");
                             if(gamestarted == false){
                                 startgame.GetComponent<StartGame>().OnMouseDown();
                                 gamestarted = true;
                             }
-
-                            // if (!gestureDetected)
-                            // {
-
-                                
-
-                            // }
                         }
                         else
                         {

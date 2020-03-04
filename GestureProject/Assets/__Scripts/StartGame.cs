@@ -115,8 +115,11 @@ public class StartGame : MonoBehaviour
     // Make the player jump, and trigger animation.
     public void PlayerJump()
     {
-        playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
-        animator.SetTrigger("Jump");
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")){
+            playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
+            animator.SetTrigger("Jump");
+        }
+        
 
         AudioController.Instance.PlayAudioOnce("jump");
     }
