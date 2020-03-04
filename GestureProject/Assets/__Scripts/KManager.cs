@@ -15,6 +15,8 @@ public class KManager : MonoBehaviour
     Windows.Kinect.BodyFrameReader _bodyFrameReader;
     Gesture _jump; // наш жест
     Gesture _armRaise;
+    Gesture _moveLeft;
+    Gesture _moveRight;
     Windows.Kinect.Body[] _bodies; // все пользователи, найденные Kinect'ом
     Windows.Kinect.Body _currentBody = null; //Текущий пользователь, жесты которого мы отслеживаем
     private string _getsureBasePath; //Путь до нашей обученной модели
@@ -51,6 +53,12 @@ public class KManager : MonoBehaviour
                 Debug.Log("Added:" + gest.Name);
             }else if(gest.Name == "ArmUp"){
                 _armRaise = gest;
+                Debug.Log("Added:" + gest.Name);
+            }else if(gest.Name == "Move_Left"){
+                _moveLeft = gest;
+                Debug.Log("Added:" + gest.Name);
+            }else if(gest.Name == "Move_Right"){
+                _moveRight = gest;
                 Debug.Log("Added:" + gest.Name);
             }
         }
@@ -110,8 +118,12 @@ public class KManager : MonoBehaviour
                     {
                         DiscreteGestureResult jumpResult;
                         DiscreteGestureResult armRaiseResult;
+                        DiscreteGestureResult moveLeftResult;
+                        DiscreteGestureResult moveRightResult;
                         results.TryGetValue(_jump, out jumpResult);
                         results.TryGetValue(_armRaise, out armRaiseResult);
+                        results.TryGetValue(_moveLeft, out moveLeftResult);
+                        results.TryGetValue(_moveRight, out moveRightResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
                         if (jumpResult.FirstFrameDetected)
@@ -128,6 +140,10 @@ public class KManager : MonoBehaviour
                                 startgame.GetComponent<StartGame>().OnMouseDown();
                                 gamestarted = true;
                             }
+                        }else if(moveLeftResult.FirstFrameDetected){
+                            startgame.GetComponent<StartGame>().MoveLeft();
+                        }else if(moveRightResult.FirstFrameDetected){
+                            startgame.GetComponent<StartGame>().MoveRight();
                         }
                         else
                         {

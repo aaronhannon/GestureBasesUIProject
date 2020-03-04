@@ -125,7 +125,7 @@ public class StartGame : MonoBehaviour
         AudioController.Instance.PlayAudioOnce("jump");
     }
 
-    private void MoveLeft()
+    public void MoveLeft()
     {
         if(player.transform.position.x >= -2f && animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
         {
@@ -134,7 +134,7 @@ public class StartGame : MonoBehaviour
         }
     }
 
-    private void MoveRight()
+    public void MoveRight()
     {
         if (player.transform.position.x <= 2f && animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint"))
         {
