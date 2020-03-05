@@ -107,7 +107,7 @@ public class StartGame : MonoBehaviour
     
     // Check if player is touching the ground by sending a raycast down. 
     // If the distance is greater than .05 then it returns false E.g Player is jumping.
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics.Raycast(player.transform.position, Vector3.down, distToGround + 0.5f);
     }
@@ -116,7 +116,7 @@ public class StartGame : MonoBehaviour
     public void PlayerJump()
     {
         //Jump method only gets called when user is sprinting this prevents KManager calling method multiple times in one gesture
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint")){
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint") && IsGrounded()){
             playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
             animator.SetTrigger("Jump");
         }

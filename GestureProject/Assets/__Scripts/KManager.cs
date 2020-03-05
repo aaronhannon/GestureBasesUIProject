@@ -17,6 +17,7 @@ public class KManager : MonoBehaviour
     Gesture _armRaise;
     Gesture _moveLeft;
     Gesture _moveRight;
+    bool isJumping = false;
     Windows.Kinect.Body[] _bodies; // все пользователи, найденные Kinect'ом
     Windows.Kinect.Body _currentBody = null; //Текущий пользователь, жесты которого мы отслеживаем
     private string _getsureBasePath; //Путь до нашей обученной модели
@@ -126,23 +127,27 @@ public class KManager : MonoBehaviour
                         results.TryGetValue(_moveRight, out moveRightResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
-                        if (jumpResult.FirstFrameDetected)
+                        if (jumpResult.Confidence > 0.9 && gestureDetected == false)
                         {
                             gestureDetected = true;
                             Debug.Log("Jump Gesture");
-
-                            startgame.GetComponent<StartGame>().PlayerJump();
+                            if(startgame.GetComponent<StartGame>().IsGrounded()){
+                                startgame.GetComponent<StartGame>().PlayerJump();
+                            }
+                            isJumping = true;
                             
-                        }else if(armRaiseResult.FirstFrameDetected){
+                        }else if(armRaiseResult.Confidence > 0.1 && gestureDetected == false){
                             gestureDetected = true;
                             Debug.Log("Arm raised");
                             if(gamestarted == false){
                                 startgame.GetComponent<StartGame>().OnMouseDown();
                                 gamestarted = true;
                             }
-                        }else if(moveLeftResult.FirstFrameDetected){
+                        }else if(moveLeftResult.Confidence > 0.3 && gestureDetected == false){
+                            gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveLeft();
-                        }else if(moveRightResult.FirstFrameDetected){
+                        }else if(moveRightResult.Confidence > 0.3 && gestureDetected == false){
+                            gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
                         }
                         else
