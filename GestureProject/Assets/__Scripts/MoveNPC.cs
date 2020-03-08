@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class MoveNPC : MonoBehaviour
 {
-    private Vector3 startPosition = new Vector3(0f, 1f, 0f);
     private float moveSpeed = 4f;
-    
+
+    private Vector3 startPosition;
+    public Vector3 StartPosition
+    {
+        get { return startPosition; }
+        set { startPosition = value; }
+    }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (transform.position == startPosition)
         {
@@ -19,7 +25,6 @@ public class MoveNPC : MonoBehaviour
         {
             // Move NPC towards start.
             transform.position = Vector3.MoveTowards(transform.position, startPosition, moveSpeed * Time.deltaTime);
-            //transform.Translate(Vector3.forward * Time.deltaTime);
         }
     }
 }

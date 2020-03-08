@@ -67,7 +67,11 @@ public class ObstacleGenerator : MonoBehaviour
 
         for (int i = start; i < end; i += 100)
         {
-            Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
+            // Instaniate and set start point of NPC so they only run to the start of the village chunk.
+            GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
+            npc.transform.parent = container.transform;
+
+            npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
         }
         
         for (int i = start + 30; i < end - 30; i += 27)
