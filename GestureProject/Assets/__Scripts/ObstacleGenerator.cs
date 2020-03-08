@@ -39,7 +39,6 @@ public class ObstacleGenerator : MonoBehaviour
         //GenerateRiverObjects();
         //GenerateForestObjects();
         
-
         foreach (int item in chunks)
         {
 
@@ -55,8 +54,6 @@ public class ObstacleGenerator : MonoBehaviour
                     GenerateRiverObjects();
                     break;
             }
-
-            
         }
 
         Debug.Log("Obstacles Generated");
@@ -77,13 +74,7 @@ public class ObstacleGenerator : MonoBehaviour
         {
             Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
-
-        // Testing to show trees.
-        //for (int i = start; i < end; i += 150)
-        //{
-        //    Instantiate(gameObstacles["TriggerObstacle"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
-        //}
-
+        
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
@@ -116,9 +107,20 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
+        // Spawns trees.
         for (int i = start + 30; i < end; i += 150)
         {
-            Instantiate(gameObstacles["TriggerObstacle"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            int rand = Random.Range(0, 2);
+
+            // Load either left or right falling trees
+            if (rand == 0)
+            {
+                Instantiate(gameObstacles["TreeRight"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            }
+            else
+            {
+                Instantiate(gameObstacles["TreeLeft"], new Vector3(0f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            }
         }
 
         SpawnCoins(start, end);
@@ -131,8 +133,6 @@ public class ObstacleGenerator : MonoBehaviour
 
     public void GeneratePathway(int start,int end)
     {
-
-
         for (int i = start; i < end; i += 1)
         {
             pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));

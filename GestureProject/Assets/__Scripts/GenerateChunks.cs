@@ -8,7 +8,7 @@ public class GenerateChunks : MonoBehaviour
     GameObject forestChunk;
     GameObject riverChunk;
     GameObject riverChunkNoBoat;
-    float currentZ= 0 ;
+    float currentZ = 0;
     string previousChunk;
     ArrayList chunks;
 
@@ -17,10 +17,8 @@ public class GenerateChunks : MonoBehaviour
     {
         chunks = new ArrayList();
         //Hardcode order you want to test chunks
-        int[] ChunkPatterns = {0, 1, 2,1,2};
-        //int[] ChunkPatterns = { 1, 2, 2, 1 };
-
-
+        int[] ChunkPatterns = { 0, 1, 2, 1, 2 };
+        
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
@@ -29,15 +27,15 @@ public class GenerateChunks : MonoBehaviour
         for (int i = 0; i < ChunkPatterns.Length; i++)
         {
             //int rand = ChunkPatterns[i];
-           // Debug.Log("RANDOM: " + rand);
+            // Debug.Log("RANDOM: " + rand);
             //VILLAGE
-            if(rand == 0)
+            if (rand == 0)
             {
-                if(previousChunk == "forest")
+                if (previousChunk == "forest")
                 {
                     currentZ += 450f;
                 }
-                else if(previousChunk == "river")
+                else if (previousChunk == "river")
                 {
                     currentZ += 850;
                 }
@@ -45,13 +43,13 @@ public class GenerateChunks : MonoBehaviour
                 {
                     currentZ += 350f;
                 }
-                
+
                 Instantiate(villageChunk, new Vector3(-18f, 1f, currentZ), Quaternion.Euler(0, 90, 0));
                 chunks.Add(0);
                 previousChunk = "village";
             }
             //FOREST
-            else if(rand == 1)
+            else if (rand == 1)
             {
 
                 if (previousChunk == "river")
@@ -71,18 +69,18 @@ public class GenerateChunks : MonoBehaviour
             else if (rand == 2)
             {
 
-                if(previousChunk == "forest")
+                if (previousChunk == "forest")
                 {
                     currentZ += 250;
                     Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
                 }
-                else if(previousChunk == "village")
+                else if (previousChunk == "village")
                 {
                     currentZ += 180;
                     Instantiate(riverChunk, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
 
                 }
-                else if(previousChunk == "river")
+                else if (previousChunk == "river")
                 {
                     currentZ += 650;
                     Instantiate(riverChunkNoBoat, new Vector3(17.57f, 3f, currentZ), Quaternion.Euler(0, -100.92f, 0));
@@ -98,13 +96,13 @@ public class GenerateChunks : MonoBehaviour
             }
 
             rand = Random.Range(0, 3);
-            
-            if(rand == 2 && previousChunk == "river")
+
+            if (rand == 2 && previousChunk == "river")
             {
                 rand = 1;
             }
 
-            
+
 
         }
 
@@ -123,6 +121,6 @@ public class GenerateChunks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
