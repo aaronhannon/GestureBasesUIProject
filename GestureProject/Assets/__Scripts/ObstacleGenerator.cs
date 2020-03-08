@@ -38,8 +38,7 @@ public class ObstacleGenerator : MonoBehaviour
         //GenerateVillageObjects();
         //GenerateRiverObjects();
         //GenerateForestObjects();
-
-
+        
 
         foreach (int item in chunks)
         {
@@ -74,7 +73,7 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0)).transform.parent = container.transform;
         }
         
-        for (int i = start + 30; i < end; i += 27)
+        for (int i = start + 30; i < end - 30; i += 27)
         {
             Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }

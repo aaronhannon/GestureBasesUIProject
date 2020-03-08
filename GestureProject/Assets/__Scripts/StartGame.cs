@@ -26,6 +26,7 @@ public class StartGame : MonoBehaviour
     private bool isRolling = false;
     private int heartcounter = 1;
     private bool playerMovement;
+    private bool onetime = false;
 
     void Start()
     {
@@ -37,13 +38,11 @@ public class StartGame : MonoBehaviour
         playerMovement = true;
         //KManager.OnSwipeUpDown += new KManager.SimpleEvent(KinectManagerScript_OnSwipeUpDown);
     }
-
-
-
+    
     //4.347826
     // Update is called once per frame
     // Fixed jump issue by using a LateUpdate as it's only called once per frame.
-    void LateUpdate()
+    void FixedUpdate()
     {
         if(gameStarted == true)
         {
@@ -72,36 +71,41 @@ public class StartGame : MonoBehaviour
             }
             
             // Check if player wants to jump, and if player is on the ground.
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && controlsOn)
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && controlsOn && !onetime)
             {
                 PlayerJump();
+                // Only call method once.
+                onetime = true;
             }
 
             // Check if player wants to move left
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && controlsOn)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && controlsOn && !onetime)
             {
                 MoveLeft();
+                onetime = true;
             }
 
             // Check if player wants to move right
-            if (Input.GetKeyDown(KeyCode.RightArrow) && controlsOn)
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && controlsOn && !onetime)
             {
                 MoveRight();
+                onetime = true;
             }
 
             // Check if player is sliding.
-            if (Input.GetKeyDown(KeyCode.S) && controlsOn)
+            else if (Input.GetKeyDown(KeyCode.S) && controlsOn)
             {
                 RollForward();
             }
 
-            if (Input.GetMouseButtonDown(0) && controlsOn)
+            else if (Input.GetMouseButtonDown(0) && controlsOn)
             {
                 PlayerAttack();
             }
-           
-            // Trying to smooth out movement, will look into this further.
-            //player.transform.position = Vector3.Lerp(player.transform.position, player.transform.position, 0.5f * Time.deltaTime);
+            else
+            {
+                onetime = false;
+            }
         }
     }
     
@@ -119,10 +123,9 @@ public class StartGame : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Sprint") && IsGrounded()){
             playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
             animator.SetTrigger("Jump");
-        }
-        
 
-        AudioController.Instance.PlayAudioOnce("jump");
+            AudioController.Instance.PlayAudioOnce("jump");
+        }
     }
 
     public void MoveLeft()

@@ -8,7 +8,7 @@ public class MoveNPC : MonoBehaviour
     private float moveSpeed = 4f;
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (transform.position == startPosition)
         {

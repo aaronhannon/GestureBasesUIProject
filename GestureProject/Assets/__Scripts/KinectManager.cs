@@ -81,7 +81,7 @@ public class KinectManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         // process bodies
