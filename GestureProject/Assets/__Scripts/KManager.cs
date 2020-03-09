@@ -52,13 +52,10 @@ public class KManager : MonoBehaviour
             {
                 _jump = gest;
                 Debug.Log("Added:" + gest.Name);
-            }else if(gest.Name == "ArmUp"){
-                _armRaise = gest;
-                Debug.Log("Added:" + gest.Name);
-            }else if(gest.Name == "Move_Left"){
+            }else if(gest.Name == "Lean_Left"){
                 _moveLeft = gest;
                 Debug.Log("Added:" + gest.Name);
-            }else if(gest.Name == "Move_Right"){
+            }else if(gest.Name == "Lean_Right"){
                 _moveRight = gest;
                 Debug.Log("Added:" + gest.Name);
             }
@@ -118,16 +115,14 @@ public class KManager : MonoBehaviour
                     if (results != null && results.Count > 0)
                     {
                         DiscreteGestureResult jumpResult;
-                        DiscreteGestureResult armRaiseResult;
                         DiscreteGestureResult moveLeftResult;
                         DiscreteGestureResult moveRightResult;
                         results.TryGetValue(_jump, out jumpResult);
-                        results.TryGetValue(_armRaise, out armRaiseResult);
                         results.TryGetValue(_moveLeft, out moveLeftResult);
                         results.TryGetValue(_moveRight, out moveRightResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
-                        if (jumpResult.Confidence > 0.9 && gestureDetected == false)
+                        if (jumpResult.Confidence > 0.3 && gestureDetected == false)
                         {
                             gestureDetected = true;
                             Debug.Log("Jump Gesture");
@@ -136,17 +131,19 @@ public class KManager : MonoBehaviour
                             }
                             isJumping = true;
                             
-                        }else if(armRaiseResult.Confidence > 0.1 && gestureDetected == false){
-                            gestureDetected = true;
-                            Debug.Log("Arm raised");
-                            if(gamestarted == false){
-                                startgame.GetComponent<StartGame>().OnMouseDown();
-                                gamestarted = true;
-                            }
-                        }else if(moveLeftResult.Confidence > 0.3 && gestureDetected == false){
+                        }
+                        //else if(armRaiseResult.Confidence > 0.1 && gestureDetected == false){
+                        //     gestureDetected = true;
+                        //     Debug.Log("Arm raised");
+                        //     if(gamestarted == false){
+                        //         startgame.GetComponent<StartGame>().OnMouseDown();
+                        //         gamestarted = true;
+                        //     }
+                        // }
+                        else if(moveLeftResult.Confidence > 0.2 && gestureDetected == false){
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveLeft();
-                        }else if(moveRightResult.Confidence > 0.3 && gestureDetected == false){
+                        }else if(moveRightResult.Confidence > 0.2 && gestureDetected == false){
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
                         }

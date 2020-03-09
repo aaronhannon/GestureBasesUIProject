@@ -3,19 +3,19 @@
 	<ProjectFile>
 		<Header>
 			<Date>2020-03-09</Date>
-			<Time>13:51:46.5695378+00:00</Time>
+			<Time>13:20:59.7303382+00:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Analysis</Type>
-				<ProjectAttribute Name="Jump" Type="BOOL" />
+				<ProjectAttribute Name="Lean_Right" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="Jump" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Lean_Right" Value="false" />
 			</Function>
-			<ID>d8d0dcfb-08e8-41b0-bd9a-fabc093456c5</ID>
+			<ID>18902e6f-0f39-4aac-88ec-558e5354fc8a</ID>
 		</Header>
 		<Project_Data>
 			<Files>

@@ -3,32 +3,26 @@
 	<ProjectFile>
 		<Header>
 			<Date>2020-03-09</Date>
-			<Time>13:42:03.5835098+00:00</Time>
+			<Time>14:31:46.2795818+00:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Training</Type>
-				<ProjectAttribute Name="Jump" Type="BOOL" />
+				<ProjectAttribute Name="Crouch" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="Jump" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Crouch" Value="false" />
 			</Function>
-			<ID>2a27916c-6674-4a38-a033-149e79a6de15</ID>
+			<ID>8b54e381-e0d9-4daa-8d0d-6508f9c53ccb</ID>
 		</Header>
 		<Project_Data>
 			<Files>
 				<Name />
 				<Content>
 					<Items>
-						<File>../../../../../Documents/Kinect Studio/Repository/20200309_133914_00.vgbclip</File>
-					</Items>
-					<Items>
-						<File>../../../../../Documents/Kinect Studio/Repository/20200309_134011_00.vgbclip</File>
-					</Items>
-					<Items>
-						<File>../../../../../Documents/Kinect Studio/Repository/20200309_134054_00.vgbclip</File>
+						<File>../../../../../Documents/Kinect Studio/Repository/20200309_142439_00.vgbclip</File>
 					</Items>
 				</Content>
 			</Files>
@@ -45,8 +39,8 @@
 			<Items xsi:type="BoolAttribute" Name="Duplicate And Mirror Data During Training" Value="true" />
 			<Items xsi:type="IntAttribute" Name="% CPU For Training" Value="95" MaxValue="100" MinValue="1" />
 			<Items xsi:type="BoolAttribute" Name="Use Hands Data" Value="false" />
-			<Items xsi:type="BoolAttribute" Name="Ignore Left Arm" Value="true" />
-			<Items xsi:type="BoolAttribute" Name="Ignore Right Arm" Value="true" />
+			<Items xsi:type="BoolAttribute" Name="Ignore Left Arm" Value="false" />
+			<Items xsi:type="BoolAttribute" Name="Ignore Right Arm" Value="false" />
 			<Items xsi:type="BoolAttribute" Name="Ignore Lower Body" Value="false" />
 		</Attributes>
 	</ProjectFile>
