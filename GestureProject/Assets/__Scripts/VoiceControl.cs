@@ -20,13 +20,7 @@ public class VoiceControl : MonoBehaviour
         pause = GameObject.Find("Main Camera").GetComponent<Pause>();
         options = GameObject.Find("VikingSoundHorn").GetComponent<Options>();
 
-        voiceActions.Add("start game", StartGame);
-        voiceActions.Add("pause game", PauseGame);
-        voiceActions.Add("unpause game", PauseGame);
-        voiceActions.Add("sound on", ChangeSound);
-        voiceActions.Add("sound off", ChangeSound);
-        voiceActions.Add("reset game", ResetGame);
-        voiceActions.Add("exit game", ExitGame);
+        AddAllVoiceCommands();
 
         speechRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
         speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
@@ -36,6 +30,35 @@ public class VoiceControl : MonoBehaviour
     private void SpeechRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs speech)
     {
         voiceActions[speech.text].Invoke();
+    }
+
+    private void AddAllVoiceCommands()
+    {
+        voiceActions.Add("start game", StartGame);
+        voiceActions.Add("play game", StartGame);
+        voiceActions.Add("start", StartGame);
+        voiceActions.Add("play", StartGame);
+
+        voiceActions.Add("pause game", PauseGame);
+        voiceActions.Add("unpause game", PauseGame);
+        voiceActions.Add("pause", PauseGame);
+        voiceActions.Add("unpause", PauseGame);
+
+        voiceActions.Add("sound", ChangeSound);
+        voiceActions.Add("sound on", ChangeSound);
+        voiceActions.Add("sound off", ChangeSound);
+        voiceActions.Add("turn on sound", ChangeSound);
+        voiceActions.Add("turn off sound", ChangeSound);
+
+        voiceActions.Add("reset game", ResetGame);
+        voiceActions.Add("restart game", ResetGame);
+        voiceActions.Add("reset", ResetGame);
+        voiceActions.Add("restart", ResetGame);
+
+        voiceActions.Add("exit game", ExitGame);
+        voiceActions.Add("close game", ExitGame);
+        voiceActions.Add("exit", ExitGame);
+        voiceActions.Add("close", ExitGame);
     }
 
     private void StartGame()
