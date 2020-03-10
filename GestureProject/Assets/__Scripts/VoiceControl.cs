@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
 public class VoiceControl : MonoBehaviour
@@ -11,11 +12,13 @@ public class VoiceControl : MonoBehaviour
     private Dictionary<string, Action> voiceActions = new Dictionary<string, Action>();
     private StartGame startgame;
     private Pause pause;
+    private Options options;
 
     void Start()
     {
         startgame = gameObject.GetComponent<StartGame>();
         pause = GameObject.Find("Main Camera").GetComponent<Pause>();
+        options = GameObject.Find("VikingSoundHorn").GetComponent<Options>();
 
         voiceActions.Add("start game", StartGame);
         voiceActions.Add("pause game", PauseGame);
@@ -47,16 +50,17 @@ public class VoiceControl : MonoBehaviour
     
     private void ExitGame()
     {
-        Debug.Log("Exit Game");
+        Application.Quit();
     }
 
     private void ResetGame()
     {
-        Debug.Log("Reset Game");
+        startgame.SetMovementState(false);
+        SceneManager.LoadScene(0);
     }
 
     private void ChangeSound()
     {
-        Debug.Log("Sound on/off");
+        options.OnMouseDown();
     }
 }

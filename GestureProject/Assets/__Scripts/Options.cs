@@ -40,7 +40,7 @@ public class Options : MonoBehaviour
         // SFX
     }
     
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         // Change sound game object in world.
         if (PlayerPrefs.GetString("Music") == "True")
