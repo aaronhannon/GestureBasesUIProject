@@ -9,12 +9,19 @@ public class VoiceControl : MonoBehaviour
 {
     private KeywordRecognizer speechRecognizer;
     private Dictionary<string, Action> voiceActions = new Dictionary<string, Action>();
-    
+    private StartGame startgame;
+    private Pause pause;
+
     void Start()
     {
-        voiceActions.Add("start game", PlayGame);
+        startgame = gameObject.GetComponent<StartGame>();
+        pause = GameObject.Find("Main Camera").GetComponent<Pause>();
+
+        voiceActions.Add("start game", StartGame);
         voiceActions.Add("pause game", PauseGame);
-        voiceActions.Add("sound", ChangeSound);
+        voiceActions.Add("unpause game", PauseGame);
+        voiceActions.Add("sound on", ChangeSound);
+        voiceActions.Add("sound off", ChangeSound);
         voiceActions.Add("reset game", ResetGame);
         voiceActions.Add("exit game", ExitGame);
 
@@ -28,14 +35,14 @@ public class VoiceControl : MonoBehaviour
         voiceActions[speech.text].Invoke();
     }
 
-    private void PlayGame()
+    private void StartGame()
     {
-        Debug.Log("Play Game");
+        startgame.OnMouseDown();
     }
 
     private void PauseGame()
     {
-        Debug.Log("Pause Game");
+        pause.PauseGame();
     }
     
     private void ExitGame()

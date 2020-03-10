@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,19 +25,7 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if(paused == false) {
-                paused = true;
-                anim.SetBool("Paused", true);
-                startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.0f);
-            }
-            else
-            {
-                paused = false;
-                anim.SetBool("Paused", false);
-                timer = true;
-                
-            }
-                
+            PauseGame();
         }
 
         if(timer == true)
@@ -51,5 +40,21 @@ public class Pause : MonoBehaviour
             }
         }
 
+    }
+
+    public void PauseGame()
+    {
+        if (paused == false)
+        {
+            paused = true;
+            anim.SetBool("Paused", true);
+            startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.0f);
+        }
+        else
+        {
+            paused = false;
+            anim.SetBool("Paused", false);
+            timer = true;
+        }
     }
 }
