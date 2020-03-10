@@ -13,6 +13,10 @@ public class VoiceControl : MonoBehaviour
     void Start()
     {
         voiceActions.Add("start game", PlayGame);
+        voiceActions.Add("pause game", PauseGame);
+        voiceActions.Add("sound", ChangeSound);
+        voiceActions.Add("reset game", ResetGame);
+        voiceActions.Add("exit game", ExitGame);
 
         speechRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
         speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
@@ -26,6 +30,26 @@ public class VoiceControl : MonoBehaviour
 
     private void PlayGame()
     {
-        Debug.Log("Start Game");
+        Debug.Log("Play Game");
+    }
+
+    private void PauseGame()
+    {
+        Debug.Log("Pause Game");
+    }
+    
+    private void ExitGame()
+    {
+        Debug.Log("Exit Game");
+    }
+
+    private void ResetGame()
+    {
+        Debug.Log("Reset Game");
+    }
+
+    private void ChangeSound()
+    {
+        Debug.Log("Sound on/off");
     }
 }
