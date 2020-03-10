@@ -4917,6 +4917,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95139113287649485}
+--- !u!114 &739549210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739549207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65900148c8e67194e9d92b85c6e0aa05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &739549211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8508,6 +8520,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1474878781}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 1842d47a88e5bc44ba3c1cabc8069ef4,
+        type: 3}
+      propertyPath: m_Name
+      value: Terrain1 (3)
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1842d47a88e5bc44ba3c1cabc8069ef4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8577,11 +8594,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 1842d47a88e5bc44ba3c1cabc8069ef4,
-        type: 3}
-      propertyPath: m_Name
-      value: Terrain1 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4522081641203551934, guid: 1842d47a88e5bc44ba3c1cabc8069ef4,
         type: 3}
