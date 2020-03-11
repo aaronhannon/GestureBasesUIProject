@@ -17,16 +17,16 @@ public class GenerateChunks : MonoBehaviour
     {
         chunks = new ArrayList();
         //Hardcode order you want to test chunks
-        int[] ChunkPatterns = { 0, 1, 2, 1, 2 };
+        int[] ChunkPatterns = { 0, 2, 1 };
         
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
         riverChunk = Resources.Load("RiverChunkPrefab") as GameObject;
         riverChunkNoBoat = Resources.Load("RiverChunkPrefabNoBoat") as GameObject;
-        int rand = 0;
+        //int rand = 0;
         for (int i = 0; i < ChunkPatterns.Length; i++)
         {
-            //int rand = ChunkPatterns[i];
+            int rand = ChunkPatterns[i];
             // Debug.Log("RANDOM: " + rand);
             //VILLAGE
             if (rand == 0)
@@ -95,7 +95,7 @@ public class GenerateChunks : MonoBehaviour
                 previousChunk = "river";
             }
 
-            rand = Random.Range(0, 3);
+            //rand = Random.Range(0, 3);
 
             if (rand == 2 && previousChunk == "river")
             {

@@ -139,7 +139,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         for (int i = start; i < end; i += 1)
         {
-            pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
+            pathway.transform.localScale = new Vector3(3f, .8f, 1f);
             Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
         }
 
