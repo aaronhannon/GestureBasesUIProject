@@ -17,7 +17,7 @@ public class GenerateChunks : MonoBehaviour
     {
         chunks = new ArrayList();
         //Hardcode order you want to test chunks
-        int[] ChunkPatterns = { 0, 2, 1 };
+        int[] ChunkPatterns = { 1, 2, 0 };
         
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
