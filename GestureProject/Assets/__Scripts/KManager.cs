@@ -4,6 +4,7 @@ using System.IO;
 using Windows.Kinect;
 using Microsoft.Kinect.VisualGestureBuilder;
 using UnityEngine;
+using System.Collections;
 
 public class KManager : MonoBehaviour 
 {
@@ -122,7 +123,7 @@ public class KManager : MonoBehaviour
                         results.TryGetValue(_moveRight, out moveRightResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
-                        if (jumpResult.Confidence > 0.3 && gestureDetected == false)
+                        if (jumpResult.FirstFrameDetected && gestureDetected == false)
                         {
                             gestureDetected = true;
                             Debug.Log("Jump Gesture");
@@ -140,10 +141,11 @@ public class KManager : MonoBehaviour
                         //         gamestarted = true;
                         //     }
                         // }
-                        else if(moveLeftResult.Confidence > 0.2 && gestureDetected == false){
+                        else if(moveLeftResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
+                            Debug.Log("Left Roll");
                             startgame.GetComponent<StartGame>().MoveLeft();
-                        }else if(moveRightResult.Confidence > 0.2 && gestureDetected == false){
+                        }else if(moveRightResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
                         }
@@ -159,7 +161,8 @@ public class KManager : MonoBehaviour
         }
     }
 
-	
+
+
     void Update () 
     {
 	
