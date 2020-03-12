@@ -130,7 +130,7 @@ public class StartGame : MonoBehaviour
 
     public void MoveLeft()
     {
-        if(player.transform.position.x >= -2f)
+        if(player.transform.position.x >= -2f && controlsOn)
         {
             player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
             animator.SetTrigger("RollLeft");
@@ -139,7 +139,7 @@ public class StartGame : MonoBehaviour
 
     public void MoveRight()
     {
-        if (player.transform.position.x <= 2f)
+        if (player.transform.position.x <= 2f && controlsOn)
         {
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
             animator.SetTrigger("RollRight");
@@ -148,6 +148,7 @@ public class StartGame : MonoBehaviour
     
     private void RollForward()
     {
+     
         animator.SetTrigger("RollForward");
 
         //AudioController.Instance.PlayAudioOnce("roll");

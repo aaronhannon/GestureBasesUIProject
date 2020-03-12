@@ -104,7 +104,7 @@ public class KManager : MonoBehaviour
     void _gestureFrameReader_FrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs args)
     {
 
-        if (_gestureFrameSource.IsTrackingIdValid)
+        if (_gestureFrameSource.IsTrackingIdValid && StartGame.ControlsOn)
         {
             //Debug.Log("Tracking id is valid, value = " + _gestureFrameSource.TrackingId);
             using (var frame = args.FrameReference.AcquireFrame())
@@ -151,7 +151,7 @@ public class KManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("False");
+                            //Debug.Log("False");
 
                             gestureDetected = false;
                         }
