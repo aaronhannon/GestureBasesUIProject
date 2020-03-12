@@ -74,7 +74,7 @@ public class ObstacleGenerator : MonoBehaviour
             npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
         }
         
-        for (int i = start + 30; i < end - 30; i += 27)
+        for (int i = start + 50; i < end - 30; i += 27)
         {
             Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
@@ -90,7 +90,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtRiver);
 
-        for (int i = start+50; i < end; i += 55)
+        for (int i = start+50; i < end-20; i += 55)
         {
             Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-2.5f, 2.5f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }

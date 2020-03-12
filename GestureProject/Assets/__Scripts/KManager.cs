@@ -18,6 +18,9 @@ public class KManager : MonoBehaviour
     Gesture _armRaise;
     Gesture _moveLeft;
     Gesture _moveRight;
+    Gesture _swing;
+    Gesture _crouch;
+
     bool isJumping = false;
     Windows.Kinect.Body[] _bodies; // все пользователи, найденные Kinect'ом
     Windows.Kinect.Body _currentBody = null; //Текущий пользователь, жесты которого мы отслеживаем
@@ -58,6 +61,16 @@ public class KManager : MonoBehaviour
                 Debug.Log("Added:" + gest.Name);
             }else if(gest.Name == "Lean_Right"){
                 _moveRight = gest;
+                Debug.Log("Added:" + gest.Name);
+            }
+            else if (gest.Name == "Crouch")
+            {
+                _crouch = gest;
+                Debug.Log("Added:" + gest.Name);
+            }
+            else if (gest.Name == "Swing")
+            {
+                _swing = gest;
                 Debug.Log("Added:" + gest.Name);
             }
         }
@@ -118,9 +131,13 @@ public class KManager : MonoBehaviour
                         DiscreteGestureResult jumpResult;
                         DiscreteGestureResult moveLeftResult;
                         DiscreteGestureResult moveRightResult;
+                        DiscreteGestureResult crouchResult;
+                        DiscreteGestureResult swingResult;
                         results.TryGetValue(_jump, out jumpResult);
                         results.TryGetValue(_moveLeft, out moveLeftResult);
                         results.TryGetValue(_moveRight, out moveRightResult);
+                        results.TryGetValue(_crouch, out crouchResult);
+                        results.TryGetValue(_swing, out swingResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
                         if (jumpResult.FirstFrameDetected && gestureDetected == false)
@@ -132,22 +149,25 @@ public class KManager : MonoBehaviour
                             }
                             isJumping = true;
                             
-                        }
-                        //else if(armRaiseResult.Confidence > 0.1 && gestureDetected == false){
-                        //     gestureDetected = true;
-                        //     Debug.Log("Arm raised");
-                        //     if(gamestarted == false){
-                        //         startgame.GetComponent<StartGame>().OnMouseDown();
-                        //         gamestarted = true;
-                        //     }
-                        // }
-                        else if(moveLeftResult.FirstFrameDetected && gestureDetected == false){
+                        }else if(moveLeftResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
                             Debug.Log("Left Roll");
                             startgame.GetComponent<StartGame>().MoveLeft();
                         }else if(moveRightResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
+                        }
+                        //else if(crouchResult.FirstFrameDetected && gestureDetected == false)
+                        //{
+                        //    gestureDetected = true;
+                        //    Debug.Log("Crouch");
+                        //    startgame.GetComponent<StartGame>().RollForward();
+                        //}
+                        else if (swingResult.FirstFrameDetected && gestureDetected == false)
+                        {
+                            gestureDetected = true;
+                            Debug.Log("swing");
+                            startgame.GetComponent<StartGame>().PlayerAttack();
                         }
                         else
                         {

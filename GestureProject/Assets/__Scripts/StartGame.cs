@@ -146,10 +146,13 @@ public class StartGame : MonoBehaviour
         }
     }
     
-    private void RollForward()
+    public void RollForward()
     {
-     
-        animator.SetTrigger("RollForward");
+
+        if (controlsOn)
+        {
+            animator.SetTrigger("RollForward");
+        }
 
         //AudioController.Instance.PlayAudioOnce("roll");
     }
@@ -159,9 +162,13 @@ public class StartGame : MonoBehaviour
         playerSpeed = speed;
     }
 
-    private void PlayerAttack()
+    public void PlayerAttack()
     {
-        animator.SetTrigger("Attack");
+        if (controlsOn)
+        {
+            animator.SetTrigger("Attack");
+        }
+        
     }
 
     public void OnMouseDown()
