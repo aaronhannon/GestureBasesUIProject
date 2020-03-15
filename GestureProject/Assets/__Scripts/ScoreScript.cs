@@ -8,7 +8,6 @@ public class ScoreScript : MonoBehaviour
 {
     public TextMeshPro scoreDisplay;
     private int score = 0;
-    //private int highScore = 0;
     private List<int> highscores = new List<int>();
     private int coinCounter = 0;
     private Vector3 lastPosition;
@@ -22,7 +21,6 @@ public class ScoreScript : MonoBehaviour
             //if a highscore exists, then set it to highscore
             if (PlayerPrefs.HasKey("HighScore"+(i+1)))
             {
-                Debug.Log("highscore1: " + PlayerPrefs.GetInt("highscore1"));
                 highscores.Insert(i, PlayerPrefs.GetInt("HighScore" + (i + 1)));
             }
             else {
@@ -91,9 +89,7 @@ public class ScoreScript : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            Debug.Log("score: " + highscores[i]);
             PlayerPrefs.SetInt("HighScore" + (i+1), highscores[i]);
         }
-        Debug.Log("highscore1: " + PlayerPrefs.GetInt("HighScore1"));
     }
 }

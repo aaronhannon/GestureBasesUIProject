@@ -79,6 +79,7 @@
     <Compile Include="Assets\__Scripts\Options.cs" />
     <Compile Include="Assets\__Scripts\PathGenerator.cs" />
     <Compile Include="Assets\__Scripts\Pause.cs" />
+    <Compile Include="Assets\__Scripts\ScoreboardScript.cs" />
     <Compile Include="Assets\__Scripts\ScoreScript.cs" />
     <Compile Include="Assets\__Scripts\StartGame.cs" />
     <Compile Include="Assets\__Scripts\VoiceControl.cs" />
