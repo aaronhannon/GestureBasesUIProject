@@ -4740,6 +4740,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 23490173040921004, guid: 6e1b0156461b84e4793afa1e3d832ed0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab42cc1c2e1e9014cb685781ecb0863b, type: 2}
     - target: {fileID: 4811988572846996, guid: 6e1b0156461b84e4793afa1e3d832ed0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.77
@@ -4756,11 +4761,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 23490173040921004, guid: 6e1b0156461b84e4793afa1e3d832ed0,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ab42cc1c2e1e9014cb685781ecb0863b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e1b0156461b84e4793afa1e3d832ed0, type: 3}
 --- !u!1 &772142962
@@ -7159,7 +7159,6 @@ GameObject:
   - component: {fileID: 1255046394}
   - component: {fileID: 1255046393}
   - component: {fileID: 1255046392}
-  - component: {fileID: 1255046391}
   m_Layer: 0
   m_Name: Low Poly Warrior
   m_TagString: Player
@@ -7167,20 +7166,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1255046391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255046390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381c9489ea532fe46836c7f86502a70d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 0}
-  coinCountDisplay: {fileID: 0}
 --- !u!114 &1255046392
 MonoBehaviour:
   m_ObjectHideFlags: 0

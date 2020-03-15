@@ -56,6 +56,9 @@ public class ScoreScript : MonoBehaviour
         //multiply score by coins collected by user
         score *= coinCounter;
 
+        //set layers score in playerprefs
+        PlayerPrefs.SetInt("Score", score);
+
         //if users score is higher than the current high score
         if (score > highScore)
         {

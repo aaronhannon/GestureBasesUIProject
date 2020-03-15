@@ -17067,6 +17067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 3074613535602990665}
+  score: 0
   coinCountDisplay: {fileID: 1063421899}
 --- !u!1 &1957902898712141
 GameObject:
@@ -21057,6 +21058,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreText
       objectReference: {fileID: 0}
+    - target: {fileID: 7199057890383161149, guid: 69512d2029db3014fad90e9e50212698,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7199057890383161138, guid: 69512d2029db3014fad90e9e50212698,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21215,6 +21221,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1644318854857904362, guid: b88101cca972f53409af84b928756c59,
         type: 2}
+    - target: {fileID: 7199057890383161142, guid: 69512d2029db3014fad90e9e50212698,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69512d2029db3014fad90e9e50212698, type: 3}
 --- !u!1001 &5301541230144717940
