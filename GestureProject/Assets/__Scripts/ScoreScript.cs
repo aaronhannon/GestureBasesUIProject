@@ -17,7 +17,7 @@ public class ScoreScript : MonoBehaviour
         //set last position to current start position of player
         lastPosition = this.transform.position;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             //if a highscore exists, then set it to highscore
             if (PlayerPrefs.HasKey("HighScore"+(i+1)))
             {
@@ -87,7 +87,7 @@ public class ScoreScript : MonoBehaviour
     //set the highscores as playerprefs
     public void setHighscorePlayerPrefs()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             PlayerPrefs.SetInt("HighScore" + (i+1), highscores[i]);
         }
