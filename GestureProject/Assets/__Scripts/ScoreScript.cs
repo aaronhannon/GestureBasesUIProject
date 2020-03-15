@@ -8,7 +8,8 @@ public class ScoreScript : MonoBehaviour
 {
     public TextMeshPro scoreDisplay;
     private int score = 0;
-    private int highScore = 0;
+    //private int highScore = 0;
+    private List<int> highscores = new List<int>();
     private int coinCounter = 0;
     private Vector3 lastPosition;
     public TextMeshPro coinCountDisplay;
@@ -16,11 +17,17 @@ public class ScoreScript : MonoBehaviour
     {
         //set last position to current start position of player
         lastPosition = this.transform.position;
-        //if a highscore exists, then set it to highscore
-        if (PlayerPrefs.HasKey("HighScore"))
-        {
-            //get high score value from player preferences - adopted from https://unity3d.com/de/learn/tutorials/topics/scripting/high-score-playerprefs
-            highScore = PlayerPrefs.GetInt("HighScore");
+
+        for (int i = 0; i < 5; i++) {
+            //if a highscore exists, then set it to highscore
+            if (PlayerPrefs.HasKey("HighScore"+(i+1)))
+            {
+                Debug.Log("highscore1: " + PlayerPrefs.GetInt("highscore1"));
+                highscores.Insert(i, PlayerPrefs.GetInt("HighScore" + (i + 1)));
+            }
+            else {
+                highscores.Insert(i, 0);
+            }
         }
     }
 
@@ -54,25 +61,39 @@ public class ScoreScript : MonoBehaviour
     //Generate the user score when game is finished
     public void GenerateFinalScore() {
         //multiply score by coins collected by user
-        score *= coinCounter;
+        if (coinCounter != 0) {
+            score *= coinCounter;
+        }
 
         //set layers score in playerprefs
         PlayerPrefs.SetInt("Score", score);
 
-        //if users score is higher than the current high score
-        if (score > highScore)
+        //Check if the score is high enough to be added.
+        for (int i = 0; i < highscores.Count; i++)
         {
-            //set new high score to high score value
-            highScore = score;
-
-            //Keep high score value in player preferences even if game is exited
-            PlayerPrefs.SetInt("HighScore", highScore);
+            if (score > highscores[i])
+            {
+                highscores.Insert(i, score);
+                break;
+            }
         }
+        setHighscorePlayerPrefs();
     }   
     
     //reset score when user dies
     public void ResetScore() {
         //reset score to 0
         score = 0;
+    }
+
+    //set the highscores as playerprefs
+    public void setHighscorePlayerPrefs()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log("score: " + highscores[i]);
+            PlayerPrefs.SetInt("HighScore" + (i+1), highscores[i]);
+        }
+        Debug.Log("highscore1: " + PlayerPrefs.GetInt("HighScore1"));
     }
 }
