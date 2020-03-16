@@ -45,12 +45,16 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("play game", StartGame);
         voiceActions.Add("start", StartGame);
         voiceActions.Add("play", StartGame);
+        voiceActions.Add("begin", StartGame);
+        voiceActions.Add("begin game", StartGame);
 
         // Pause game
         voiceActions.Add("pause game", PauseGame);
         voiceActions.Add("unpause game", PauseGame);
         voiceActions.Add("pause", PauseGame);
         voiceActions.Add("unpause", PauseGame);
+        voiceActions.Add("resume", PauseGame);
+        voiceActions.Add("resume game", PauseGame);
 
         // Turn sound on/off
         voiceActions.Add("sound", ChangeSound);
@@ -58,6 +62,8 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("sound off", ChangeSound);
         voiceActions.Add("turn on sound", ChangeSound);
         voiceActions.Add("turn off sound", ChangeSound);
+        voiceActions.Add("volume on", ChangeSound);
+        voiceActions.Add("volume off", ChangeSound);
 
         // Reset game
         voiceActions.Add("reset game", ResetGame);
@@ -70,6 +76,8 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("close game", ExitGame);
         voiceActions.Add("exit", ExitGame);
         voiceActions.Add("close", ExitGame);
+        voiceActions.Add("quit game", ExitGame);
+        voiceActions.Add("quit", ExitGame);
     }
 
     private void StartGame()
