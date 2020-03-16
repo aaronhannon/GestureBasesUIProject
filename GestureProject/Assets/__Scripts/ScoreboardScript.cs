@@ -9,6 +9,7 @@ public class ScoreboardScript : MonoBehaviour
     public TextMeshProUGUI scoreDisplay2;
     public TextMeshProUGUI scoreDisplay3;
     public TextMeshProUGUI scoreDisplayplayer;
+    public TextMeshProUGUI playerName;
     private List<int> highscores = new List<int>();
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class ScoreboardScript : MonoBehaviour
         scoreDisplay2.text = PlayerPrefs.GetInt("HighScore2").ToString();
         scoreDisplay3.text = PlayerPrefs.GetInt("HighScore3").ToString();
         scoreDisplayplayer.text = PlayerPrefs.GetInt("Score").ToString();
+        playerName.text = PlayerPrefs.GetString("Name");
     }
 
 }

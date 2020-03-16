@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
@@ -14,6 +15,9 @@ public class VoiceControl : MonoBehaviour
     private StartGame startgame;
     private Pause pause;
     private Options options;
+    private Boolean nameset=false;
+
+    private DictationRecognizer dictationRecognizer;
     #endregion
 
     void Start()
@@ -26,11 +30,45 @@ public class VoiceControl : MonoBehaviour
         // All all voice commands to Dictionary
         AddAllVoiceCommands();
 
+        //SetupSpeechRecogniser();
+
+        dictationRecognizer = new DictationRecognizer();
+        dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
+        //dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
+        // dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
+        dictationRecognizer.Start();
+
+    }
+
+    private void DictationRecognizer_DictationResult(string name, ConfidenceLevel confidence)
+    {
+        Debug.Log(name);
+        PlayerPrefs.SetString("Name", name);
+
+        //stop the dication recogniser and dispose of resources it holds
+        dictationRecognizer.Stop();
+        dictationRecognizer.Dispose();
+
+        //start speech recognisers for game controls
+        SetupSpeechRecogniser();
+    }
+
+    private void SetupSpeechRecogniser() {
         // Add keywords from dictionary to KeywordRecognizer and start listening for commands.
         speechRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
         speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
         speechRecognizer.Start();
     }
+
+    /*private void DictationRecognizer_DictationHypothesis(string text)
+    {
+        Debug.Log("thinking");
+    }
+
+    private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
+    {
+        Debug.Log("complete");
+    }*/
 
     // On Phrase detected call the method if the command is found.
     private void SpeechRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs speech)
