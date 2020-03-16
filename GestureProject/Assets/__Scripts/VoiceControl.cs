@@ -22,6 +22,7 @@ public class VoiceControl : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetString("Name", "");
         // Get scripts to access methods.
         startgame = gameObject.GetComponent<StartGame>();
         pause = GameObject.Find("Main Camera").GetComponent<Pause>();
@@ -42,7 +43,12 @@ public class VoiceControl : MonoBehaviour
 
     private void DictationRecognizer_DictationResult(string name, ConfidenceLevel confidence)
     {
-        Debug.Log(name);
+        Debug.Log("Name set as: " + name);
+        if (name.Length > 11) {
+            //get a substring of name less than 11 so that it fits the UI
+            name = name.Substring(0, 11);
+        }
+        //set user voice returned name in player prefs
         PlayerPrefs.SetString("Name", name);
 
         //stop the dication recogniser and dispose of resources it holds
@@ -51,13 +57,6 @@ public class VoiceControl : MonoBehaviour
 
         //start speech recognisers for game controls
         SetupSpeechRecogniser();
-    }
-
-    private void SetupSpeechRecogniser() {
-        // Add keywords from dictionary to KeywordRecognizer and start listening for commands.
-        speechRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
-        speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
-        speechRecognizer.Start();
     }
 
     /*private void DictationRecognizer_DictationHypothesis(string text)
@@ -69,6 +68,14 @@ public class VoiceControl : MonoBehaviour
     {
         Debug.Log("complete");
     }*/
+
+    private void SetupSpeechRecogniser()
+    {
+        // Add keywords from dictionary to KeywordRecognizer and start listening for commands.
+        speechRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
+        speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
+        speechRecognizer.Start();
+    }
 
     // On Phrase detected call the method if the command is found.
     private void SpeechRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs speech)

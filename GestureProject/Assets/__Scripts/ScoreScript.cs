@@ -9,11 +9,13 @@ public class ScoreScript : MonoBehaviour
     public TextMeshPro scoreDisplay;
     private int score = 0;
     private List<int> highscores = new List<int>();
+    private List<string> highscoresnames = new List<string>();
     private int coinCounter = 0;
     private Vector3 lastPosition;
     public TextMeshPro coinCountDisplay;
     void Start()
     {
+        PlayerPrefs.SetInt("Score", 0);
         //set last position to current start position of player
         lastPosition = this.transform.position;
 
@@ -22,9 +24,11 @@ public class ScoreScript : MonoBehaviour
             if (PlayerPrefs.HasKey("HighScore"+(i+1)))
             {
                 highscores.Insert(i, PlayerPrefs.GetInt("HighScore" + (i + 1)));
+                highscoresnames.Insert(i, PlayerPrefs.GetString("HighName" + (i + 1)));
             }
             else {
                 highscores.Insert(i, 0);
+                highscoresnames.Insert(i, "Empty");
             }
         }
     }
@@ -72,6 +76,7 @@ public class ScoreScript : MonoBehaviour
             if (score > highscores[i])
             {
                 highscores.Insert(i, score);
+                highscoresnames.Insert(i, PlayerPrefs.GetString("Name"));
                 break;
             }
         }
@@ -90,6 +95,7 @@ public class ScoreScript : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             PlayerPrefs.SetInt("HighScore" + (i+1), highscores[i]);
+            PlayerPrefs.SetString("HighName" + (i + 1), highscoresnames[i]);
         }
     }
 }

@@ -8723,6 +8723,9 @@ MonoBehaviour:
   scoreDisplay2: {fileID: 2019448305}
   scoreDisplay3: {fileID: 168645310}
   scoreDisplayplayer: {fileID: 923861363}
+  highName1: {fileID: 1829821447}
+  highName2: {fileID: 1353185243}
+  highName3: {fileID: 1196165780}
   playerName: {fileID: 972982365}
 --- !u!1 &1226487742
 GameObject:
