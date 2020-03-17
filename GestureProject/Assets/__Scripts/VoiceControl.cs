@@ -22,6 +22,7 @@ public class VoiceControl : MonoBehaviour
     public Image loadingimage;
     public Image loadingimageprogress;
     public GameObject namePanel;
+    public GameObject tutorialPanel;
 
     private DictationRecognizer dictationRecognizer;
     #endregion
@@ -143,6 +144,19 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("close", ExitGame);
         voiceActions.Add("quit game", ExitGame);
         voiceActions.Add("quit", ExitGame);
+
+        // Exit game
+        voiceActions.Add("open tutorial", DisplayTutorial);
+        voiceActions.Add("close tutorial", DisplayTutorial);
+        voiceActions.Add("display tutorial", DisplayTutorial);
+        voiceActions.Add("show tutorial", DisplayTutorial);
+        voiceActions.Add("open guide", DisplayTutorial);
+        voiceActions.Add("close guide", DisplayTutorial);
+        voiceActions.Add("display guide", DisplayTutorial);
+        voiceActions.Add("show guide", DisplayTutorial);
+        voiceActions.Add("tutorial", DisplayTutorial);
+        voiceActions.Add("guide", DisplayTutorial);
+        voiceActions.Add("help", DisplayTutorial);
     }
 
     private void StartGame()
@@ -178,5 +192,19 @@ public class VoiceControl : MonoBehaviour
     {
         // Turn sound on or off.
         namePanel.SetActive(false);
+    }
+
+    private void DisplayTutorial()
+    {
+        // If tutorial display is on turn off.
+        if (tutorialPanel.activeSelf)
+        {
+            tutorialPanel.SetActive(false);
+        }
+        else
+        {
+            // Turn on tutorial.
+            tutorialPanel.SetActive(true);
+        }
     }
 }
