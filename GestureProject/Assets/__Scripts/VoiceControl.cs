@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
+using TMPro;
 
 public class VoiceControl : MonoBehaviour
 {
@@ -16,12 +17,22 @@ public class VoiceControl : MonoBehaviour
     private Pause pause;
     private Options options;
     private Boolean nameset=false;
+    public TextMeshProUGUI playerName;
+    public TextMeshProUGUI progressText;
+    public Image loadingimage;
+    public Image loadingimageprogress;
+    public GameObject namePanel;
 
     private DictationRecognizer dictationRecognizer;
     #endregion
 
     void Start()
     {
+        playerName.enabled = false;
+        progressText.enabled = false;
+        loadingimage.enabled = false;
+        loadingimageprogress.enabled = false;
+
         PlayerPrefs.SetString("Name", "");
         // Get scripts to access methods.
         startgame = gameObject.GetComponent<StartGame>();
@@ -35,8 +46,8 @@ public class VoiceControl : MonoBehaviour
 
         dictationRecognizer = new DictationRecognizer();
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
-        //dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
-        // dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
+        dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
+        //dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.Start();
 
     }
@@ -50,6 +61,12 @@ public class VoiceControl : MonoBehaviour
         }
         //set user voice returned name in player prefs
         PlayerPrefs.SetString("Name", name);
+        playerName.text = name;
+        playerName.enabled = true;
+        progressText.enabled = false;
+        loadingimage.enabled = false;
+        loadingimageprogress.enabled = false;
+        Invoke("TurnOffPanel", 2);
 
         //stop the dication recogniser and dispose of resources it holds
         dictationRecognizer.Stop();
@@ -59,15 +76,18 @@ public class VoiceControl : MonoBehaviour
         SetupSpeechRecogniser();
     }
 
-    /*private void DictationRecognizer_DictationHypothesis(string text)
+    private void DictationRecognizer_DictationHypothesis(string text)
     {
-        Debug.Log("thinking");
+        Debug.Log("Thinking");
+        progressText.enabled = true;
+        loadingimage.enabled = true;
+        loadingimageprogress.enabled = true;
     }
 
     private void DictationRecognizer_DictationComplete(DictationCompletionCause cause)
     {
         Debug.Log("complete");
-    }*/
+    }
 
     private void SetupSpeechRecogniser()
     {
@@ -152,5 +172,11 @@ public class VoiceControl : MonoBehaviour
     {
         // Turn sound on or off.
         options.OnMouseDown();
+    }
+
+    private void TurnOffPanel()
+    {
+        // Turn sound on or off.
+        namePanel.SetActive(false);
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="Assets\__Scripts\GestureDetector.cs" />
     <Compile Include="Assets\__Scripts\KinectManager.cs" />
     <Compile Include="Assets\__Scripts\KManager.cs" />
+    <Compile Include="Assets\__Scripts\LoadingCircle.cs" />
     <Compile Include="Assets\__Scripts\MoveNPC.cs" />
     <Compile Include="Assets\__Scripts\ObjectDestroyer.cs" />
     <Compile Include="Assets\__Scripts\ObstacleGenerator.cs" />
