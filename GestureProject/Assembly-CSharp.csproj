@@ -66,6 +66,7 @@
     <Compile Include="Assets\__Scripts\AmbientLight.cs" />
     <Compile Include="Assets\__Scripts\AudioController.cs" />
     <Compile Include="Assets\__Scripts\Collisions.cs" />
+    <Compile Include="Assets\__Scripts\DeathVoiceControl.cs" />
     <Compile Include="Assets\__Scripts\DestroyPaths.cs" />
     <Compile Include="Assets\__Scripts\GenerateChunks.cs" />
     <Compile Include="Assets\__Scripts\GestureDetector.cs" />
