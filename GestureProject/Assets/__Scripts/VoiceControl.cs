@@ -190,7 +190,7 @@ public class VoiceControl : MonoBehaviour
 
     private void TurnOffPanel()
     {
-        // Turn sound on or off.
+        // Turn panel off when finished
         namePanel.SetActive(false);
     }
 
