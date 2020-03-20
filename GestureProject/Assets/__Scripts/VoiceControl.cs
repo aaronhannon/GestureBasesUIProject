@@ -179,6 +179,7 @@ public class VoiceControl : MonoBehaviour
     private void ResetGame()
     {
         startgame.SetMovementState(false);
+        PhraseRecognitionSystem.Shutdown();
         SceneManager.LoadScene(0);
     }
 
