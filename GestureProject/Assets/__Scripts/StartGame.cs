@@ -14,7 +14,7 @@ public class StartGame : MonoBehaviour
 
     private bool gameStarted = false;
     private float jumpSpeed = 4.5f;
-    private float playerSpeed = .2f;
+    public float playerSpeed;
     private float moveSpeed = 2.5f;
     private float distToGround;
     private GameObject mainCamera;
@@ -34,6 +34,7 @@ public class StartGame : MonoBehaviour
         player = GameObject.Find("Low Poly Warrior");
         playerRb = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<CapsuleCollider>();
+        SetPlayerSpeed(.25f);
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
         playerMovement = true;
         //KManager.OnSwipeUpDown += new KManager.SimpleEvent(KinectManagerScript_OnSwipeUpDown);
@@ -46,6 +47,8 @@ public class StartGame : MonoBehaviour
     {
         if(gameStarted == true)
         {
+            controlsOn = true;
+
             if(mainCamera.transform.position.x < 0 && fixedcamera == false)
             {
                 mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.03f, mainCamera.transform.position.y, mainCamera.transform.position.z);

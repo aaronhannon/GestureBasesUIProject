@@ -86,7 +86,7 @@ public class Collisions : MonoBehaviour
             ////playerRb.useGravity = false;
         }else if (other.CompareTag("outboat"))
         {
-            startgame.SetPlayerSpeed(.2f);
+            startgame.SetPlayerSpeed(startgame.playerSpeed);
             inboat = false;
             gameObject.GetComponent<Animator>().SetBool("outboat", true);
             gameObject.GetComponent<Animator>().SetBool("stopRun", false);
