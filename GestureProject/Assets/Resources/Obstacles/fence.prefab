@@ -386,9 +386,10 @@ GameObject:
   - component: {fileID: -1270336297768044484}
   - component: {fileID: 7355855776010311825}
   - component: {fileID: -2909279281394966410}
+  - component: {fileID: -7572419762038114648}
   m_Layer: 0
   m_Name: fence
-  m_TagString: obstacle
+  m_TagString: VillageObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,6 +454,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90a4536f6d211234ca1663a3dc0886e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7572419762038114648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735276261664105529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27a5465d1d63df4f812edf79aa0ebc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7779207135281488808

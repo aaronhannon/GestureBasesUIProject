@@ -51,7 +51,7 @@ public class Collisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("obstacle"))
+        if (other.CompareTag("obstacle") || other.CompareTag("VillageObstacle") || other.CompareTag("ForestObstacle")|| other.CompareTag("RiverObstacle"))
         {
             Debug.Log("Obstacle");
 
@@ -161,7 +161,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("coin"))
         {
-            Debug.Log("Coin");
+           // Debug.Log("Coin");
 
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
@@ -172,7 +172,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("revive"))
         {
-            Debug.Log("Revive");
+           // Debug.Log("Revive");
 
             Destroy(other);
             revive = true;

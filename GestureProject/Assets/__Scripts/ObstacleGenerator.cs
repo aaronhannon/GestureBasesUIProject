@@ -6,9 +6,9 @@ using UnityEngine;
 public class ObstacleGenerator : MonoBehaviour
 {
     private static int numberOfChunks;
-    private const int chunkLenghtVillage = 420;
-    private const int chunkLenghtRiver = 640;
-    private const int chunkLenghtForest = 320;
+    private const int chunkLenghtVillage = 400;
+    private const int chunkLenghtRiver = 680;
+    private const int chunkLenghtForest = 300;
     private int start = 0;
     private int end = 0;
     private bool firstChunk = true;
@@ -74,7 +74,7 @@ public class ObstacleGenerator : MonoBehaviour
             npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
         }
         
-        for (int i = start + 50; i < end - 30; i += 27)
+        for (int i = start; i < end - 30; i += 27)
         {
             Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
@@ -90,7 +90,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtRiver);
 
-        for (int i = start+50; i < end-20; i += 55)
+        for (int i = start+20; i < end-20; i += 55)
         {
             Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-2.5f, 2.5f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
@@ -106,13 +106,13 @@ public class ObstacleGenerator : MonoBehaviour
     {
         UpdateStartEndValues(chunkLenghtForest);
 
-        for (int i = start + 30; i < end; i += 50)
+        for (int i = start; i < end; i += 50)
         {
             Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Spawns trees.
-        for (int i = start + 30; i < end; i += 150)
+        for (int i = start; i < end; i += 100)
         {
             int rand = Random.Range(0, 2);
 
@@ -142,59 +142,6 @@ public class ObstacleGenerator : MonoBehaviour
             pathway.transform.localScale = new Vector3(3f, .8f, 1f);
             Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
         }
-
-
-        //if (nextChunk == 2)
-        //{
-        //    Debug.Log("River next");
-        //    if (chunksArray[currentChunk] == 1)
-        //    {
-        //        Debug.Log("FORST then river");
-        //        for (int i = start + 10; i < end - 25; i += 1)
-        //        {
-        //            pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
-        //            Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
-        //        }
-        //    }
-        //    else if (chunksArray[currentChunk] == 0)
-        //    {
-        //        Debug.Log("village then river");
-        //        for (int i = start + 10; i < end - 80; i += 1)
-        //        {
-        //            pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
-        //            Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        for (int i = start; i < end - 10; i += 1)
-        //        {
-        //            pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
-        //            Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
-        //        }
-        //    }
-
-        //}
-        //else if (currentChunkValue == 1)
-        //{
-
-
-        //    for (int i = start - 55; i < end + 50; i += 1)
-        //    {
-        //        pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
-        //        Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
-        //    }
-
-        //}
-        //else
-        //{
-        //    Debug.Log("River Next");
-        //    for (int i = start + 10; i < end + 50; i += 1)
-        //    {
-        //        pathway.transform.localScale = new Vector3(Random.Range(1.5f, 3.0f), 1, Random.Range(1.0f, 2.0f));
-        //        Instantiate(pathway, new Vector3(Random.Range(-1f, 1f), Random.Range(0f, 0.5f), i), Quaternion.identity).transform.parent = container.transform;
-        //    }
-        //}
 
     }
 

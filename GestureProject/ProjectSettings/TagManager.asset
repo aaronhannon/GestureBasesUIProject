@@ -20,6 +20,11 @@ TagManager:
   - river
   - pathway
   - EndChunk
+  - VillageChunk
+  - ForestObstacle
+  - RiverObstacle
+  - VillageObstacle
+  - ForestChunk
   layers:
   - Default
   - TransparentFX

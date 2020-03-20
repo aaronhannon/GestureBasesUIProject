@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3919056386268176014}
   - component: {fileID: 744205026}
   - component: {fileID: 1126965296}
+  - component: {fileID: -8809972940372659391}
   m_Layer: 0
   m_Name: logs
-  m_TagString: obstacle
+  m_TagString: ForestObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,3 +113,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.86, y: 1.09, z: 0.1}
   m_Center: {x: 0.05192631, y: 0.07815411, z: 0.020460842}
+--- !u!114 &-8809972940372659391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906638101417370324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27a5465d1d63df4f812edf79aa0ebc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
