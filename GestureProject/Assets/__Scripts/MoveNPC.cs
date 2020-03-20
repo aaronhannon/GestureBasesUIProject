@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveNPC : MonoBehaviour
 {
-    private float moveSpeed = 4f;
+    public float moveSpeed = 4f;
 
     private Vector3 startPosition;
     public Vector3 StartPosition

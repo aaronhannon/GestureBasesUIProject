@@ -38,6 +38,12 @@ public class Pause : MonoBehaviour
                 timeleft = 3.0f;
                 timer = false;
             }
+            var foundNPCs = FindObjectsOfType<MoveNPC>();
+
+            foreach (var item in foundNPCs)
+            {
+                item.moveSpeed = 4f;
+            }
         }
 
     }
@@ -49,6 +55,13 @@ public class Pause : MonoBehaviour
             paused = true;
             anim.SetBool("Paused", true);
             startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.0f);
+            var foundNPCs = FindObjectsOfType<MoveNPC>();
+
+            foreach (var item in foundNPCs)
+            {
+                item.moveSpeed = 0.0f;
+            }
+
         }
         else
         {
