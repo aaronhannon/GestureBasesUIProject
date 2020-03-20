@@ -82,6 +82,7 @@ public class ObstacleGenerator : MonoBehaviour
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
+        SpawnHelmets(start,end);
         currentChunk++;
         numberOfChunks++;
     }
@@ -98,6 +99,7 @@ public class ObstacleGenerator : MonoBehaviour
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
+        SpawnHelmets(start,end);
         currentChunk++;
         numberOfChunks++;
     }
@@ -130,6 +132,7 @@ public class ObstacleGenerator : MonoBehaviour
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
+        SpawnHelmets(start,end);
         currentChunk++;
         numberOfChunks++;
     }
@@ -148,9 +151,14 @@ public class ObstacleGenerator : MonoBehaviour
 
     #region == Single Object Spawners == 
 
-    private void SpawnHelmets()
+    private void SpawnHelmets(int start, int end)
     {
-
+        float[] spawnpoints = new float[3];
+        spawnpoints[0] = 2.5f;
+        spawnpoints[1] = 0f;
+        spawnpoints[2] = -2.5f;
+        int randomIndex = Random.Range(0, 3);
+        Instantiate(gameObstacles["helmet"], new Vector3(spawnpoints[randomIndex], 1.5f, start+125), Quaternion.identity).transform.parent = container.transform;
     }
 
     private void SpawnPotions(int start, int end)
@@ -161,7 +169,7 @@ public class ObstacleGenerator : MonoBehaviour
         spawnpoints[2] = -2.5f;
         for (int i = start+20; i < end; i += 170)
         {
-            int randomIndex = Random.Range(0, 2);
+            int randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["RevivePotion"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
