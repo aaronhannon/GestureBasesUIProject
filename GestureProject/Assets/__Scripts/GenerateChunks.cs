@@ -12,14 +12,15 @@ public class GenerateChunks : MonoBehaviour
     string previousChunk;
     ArrayList chunks;
     ArrayList chunkObjects;
-
+    int chunksIndex;
     // Start is called before the first frame update
     void Start()
     {
+        chunksIndex = 0;
         chunks = new ArrayList();
         chunkObjects = new ArrayList();
         //Hardcode order you want to test chunks
-        int[] ChunkPatterns = { 0, 2, 1 };
+        int[] ChunkPatterns = { 0, 2, 1};
         
         villageChunk = Resources.Load("VillageChunk") as GameObject;
         forestChunk = Resources.Load("ForestChunk") as GameObject;
@@ -48,7 +49,7 @@ public class GenerateChunks : MonoBehaviour
 
             }
 
-            //rand = Random.Range(0, 3);
+            
             if (rand == 2 && previousChunk == "river")
             {
                 rand = 1;
@@ -74,6 +75,51 @@ public class GenerateChunks : MonoBehaviour
         
         gameObject.AddComponent<ObstacleGenerator>();
 
+    }
+
+    public void GenerateChunk(){
+            // int rand = Random.Range(0, 3);
+            
+            // if (rand == 2 && previousChunk == "river")
+            // {
+            //     rand = 1;
+            // }
+
+            // if (rand == 0)
+            // {
+            //     GenerateVillage();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateVillageObjects();
+            // }
+            // //FOREST
+            // else if (rand == 1)
+            // {
+            //     GenerateForest();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateForestObjects();
+            // }
+            // //RIVER
+            // else if (rand == 2)
+            // {
+            //     GenerateRiver();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateRiverObjects();
+            // }
+
+            //rand = Random.Range(0, 3);
+
+            if(chunksIndex == 0){
+                GenerateVillage();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateVillageObjects();
+                chunksIndex = 2;
+            }else if(chunksIndex == 1){
+                GenerateForest();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateForestObjects();
+                chunksIndex = 0;
+            }else if(chunksIndex == 2){
+                GenerateRiver();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateRiverObjects();
+                chunksIndex = 1;
+            }
+
+            
     }
 
     private void GenerateVillage(){

@@ -18,6 +18,8 @@ TagManager:
   - trigger
   - outboat
   - river
+  - pathway
+  - EndChunk
   layers:
   - Default
   - TransparentFX

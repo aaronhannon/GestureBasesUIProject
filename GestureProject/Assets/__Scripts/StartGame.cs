@@ -34,7 +34,7 @@ public class StartGame : MonoBehaviour
         player = GameObject.Find("Low Poly Warrior");
         playerRb = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<CapsuleCollider>();
-        SetPlayerSpeed(.25f);
+        SetPlayerSpeed(.5f);
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
         playerMovement = true;
         //KManager.OnSwipeUpDown += new KManager.SimpleEvent(KinectManagerScript_OnSwipeUpDown);

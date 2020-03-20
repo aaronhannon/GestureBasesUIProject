@@ -17,6 +17,7 @@ public class Collisions : MonoBehaviour
     public GameObject reviveDisplay;
     private StartGame startgame;
     private GameObject player;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,10 @@ public class Collisions : MonoBehaviour
             TakeDamage(other);
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
+        }else if(other.CompareTag("EndChunk")){
+            
+            Destroy(other.transform.parent.gameObject);
+            startgame.GetComponent<GenerateChunks>().GenerateChunk();
         }
         else if (other.CompareTag("boat"))
         {
