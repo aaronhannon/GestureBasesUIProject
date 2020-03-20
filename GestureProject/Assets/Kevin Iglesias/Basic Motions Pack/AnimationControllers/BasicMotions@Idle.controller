@@ -598,12 +598,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: inboat
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: stopRun
     m_Type: 4
     m_DefaultFloat: 0
@@ -636,6 +630,12 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: outboat
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: inboat
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -924,7 +924,7 @@ AnimatorStateMachine:
     m_Position: {x: 220, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6194978223760630344}
-    m_Position: {x: 290, y: -180, z: 0}
+    m_Position: {x: 320, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5852339702889875235}
     m_Position: {x: 410, y: 310, z: 0}
@@ -945,7 +945,7 @@ AnimatorStateMachine:
     m_Position: {x: 760, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7658811855583676718}
-    m_Position: {x: 530, y: -610, z: 0}
+    m_Position: {x: 530, y: -590, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1510412962755664597}
     m_Position: {x: 220, y: -580, z: 0}

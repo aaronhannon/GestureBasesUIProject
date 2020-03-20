@@ -77,6 +77,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("boatPre"))
         {
+            gameObject.GetComponent<Animator>().SetBool("outboat", false);
             inboat = true;
             //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
             gameObject.GetComponent<Animator>().SetBool("stopRun",true);
