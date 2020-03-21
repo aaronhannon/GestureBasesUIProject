@@ -76,6 +76,11 @@ public class ScoreScript : MonoBehaviour
             if (score > highscores[i])
             {
                 highscores.Insert(i, score);
+                //if name not set, then set a default anonymous name
+                if (PlayerPrefs.GetString("Name") == "")
+                {
+                    PlayerPrefs.SetString("Name", "anonymous");
+                }
                 highscoresnames.Insert(i, PlayerPrefs.GetString("Name"));
                 break;
             }

@@ -17,11 +17,6 @@ public class ScoreboardScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if name not set, then set a default anonymous name
-        if (PlayerPrefs.GetString("Name") == "") {
-            PlayerPrefs.SetString("Name","anonymous");
-        }
-
         //update UI with score and name values
         updateScoreUI();
     }

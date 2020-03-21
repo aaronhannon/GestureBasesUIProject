@@ -48,10 +48,10 @@ public class VoiceControl : MonoBehaviour
         dictationRecognizer = new DictationRecognizer();
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
         dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
-        //dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.Start();
 
-        Invoke("DicationTimeout", 10);
+        //added timeout to dictation for name - after 15 seconds disable and enable voice commands
+        Invoke("DicationTimeout", 15);
 
     }
 
@@ -274,7 +274,6 @@ public class VoiceControl : MonoBehaviour
         ShutDownDictationRecogniser();
         TurnOffPanel();
         SetupSpeechRecogniser();
-
     }
 
 }
