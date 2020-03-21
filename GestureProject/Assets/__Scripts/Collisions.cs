@@ -194,6 +194,17 @@ public class Collisions : MonoBehaviour
                 StartGame.ControlsOn = false;
             }
         }
+        else if (other.CompareTag("NPCStart"))
+        {
+            Debug.Log("Start NPC's");
+
+            var foundNPCs = FindObjectsOfType<MoveNPC>();
+
+            foreach (var item in foundNPCs)
+            {
+                item.MoveSpeed = 4f;
+            }
+        }
     }
 
     // Check if player has helmet, else remove one life.

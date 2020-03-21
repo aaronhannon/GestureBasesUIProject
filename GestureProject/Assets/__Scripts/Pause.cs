@@ -42,7 +42,7 @@ public class Pause : MonoBehaviour
 
             foreach (var item in foundNPCs)
             {
-                item.moveSpeed = 4f;
+                item.MoveSpeed = 4f;
             }
         }
 
@@ -59,7 +59,7 @@ public class Pause : MonoBehaviour
 
             foreach (var item in foundNPCs)
             {
-                item.moveSpeed = 0.0f;
+                item.MoveSpeed = 0.0f;
             }
 
         }

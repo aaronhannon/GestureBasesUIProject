@@ -85,17 +85,19 @@ public class ObstacleGenerator : MonoBehaviour
             UpdateStartEndValues(chunkLenghtRiver);
         }
         
-
         int randomIndex;
 
-        for (int i = start; i < end; i += 100)
+        if (chunkValue == 0)
         {
-            randomIndex = Random.Range(0, 3);
-            // Instaniate and set start point of NPC so they only run to the start of the village chunk.
-            GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
-            npc.transform.parent = container.transform;
+            for (int i = start + 80; i < end; i += 100)
+            {
+                // Instaniate and set start point of NPC so they only run to the start of the village chunk.
+                GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
+                npc.transform.parent = container.transform;
 
-            npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
+                Debug.Log("Position" + start);
+                npc.GetComponent<MoveNPC>().StartPosition = new Vector3(0, 1f, start);
+            }
         }
         
         for (int i = start; i < end - 30; i += 27)
@@ -104,7 +106,7 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(gameObstacles["fence"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
-        for (int i = start+20; i < end-20; i += 55)
+        for (int i = start+50; i < end-20; i += 55)
         {
             randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["rock"], new Vector3(spawnpoints[randomIndex], 1.2f, i), Quaternion.identity).transform.parent = container.transform;

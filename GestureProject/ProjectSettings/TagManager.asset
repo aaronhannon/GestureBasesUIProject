@@ -25,6 +25,7 @@ TagManager:
   - RiverObstacle
   - VillageObstacle
   - ForestChunk
+  - NPCStart
   layers:
   - Default
   - TransparentFX
