@@ -57,8 +57,8 @@ public class VoiceControl : MonoBehaviour
     {
         Debug.Log("Name set as: " + name);
         if (name.Length > 11) {
-            //get a substring of name less than 11 so that it fits the UI
-            name = name.Substring(0, 11);
+            //get a substring of name less than 9 so that it fits the UI
+            name = name.Substring(0, 9);
         }
         //set user voice returned name in player prefs
         PlayerPrefs.SetString("Name", name);
