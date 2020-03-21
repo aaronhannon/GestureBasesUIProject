@@ -250,11 +250,8 @@ public class ObstacleGenerator : MonoBehaviour
         spawnpoints[0] = 2.5f;
         spawnpoints[1] = 0f;
         spawnpoints[2] = -2.5f;
-        for (int i = start+20; i < end; i += 170)
-        {
-            int randomIndex = Random.Range(0, 3);
-            Instantiate(gameObstacles["RevivePotion"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
-        }
+        int randomIndex = Random.Range(0, 3);
+        Instantiate(gameObstacles["RevivePotion"], new Vector3(spawnpoints[randomIndex], 1.5f, start + 170), Quaternion.identity).transform.parent = container.transform;
     }
 
     private void SpawnCoins(int start, int end)
