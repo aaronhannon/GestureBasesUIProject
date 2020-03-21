@@ -112,21 +112,21 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(gameObstacles["rock"], new Vector3(spawnpoints[randomIndex], 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
-        for (int i = start + 30; i < end; i += 50)
+        for (int i = start + 30; i < end - 20; i += 50)
         {
             randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["logs"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
         // Spawns trees.
-        for (int i = start; i < end; i += 100)
+        for (int i = start; i < end - 30; i += 100)
         {
             int rand = Random.Range(0, 2);
 
             // Load either left or right falling trees
             if (rand == 0)
             {
-                Instantiate(gameObstacles["TreeRight"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+                Instantiate(gameObstacles["TreeRight"], new Vector3(0.5f, 2.7f, i), Quaternion.identity).transform.parent = container.transform;
             }
             else
             {
