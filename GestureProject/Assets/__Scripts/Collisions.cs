@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Class that handles all issues surrounding player and object collisions
 public class Collisions : MonoBehaviour
 {
     private int lives = 3;
@@ -44,6 +45,7 @@ public class Collisions : MonoBehaviour
         }
     }
 
+    // Method to allow player to jump
     public void PlayerJump()
     {
         playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
@@ -72,23 +74,14 @@ public class Collisions : MonoBehaviour
         {
             if(inboat == false)
             {
-                Debug.Log("BOAT!!");
                 gameObject.GetComponent<Animator>().SetTrigger("inboat");
             }
-
-
-
-            //PlayerJump();
         }
         else if (other.CompareTag("boatPre"))
         {
             gameObject.GetComponent<Animator>().SetBool("outboat", false);
             inboat = true;
-            //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.0f);
             gameObject.GetComponent<Animator>().SetBool("stopRun",true);
-            ////GameObject.Find("boat").transform.parent = gameObject.transform;
-            //GameObject.Find("StartFBX").GetComponent<StartGame>().SetPlayerSpeed(0.5f);
-            ////playerRb.useGravity = false;
         }else if (other.CompareTag("outboat"))
         {
             startgame.SetPlayerSpeed(startgame.playerSpeed);
@@ -99,8 +92,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy");
-
             // Check if attack animation is playing.
             if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
@@ -139,8 +130,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("trigger"))
         {
-            Debug.Log("TreeTrigger");
-
             // Get child of collider E.g tree, trigger animation and play sound.
             GameObject tree = other.transform.GetChild(0).gameObject;
 
@@ -150,8 +139,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("helmet"))
         {
-            Debug.Log("Helmet");
-
             // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
@@ -161,8 +148,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("coin"))
         {
-           // Debug.Log("Coin");
-
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
             other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
@@ -172,8 +157,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("revive"))
         {
-           // Debug.Log("Revive");
-
             Destroy(other);
             revive = true;
             reviveDisplay.SetActive(true);
@@ -196,8 +179,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("NPCStart"))
         {
-            Debug.Log("Start NPC's");
-
             var foundNPCs = FindObjectsOfType<MoveNPC>();
 
             foreach (var item in foundNPCs)
@@ -232,7 +213,9 @@ public class Collisions : MonoBehaviour
         }
     }
 
+    //method to reset the game
     private void ResetGame(Collider collisionItem) {
+        //play death animation
         playerAnimator.SetTrigger("Death");
 
         //destroy collision item to avoid extra hearts damage upon revival if user has one
@@ -267,8 +250,11 @@ public class Collisions : MonoBehaviour
             Invoke("SetMovementStateTrue", 2);
         }
         else {
+            //play death sound
             AudioController.Instance.PlayAudioOnce("playerDeath");
+            //set the player movement state to false
             startgame.SetMovementState(false);
+
             //generate score using coins collected and reset score
             scoreScript.GenerateFinalScore();
             scoreScript.ResetScore();
@@ -279,16 +265,19 @@ public class Collisions : MonoBehaviour
         }
     }
 
+    //set movement state to true
     private void SetMovementStateTrue()
     {
         startgame.SetMovementState(true);
     }
 
+    //set revive display to false
     private void SetReviveDisplayInactive()
     {
         reviveDisplay.SetActive(false);
     }
 
+    //game has finished, load the death scene
     private void GameOver()
     {
         //load death scene

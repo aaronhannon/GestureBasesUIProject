@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+// Class that updates the player score
 public class ScoreScript : MonoBehaviour
 {
     public TextMeshPro scoreDisplay;
@@ -13,6 +13,7 @@ public class ScoreScript : MonoBehaviour
     private int coinCounter = 0;
     private Vector3 lastPosition;
     public TextMeshPro coinCountDisplay;
+
     void Start()
     {
         PlayerPrefs.SetInt("Score", 0);
@@ -99,7 +100,7 @@ public class ScoreScript : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            PlayerPrefs.SetInt("HighScore" + (i+1), highscores[i]);
+            PlayerPrefs.SetInt("HighScore" + (i + 1), highscores[i]);
             PlayerPrefs.SetString("HighName" + (i + 1), highscoresnames[i]);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class that destroys objects once they pass the in game destruction transform (follows after player)
 public class ObjectDestroyer : MonoBehaviour
 {
     private GameObject destructionPoint;

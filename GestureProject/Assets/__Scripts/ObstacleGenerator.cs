@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+//Class which generates obstacles in game
 public class ObstacleGenerator : MonoBehaviour
 {
     private static int numberOfChunks;
@@ -21,72 +22,57 @@ public class ObstacleGenerator : MonoBehaviour
     private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
 
     private GameObject container;
-    private float[] spawnpoints;
+    //set up 3 spawnpoints for lane positions
+    private float[] spawnpoints = { 2.5f, 0f, -2.5f };
     void Start()
     {
-        spawnpoints = new float[3];
-        spawnpoints[0] = 2.5f;
-        spawnpoints[1] = 0f;
-        spawnpoints[2] = -2.5f;
         pathway = GameObject.Find("pathway");
         // Reset on each game load.
         numberOfChunks = 1;
 
         LoadAllGameObjects();
 
+        //load all generated objects
         container = GameObject.Find("GeneratedObjects");
 
+        //load chunks
         chunks = gameObject.GetComponent<GenerateChunks>().GetChunkOrder();
-
-        // Testing, will be called randomly from chunk generator.
-        //GenerateVillageObjects();
-        //GenerateRiverObjects();
-        //GenerateForestObjects();
         
         foreach (int item in chunks)
         {
-
-            // switch (item)
-            // {
-            //     case 0:
-            //         GenerateVillageObjects();
-            //         break;
-            //     case 1:
-            //         GenerateForestObjects();
-            //         break;
-            //     case 2:
-            //         GenerateRiverObjects();
-            //         break;
-            // }
             switch (item)
             {
                 case 0:
+                    //generate village
                     GenerateAllObstacles(0);
                     break;
                 case 1:
+                    //generate forest
                     GenerateAllObstacles(1);
                     break;
                 case 2:
+                    //generate river
                     GenerateAllObstacles(2);
                     break;
             }
         }
-
-        Debug.Log("Obstacles Generated");
     }
 
+    //generate obsticles based on chunk value given
     public void GenerateAllObstacles(int chunkValue){
-        Debug.Log("GENALLOBS");
         if(chunkValue == 0){
+            //update start and end values for village chunk
             UpdateStartEndValues(chunkLenghtVillage);
         }else if(chunkValue == 1){
+            //update start and end values for forest chunk
             UpdateStartEndValues(chunkLenghtForest);
         }else if(chunkValue == 2){
+            //update start and end values for river chunk
             UpdateStartEndValues(chunkLenghtRiver);
         }
         
         int randomIndex;
-
+        //chunkValue == 0 is a village, in villages spawn npc's
         if (chunkValue == 0)
         {
             for (int i = start + 80; i < end; i += 100)
@@ -99,19 +85,22 @@ public class ObstacleGenerator : MonoBehaviour
                 npc.GetComponent<MoveNPC>().StartPosition = new Vector3(0, 1f, start);
             }
         }
-        
+
+        //generate fences
         for (int i = start; i < end - 30; i += 27)
         {
             randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["fence"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
+        //generate rocks
         for (int i = start+50; i < end-30; i += 55)
         {
             randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["rock"], new Vector3(spawnpoints[randomIndex], 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
+        //generate logs
         for (int i = start + 30; i < end - 20; i += 50)
         {
             randomIndex = Random.Range(0, 3);
@@ -133,11 +122,13 @@ public class ObstacleGenerator : MonoBehaviour
                 Instantiate(gameObstacles["TreeLeft"], new Vector3(0f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
             }
         }
-        
+
+        //spawn in collectables and pathways
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
         SpawnHelmets(start,end);
+        //increase chunks
         currentChunk++;
         numberOfChunks++;
     }
@@ -148,49 +139,59 @@ public class ObstacleGenerator : MonoBehaviour
         // Get start and end values to load objects from, so it aligns with each chunk.
         UpdateStartEndValues(chunkLenghtVillage);
 
+        //generate NPC's
         for (int i = start; i < end; i += 100)
         {
             // Instaniate and set start point of NPC so they only run to the start of the village chunk.
             GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
             npc.transform.parent = container.transform;
-
             npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
         }
         
+        //generate fences
         for (int i = start; i < end - 30; i += 27)
         {
             Instantiate(gameObstacles["fence"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
-        
+
+        //spawn in collectables and pathways
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
         SpawnHelmets(start,end);
+        //increase chunks
         currentChunk++;
         numberOfChunks++;
     }
     
     public void GenerateRiverObjects()
     {
+        //update start and end values to chunks size
         UpdateStartEndValues(chunkLenghtRiver);
 
+        //generate rocks
         for (int i = start+20; i < end-20; i += 55)
         {
             Instantiate(gameObstacles["rock"], new Vector3(Random.Range(-2.5f, 2.5f), 1.2f, i), Quaternion.identity).transform.parent = container.transform;
         }
 
+        //spawn in collectables and pathways
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
         SpawnHelmets(start,end);
+        //increase chunks
         currentChunk++;
         numberOfChunks++;
     }
 
+    //method to generate forest objects
     public void GenerateForestObjects()
     {
+        //update start and end values for chunk
         UpdateStartEndValues(chunkLenghtForest);
 
+        //spawn logs
         for (int i = start; i < end; i += 50)
         {
             Instantiate(gameObstacles["logs"], new Vector3(Random.Range(-2.5f, 2.5f), 1.5f, i), Quaternion.identity).transform.parent = container.transform;
@@ -212,15 +213,18 @@ public class ObstacleGenerator : MonoBehaviour
             }
         }
 
+        //spawn in collectables and pathways
         SpawnCoins(start, end);
         SpawnPotions(start, end);
         GeneratePathway(start, end);
         SpawnHelmets(start,end);
+        //increase chunks
         currentChunk++;
         numberOfChunks++;
     }
     #endregion
 
+    //method to generate pathways
     public void GeneratePathway(int start,int end)
     {
         for (int i = start; i < end; i += 1)
@@ -231,43 +235,37 @@ public class ObstacleGenerator : MonoBehaviour
 
     }
 
-
     #region == Single Object Spawners == 
-
+    //method to spawn helmets
     private void SpawnHelmets(int start, int end)
     {
-        float[] spawnpoints = new float[3];
-        spawnpoints[0] = 2.5f;
-        spawnpoints[1] = 0f;
-        spawnpoints[2] = -2.5f;
         int randomIndex = Random.Range(0, 3);
         Instantiate(gameObstacles["helmet"], new Vector3(spawnpoints[randomIndex], 1.5f, start+125), Quaternion.identity).transform.parent = container.transform;
     }
 
+    //method to spawn potions
     private void SpawnPotions(int start, int end)
     {
-        float[] spawnpoints = new float[3];
-        spawnpoints[0] = 2.5f;
-        spawnpoints[1] = 0f;
-        spawnpoints[2] = -2.5f;
+        //select random index between 0,1 and 2
         int randomIndex = Random.Range(0, 3);
+        //spawn potion in random lane of 3 chosen above
         Instantiate(gameObstacles["RevivePotion"], new Vector3(spawnpoints[randomIndex], 1.5f, start + 170), Quaternion.identity).transform.parent = container.transform;
     }
 
+    //method to spawn coins
     private void SpawnCoins(int start, int end)
     {
-        float[] spawnpoints = new float[3];
-        spawnpoints[0] = 2.5f;
-        spawnpoints[1] = 0f;
-        spawnpoints[2] = -2.5f;
         for (int i = start ; i < end; i += 50)
         {
-            int randomIndex = Random.Range(0, 2);
+            //select random index between 0,1 and 2
+            int randomIndex = Random.Range(0, 3);
+            //spawn coin in random lane of 3 chosen above
             Instantiate(gameObstacles["coin"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
         }
     }
     #endregion
     
+    //method to update the start and end values of a chunk
     private void UpdateStartEndValues(int chunkLenght)
     {
         // Get start and end values to load objects from, so it aligns with each chunk.
@@ -284,10 +282,9 @@ public class ObstacleGenerator : MonoBehaviour
             end += chunkLenght;
         }
         previousChunkLength = chunkLenght;
-        //start = (numberOfChunks - 1) * chunkLenght;
-        //end = numberOfChunks * chunkLenght;
     }
 
+    //method to load all game objects for unity folder
     private void LoadAllGameObjects()
     {
         // Get all file names from Resources folder, and get file information about each.

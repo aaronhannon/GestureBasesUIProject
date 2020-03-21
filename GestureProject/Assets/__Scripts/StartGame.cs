@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class that handles starting of game and enablement of player controls
 public class StartGame : MonoBehaviour
 {
     private static bool controlsOn = false;

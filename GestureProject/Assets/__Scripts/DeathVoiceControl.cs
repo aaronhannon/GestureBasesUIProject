@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
+//Class that allows voice commands in death scene
 public class DeathVoiceControl : MonoBehaviour
 {
     #region == Private variables ==
@@ -29,7 +30,7 @@ public class DeathVoiceControl : MonoBehaviour
     }
 
 
-
+    //initialise the speech recogniser
     private void SetupSpeechRecogniser()
     {
         // Add keywords from dictionary to KeywordRecognizer and start listening for commands.
@@ -44,6 +45,7 @@ public class DeathVoiceControl : MonoBehaviour
         voiceActions[speech.text].Invoke();
     }
 
+    // add all voice commands to dictionary
     private void AddAllVoiceCommands()
     {
         // Reset game
@@ -61,11 +63,13 @@ public class DeathVoiceControl : MonoBehaviour
         voiceActions.Add("quit", ExitGame);
     }
 
+    //Close the application
     private void ExitGame()
     {
         Application.Quit();
     }
 
+    //Reset game
     private void ResetGame()
     {
         PhraseRecognitionSystem.Shutdown();

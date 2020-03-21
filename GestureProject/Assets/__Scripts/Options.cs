@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Class that deals with in game options
 public class Options : MonoBehaviour
 {
     // Start is called before the first frame update

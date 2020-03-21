@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Class that handles updating of player scoreboard UI
 public class ScoreboardScript : MonoBehaviour
 {
     public TextMeshProUGUI scoreDisplay1;
@@ -21,8 +22,10 @@ public class ScoreboardScript : MonoBehaviour
         updateScoreUI();
     }
 
+    //method to update UI for scoreboard
     private void updateScoreUI()
     {
+        //set all scoreboard values to the player pref values stored
         scoreDisplay1.text = PlayerPrefs.GetInt("HighScore1").ToString();
         scoreDisplay2.text = PlayerPrefs.GetInt("HighScore2").ToString();
         scoreDisplay3.text = PlayerPrefs.GetInt("HighScore3").ToString();

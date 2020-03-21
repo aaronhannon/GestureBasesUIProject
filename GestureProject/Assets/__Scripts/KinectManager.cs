@@ -136,40 +136,9 @@ public class KinectManager : MonoBehaviour
         {
             //NEW UI FOR GESTURE DETECTed
             GestureTextGameObject.text = "Gesture Detected: " + isDetected;
-            //StringBuilder text = new StringBuilder(string.Format("Gesture Detected? {0}\n", isDetected));
             ConfidenceTextGameObject.text = "Confidence: " + e.DetectionConfidence;
-            //text.Append(string.Format("Confidence: {0}\n", e.DetectionConfidence));
-            // if (e.DetectionConfidence > 0.65f)
-            // {
-                //turnScript.turnLeft = true;
             Player.GetComponent<StartGame>().PlayerJump();
-            Debug.Log("Player Jumped");
-            // }
-            // else
-            // {
-            //     //turnScript.turnLeft = false;
-            // }
         }
-
-        // if (e.GestureID == leanRightGestureName)
-        // {
-        //     //NEW UI FOR GESTURE DETECTed
-        //     GestureTextGameObject.text = "Gesture Detected: " + isDetected;
-        //     //StringBuilder text = new StringBuilder(string.Format("Gesture Detected? {0}\n", isDetected));
-        //     ConfidenceTextGameObject.text = "Confidence: " + e.DetectionConfidence;
-        //     //text.Append(string.Format("Confidence: {0}\n", e.DetectionConfidence));
-        //     if (e.DetectionConfidence > 0.65f)
-        //     {
-        //         //turnScript.turnRight = true;
-        //     }
-        //     else
-        //     {
-        //         //turnScript.turnRight = false;
-        //     }
-        // }
-
-
-        //this.bodyText[bodyIndex] = text.ToString();
     }
 
     private void OnRightLeanGestureDetected(object sender, GestureEventArgs e, int bodyIndex)

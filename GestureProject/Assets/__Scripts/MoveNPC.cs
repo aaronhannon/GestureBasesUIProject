@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Class for controlling NPC behaviour
 public class MoveNPC : MonoBehaviour
 {
+    //set NPC movespeed
     private float moveSpeed = 0f;
     public float MoveSpeed
     {
@@ -11,6 +12,7 @@ public class MoveNPC : MonoBehaviour
         set { moveSpeed = value; }
     }
 
+    //set NPC start position
     private Vector3 startPosition;
     public Vector3 StartPosition
     {

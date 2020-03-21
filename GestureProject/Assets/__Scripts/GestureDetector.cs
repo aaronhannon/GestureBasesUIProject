@@ -16,13 +16,6 @@ public class GestureEventArgs : EventArgs
     //my modification
     public string GestureID { get; private set; }
 
-    //public GestureEventArgs(bool isBodyTrackingIdValid, bool isGestureDetected, float detectionConfidence)
-    //{
-    //    this.IsBodyTrackingIdValid = isBodyTrackingIdValid;
-    //    this.IsGestureDetected = isGestureDetected;
-    //    this.DetectionConfidence = detectionConfidence;
-    //}
-
     //my mod
     public GestureEventArgs(bool isBodyTrackingIdValid, bool isGestureDetected, float detectionConfidence, string gestureID)
     {
@@ -83,21 +76,6 @@ public class GestureDetector : IDisposable
             this.vgbFrameReader.IsPaused = true;
             this.vgbFrameReader.FrameArrived += this.Reader_GestureFrameArrived;
         }
-
-        //// load the 'Seated' gesture from the gesture database
-        //var databasePath = Path.Combine(Application.streamingAssetsPath, this.gestureDatabase);
-        //using (VisualGestureBuilderDatabase database = VisualGestureBuilderDatabase.Create(databasePath))
-        //{
-        //    // we could load all available gestures in the database with a call to vgbFrameSource.AddGestures(database.AvailableGestures), 
-        //    // but for this program, we only want to track one discrete gesture from the database, so we'll load it by name
-        //    foreach (Gesture gesture in database.AvailableGestures)
-        //    {
-        //        if (gesture.Name.Equals(this.seatedGestureName))
-        //        {
-        //            this.vgbFrameSource.AddGesture(gesture);
-        //        }
-        //    }
-        //}
 
 
         // load the 'Seated' gesture from the gesture database

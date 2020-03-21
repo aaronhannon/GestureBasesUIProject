@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-
+// Class which handles Audio for in game
 public class AudioController : MonoBehaviour
 {
     #region == Private Variables == 

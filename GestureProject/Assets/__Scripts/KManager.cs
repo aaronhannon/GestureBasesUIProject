@@ -6,6 +6,7 @@ using Microsoft.Kinect.VisualGestureBuilder;
 using UnityEngine;
 using System.Collections;
 
+// Class which handles all Kinect Input - Gesture detecton
 public class KManager : MonoBehaviour 
 {
     VisualGestureBuilderDatabase _dbGestures;
@@ -34,11 +35,11 @@ public class KManager : MonoBehaviour
 
     void Start () 
     {
-        
+        //initialise kinect
         InitKinect();
     }
 
-
+    //Methof to initialise your kinect
     void InitKinect()
     {
         _getsureBasePath = Path.Combine(Application.streamingAssetsPath, "GestureDB/JumpDB.gbd");
@@ -48,25 +49,21 @@ public class KManager : MonoBehaviour
         _kinect.Open();
         _gestureFrameSource = VisualGestureBuilderFrameSource.Create(_kinect, 0);
 
+        //for each gesture in trained database of custom gestures - add them to kinect frame source
         foreach (Gesture gest in _dbGestures.AvailableGestures)
         {
-            Debug.Log(gest.Name);
             _gestureFrameSource.AddGesture(gest);
             if (gest.Name == "Jump")
             {
                 _jump = gest;
-                Debug.Log("Added:" + gest.Name);
             }else if(gest.Name == "Lean_Left"){
                 _moveLeft = gest;
-                Debug.Log("Added:" + gest.Name);
             }else if(gest.Name == "Lean_Right"){
                 _moveRight = gest;
-                Debug.Log("Added:" + gest.Name);
             }
             else if (gest.Name == "Swing")
             {
                 _swing = gest;
-                Debug.Log("Added:" + gest.Name);
             }
         }
         _bodyFrameSource = _kinect.BodyFrameSource;
@@ -78,6 +75,7 @@ public class KManager : MonoBehaviour
         _gestureFrameReader.FrameArrived += _gestureFrameReader_FrameArrived;
     }
 
+    //method for detecting a body in kinect frame
     void _bodyFrameReader_FrameArrived(object sender, Windows.Kinect.BodyFrameArrivedEventArgs args)
     {
         var frame = args.FrameReference;
@@ -95,13 +93,11 @@ public class KManager : MonoBehaviour
             }
             if (_currentBody != null)
             {
-                //Debug.Log("_currentBody is not null");
                 _gestureFrameSource.TrackingId = _currentBody.TrackingId;
                 _gestureFrameReader.IsPaused = false;
             }
             else 
             {
-                //Debug.Log("_currentBody is null");
                 _gestureFrameSource.TrackingId = 0;
                 _gestureFrameReader.IsPaused = true;
             }
@@ -109,17 +105,16 @@ public class KManager : MonoBehaviour
         }
     }
 
+    //method for detecting a gesture in kinect frame
     void _gestureFrameReader_FrameArrived(object sender, VisualGestureBuilderFrameArrivedEventArgs args)
     {
 
         if (_gestureFrameSource.IsTrackingIdValid && StartGame.ControlsOn)
         {
-            //Debug.Log("Tracking id is valid, value = " + _gestureFrameSource.TrackingId);
             using (var frame = args.FrameReference.AcquireFrame())
             {
                 if (frame != null)
                 {
-                    //using (var results = frame.DiscreteGestureResults)
                     var results = frame.DiscreteGestureResults;
                     if (results != null && results.Count > 0)
                     {
@@ -131,37 +126,36 @@ public class KManager : MonoBehaviour
                         results.TryGetValue(_jump, out jumpResult);
                         results.TryGetValue(_moveLeft, out moveLeftResult);
                         results.TryGetValue(_moveRight, out moveRightResult);
-                        //results.TryGetValue(_crouch, out crouchResult);
                         results.TryGetValue(_swing, out swingResult);
-                        //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
+                        //if jump gesture detected
                         if (jumpResult.FirstFrameDetected && gestureDetected == false)
                         {
                             gestureDetected = true;
-                            Debug.Log("Jump Gesture");
                             if(startgame.GetComponent<StartGame>().IsGrounded()){
                                 startgame.GetComponent<StartGame>().PlayerJump();
                             }
                             isJumping = true;
-                            
-                        }else if(moveLeftResult.FirstFrameDetected && gestureDetected == false){
+                        }
+                        //if move left gesture detected
+                        else if (moveLeftResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
-                            Debug.Log("Left Roll");
                             startgame.GetComponent<StartGame>().MoveLeft();
-                        }else if(moveRightResult.FirstFrameDetected && gestureDetected == false){
+                        }
+                        //if move right gesture detected
+                        else if (moveRightResult.FirstFrameDetected && gestureDetected == false){
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
                         }
+                        //if swing gesture detected
                         else if (swingResult.FirstFrameDetected && gestureDetected == false)
                         {
                             gestureDetected = true;
-                            Debug.Log("swing");
                             startgame.GetComponent<StartGame>().PlayerAttack();
                         }
                         else
                         {
-                            //Debug.Log("False");
-
+                            //no gesture detected in frame
                             gestureDetected = false;
                         }
                     }
@@ -169,8 +163,6 @@ public class KManager : MonoBehaviour
             }
         }
     }
-
-
 
     void Update () 
     {

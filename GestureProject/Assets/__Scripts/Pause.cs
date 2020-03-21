@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class that handles pause behaviour in game
 public class Pause : MonoBehaviour
 {
     private GameObject camera;
@@ -15,6 +16,7 @@ public class Pause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initialise necessary game objects and animator
         startbutton = GameObject.Find("StartFBX");
         camera = GameObject.Find("Main Camera");
         anim = camera.GetComponent<Animator>();
@@ -23,15 +25,17 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if user presses escape key
         if (Input.GetKeyDown("escape"))
         {
+            //call pause game method
             PauseGame();
         }
 
+        //add timer before continueing game after an unpause
         if(timer == true)
         {
             timeleft -= Time.deltaTime;
-            Debug.Log("TIMELEFT:" + timeleft);
             if (timeleft < 0)
             {
                 startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.3f);
@@ -39,7 +43,7 @@ public class Pause : MonoBehaviour
                 timer = false;
             }
             var foundNPCs = FindObjectsOfType<MoveNPC>();
-
+            // reset NPC movespeed
             foreach (var item in foundNPCs)
             {
                 item.MoveSpeed = 4f;
@@ -48,21 +52,25 @@ public class Pause : MonoBehaviour
 
     }
 
+    //method to pause game
     public void PauseGame()
     {
+        //if game isnt paused, then pause game
         if (paused == false)
         {
+            //set pause to true and call pause animation
             paused = true;
             anim.SetBool("Paused", true);
+
+            //set player and NPC's that are found in games movement speed to zero
             startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.0f);
             var foundNPCs = FindObjectsOfType<MoveNPC>();
-
             foreach (var item in foundNPCs)
             {
                 item.MoveSpeed = 0.0f;
             }
-
         }
+        // if already paused, then unpause game
         else
         {
             paused = false;
