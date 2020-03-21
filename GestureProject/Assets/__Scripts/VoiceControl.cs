@@ -128,6 +128,8 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("sound off", ChangeSound);
         voiceActions.Add("turn on sound", ChangeSound);
         voiceActions.Add("turn off sound", ChangeSound);
+        voiceActions.Add("turn sound on", ChangeSound);
+        voiceActions.Add("turn sound off", ChangeSound);
         voiceActions.Add("volume on", ChangeSound);
         voiceActions.Add("volume off", ChangeSound);
 
@@ -157,6 +159,15 @@ public class VoiceControl : MonoBehaviour
         voiceActions.Add("tutorial", DisplayTutorial);
         voiceActions.Add("guide", DisplayTutorial);
         voiceActions.Add("help", DisplayTutorial);
+
+        // Other game commands
+        voiceActions.Add("jump", PlayerJump);
+        voiceActions.Add("left", PlayerMoveLeft);
+        voiceActions.Add("right", PlayerMoveRight);
+        voiceActions.Add("crouch", PlayerRoll);
+        voiceActions.Add("roll", PlayerRoll);
+        voiceActions.Add("attack", PlayerAttack);
+        voiceActions.Add("swipe", PlayerAttack);
     }
 
     private void StartGame()
@@ -213,4 +224,31 @@ public class VoiceControl : MonoBehaviour
     {
         tutorialPanel.SetActive(false);
     }
+
+    // Other game methods implemented with voice, such as jump, roll, move and attack.
+    private void PlayerJump()
+    {
+        startgame.PlayerJump();
+    }
+
+    private void PlayerMoveRight()
+    {
+        startgame.MoveRight();
+    }
+
+    private void PlayerMoveLeft()
+    {
+        startgame.MoveLeft();
+    }
+
+    private void PlayerRoll()
+    {
+        startgame.RollForward();
+    }
+    
+    private void PlayerAttack()
+    {
+        startgame.PlayerAttack();
+    }
+
 }
