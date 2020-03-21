@@ -21,9 +21,13 @@ public class ObstacleGenerator : MonoBehaviour
     private Dictionary<string, GameObject> gameObstacles = new Dictionary<string, GameObject>();
 
     private GameObject container;
-
+    private float[] spawnpoints;
     void Start()
     {
+        spawnpoints = new float[3];
+        spawnpoints[0] = 2.5f;
+        spawnpoints[1] = 0f;
+        spawnpoints[2] = -2.5f;
         pathway = GameObject.Find("pathway");
         // Reset on each game load.
         numberOfChunks = 1;
@@ -42,21 +46,98 @@ public class ObstacleGenerator : MonoBehaviour
         foreach (int item in chunks)
         {
 
+            // switch (item)
+            // {
+            //     case 0:
+            //         GenerateVillageObjects();
+            //         break;
+            //     case 1:
+            //         GenerateForestObjects();
+            //         break;
+            //     case 2:
+            //         GenerateRiverObjects();
+            //         break;
+            // }
             switch (item)
             {
                 case 0:
-                    GenerateVillageObjects();
+                    GenerateAllObstacles(0);
                     break;
                 case 1:
-                    GenerateForestObjects();
+                    GenerateAllObstacles(1);
                     break;
                 case 2:
-                    GenerateRiverObjects();
+                    GenerateAllObstacles(2);
                     break;
             }
         }
 
         Debug.Log("Obstacles Generated");
+    }
+
+    public void GenerateAllObstacles(int chunkValue){
+        Debug.Log("GENALLOBS");
+        if(chunkValue == 0){
+            UpdateStartEndValues(chunkLenghtVillage);
+        }else if(chunkValue == 1){
+            UpdateStartEndValues(chunkLenghtForest);
+        }else if(chunkValue == 2){
+            UpdateStartEndValues(chunkLenghtRiver);
+        }
+        
+
+        int randomIndex;
+
+        for (int i = start; i < end; i += 100)
+        {
+            randomIndex = Random.Range(0, 3);
+            // Instaniate and set start point of NPC so they only run to the start of the village chunk.
+            GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
+            npc.transform.parent = container.transform;
+
+            npc.GetComponent<MoveNPC>().StartPosition = new Vector3(start, 1f, 0f);
+        }
+        
+        for (int i = start; i < end - 30; i += 27)
+        {
+            randomIndex = Random.Range(0, 3);
+            Instantiate(gameObstacles["fence"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+        }
+
+        for (int i = start+20; i < end-20; i += 55)
+        {
+            randomIndex = Random.Range(0, 3);
+            Instantiate(gameObstacles["rock"], new Vector3(spawnpoints[randomIndex], 1.2f, i), Quaternion.identity).transform.parent = container.transform;
+        }
+
+        for (int i = start; i < end; i += 50)
+        {
+            randomIndex = Random.Range(0, 3);
+            Instantiate(gameObstacles["logs"], new Vector3(spawnpoints[randomIndex], 1.5f, i), Quaternion.identity).transform.parent = container.transform;
+        }
+
+        // Spawns trees.
+        for (int i = start; i < end; i += 100)
+        {
+            int rand = Random.Range(0, 2);
+
+            // Load either left or right falling trees
+            if (rand == 0)
+            {
+                Instantiate(gameObstacles["TreeRight"], new Vector3(0.5f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            }
+            else
+            {
+                Instantiate(gameObstacles["TreeLeft"], new Vector3(0f, 2.5f, i), Quaternion.identity).transform.parent = container.transform;
+            }
+        }
+        
+        SpawnCoins(start, end);
+        SpawnPotions(start, end);
+        GeneratePathway(start, end);
+        SpawnHelmets(start,end);
+        currentChunk++;
+        numberOfChunks++;
     }
 
     #region == Chunk Object Generators == 

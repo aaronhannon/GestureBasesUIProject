@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7582011273315854809}
   - component: {fileID: 345124662592381903}
   - component: {fileID: 8599472038148984542}
+  - component: {fileID: -5686967472735360647}
   m_Layer: 0
   m_Name: TreeLeft
   m_TagString: trigger
@@ -125,6 +126,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c27a5465d1d63df4f812edf79aa0ebc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5686967472735360647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345124662592381900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a4536f6d211234ca1663a3dc0886e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1442783704423150630

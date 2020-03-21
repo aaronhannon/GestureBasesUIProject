@@ -78,46 +78,46 @@ public class GenerateChunks : MonoBehaviour
     }
 
     public void GenerateChunk(){
-            // int rand = Random.Range(0, 3);
+            int rand = Random.Range(0, 3);
             
-            // if (rand == 2 && previousChunk == "river")
-            // {
-            //     rand = 1;
-            // }
+            if (rand == 2 && previousChunk == "river")
+            {
+                rand = 1;
+            }
 
-            // if (rand == 0)
-            // {
-            //     GenerateVillage();
-            //     gameObject.GetComponent<ObstacleGenerator>().GenerateVillageObjects();
-            // }
-            // //FOREST
-            // else if (rand == 1)
-            // {
-            //     GenerateForest();
-            //     gameObject.GetComponent<ObstacleGenerator>().GenerateForestObjects();
-            // }
-            // //RIVER
-            // else if (rand == 2)
-            // {
-            //     GenerateRiver();
-            //     gameObject.GetComponent<ObstacleGenerator>().GenerateRiverObjects();
-            // }
+            if (rand == 0)
+            {
+                GenerateVillage();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateAllObstacles(0);
+            }
+            //FOREST
+            else if (rand == 1)
+            {
+                GenerateForest();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateAllObstacles(1);
+            }
+            //RIVER
+            else if (rand == 2)
+            {
+                GenerateRiver();
+                gameObject.GetComponent<ObstacleGenerator>().GenerateAllObstacles(2);
+            }
 
             //rand = Random.Range(0, 3);
 
-            if(chunksIndex == 0){
-                GenerateVillage();
-                gameObject.GetComponent<ObstacleGenerator>().GenerateVillageObjects();
-                chunksIndex = 2;
-            }else if(chunksIndex == 1){
-                GenerateForest();
-                gameObject.GetComponent<ObstacleGenerator>().GenerateForestObjects();
-                chunksIndex = 0;
-            }else if(chunksIndex == 2){
-                GenerateRiver();
-                gameObject.GetComponent<ObstacleGenerator>().GenerateRiverObjects();
-                chunksIndex = 1;
-            }
+            // if(chunksIndex == 0){
+            //     GenerateVillage();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateVillageObjects();
+            //     chunksIndex = 2;
+            // }else if(chunksIndex == 1){
+            //     GenerateForest();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateForestObjects();
+            //     chunksIndex = 0;
+            // }else if(chunksIndex == 2){
+            //     GenerateRiver();
+            //     gameObject.GetComponent<ObstacleGenerator>().GenerateRiverObjects();
+            //     chunksIndex = 1;
+            // }
 
             
     }
