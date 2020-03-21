@@ -51,6 +51,8 @@ public class VoiceControl : MonoBehaviour
         //dictationRecognizer.DictationComplete += DictationRecognizer_DictationComplete;
         dictationRecognizer.Start();
 
+        Invoke("DicationTimeout", 10);
+
     }
 
     private void DictationRecognizer_DictationResult(string name, ConfidenceLevel confidence)
@@ -63,15 +65,15 @@ public class VoiceControl : MonoBehaviour
         //set user voice returned name in player prefs
         PlayerPrefs.SetString("Name", name);
         playerName.text = name;
-        playerName.enabled = true;
-        progressText.enabled = false;
-        loadingimage.enabled = false;
-        loadingimageprogress.enabled = false;
+
+        //display name panel after result
+        displayNamePanel();
+
+        //after name is set turn off panel after 2 seconds
         Invoke("TurnOffPanel", 2);
 
-        //stop the dication recogniser and dispose of resources it holds
-        dictationRecognizer.Stop();
-        dictationRecognizer.Dispose();
+        //shutdown dictation recogniser as cannot use at same time as voice controls
+        ShutDownDictationRecogniser();
 
         //start speech recognisers for game controls
         SetupSpeechRecogniser();
@@ -97,6 +99,14 @@ public class VoiceControl : MonoBehaviour
         speechRecognizer.OnPhraseRecognized += SpeechRecognizer_OnPhraseRecognized;
         speechRecognizer.Start();
     }
+
+    private void ShutDownDictationRecogniser()
+    {
+        //stop the dication recogniser and dispose of resources it holds
+        dictationRecognizer.Stop();
+        dictationRecognizer.Dispose();
+    }
+
 
     // On Phrase detected call the method if the command is found.
     private void SpeechRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs speech)
@@ -249,6 +259,22 @@ public class VoiceControl : MonoBehaviour
     private void PlayerAttack()
     {
         startgame.PlayerAttack();
+    }
+
+    private void displayNamePanel()
+    {
+        playerName.enabled = true;
+        progressText.enabled = false;
+        loadingimage.enabled = false;
+        loadingimageprogress.enabled = false;
+    }
+
+    private void DicationTimeout()
+    {
+        ShutDownDictationRecogniser();
+        TurnOffPanel();
+        SetupSpeechRecogniser();
+
     }
 
 }
