@@ -24,12 +24,16 @@ public class VoiceControl : MonoBehaviour
     public Image loadingimageprogress;
     public GameObject namePanel;
     public GameObject tutorialPanel;
+    private bool voiceContolsOn;
 
     private DictationRecognizer dictationRecognizer;
     #endregion
 
     void Start()
     {
+        //set voice controls to false
+        voiceContolsOn = false;
+
         //disable all panel items to be shown when name is interpreted
         playerName.enabled = false;
         progressText.enabled = false;
@@ -81,6 +85,7 @@ public class VoiceControl : MonoBehaviour
 
         //start speech recognisers for game controls
         SetupSpeechRecogniser();
+        voiceContolsOn = true;
     }
 
     // Method entered when Dictation recogniser is interpretting a result - https://docs.unity3d.com/ScriptReference/Windows.Speech.DictationRecognizer.html
@@ -262,7 +267,9 @@ public class VoiceControl : MonoBehaviour
     {
         ShutDownDictationRecogniser();
         TurnOffPanel();
-        SetupSpeechRecogniser();
+        if (voiceContolsOn == false) {
+            SetupSpeechRecogniser();
+        }
     }
 
     // Other game methods implemented with voice, such as jump, roll, move and attack.
