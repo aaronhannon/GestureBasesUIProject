@@ -14,17 +14,17 @@ public class KManager : MonoBehaviour
     Windows.Kinect.BodyFrameSource _bodyFrameSource;
     VisualGestureBuilderFrameReader _gestureFrameReader;
     Windows.Kinect.BodyFrameReader _bodyFrameReader;
-    Gesture _jump; // наш жест
+    Gesture _jump;
     Gesture _armRaise;
     Gesture _moveLeft;
     Gesture _moveRight;
     Gesture _swing;
-    Gesture _crouch;
+    //Gesture _crouch;
 
     bool isJumping = false;
-    Windows.Kinect.Body[] _bodies; // все пользователи, найденные Kinect'ом
-    Windows.Kinect.Body _currentBody = null; //Текущий пользователь, жесты которого мы отслеживаем
-    private string _getsureBasePath; //Путь до нашей обученной модели
+    Windows.Kinect.Body[] _bodies; 
+    Windows.Kinect.Body _currentBody = null; 
+    private string _getsureBasePath; 
     bool gestureDetected = false;
     public delegate void SimpleEvent();
     public static event SimpleEvent OnSwipeUpDown;
@@ -61,11 +61,6 @@ public class KManager : MonoBehaviour
                 Debug.Log("Added:" + gest.Name);
             }else if(gest.Name == "Lean_Right"){
                 _moveRight = gest;
-                Debug.Log("Added:" + gest.Name);
-            }
-            else if (gest.Name == "Crouch")
-            {
-                _crouch = gest;
                 Debug.Log("Added:" + gest.Name);
             }
             else if (gest.Name == "Swing")
@@ -136,7 +131,7 @@ public class KManager : MonoBehaviour
                         results.TryGetValue(_jump, out jumpResult);
                         results.TryGetValue(_moveLeft, out moveLeftResult);
                         results.TryGetValue(_moveRight, out moveRightResult);
-                        results.TryGetValue(_crouch, out crouchResult);
+                        //results.TryGetValue(_crouch, out crouchResult);
                         results.TryGetValue(_swing, out swingResult);
                         //Debug.Log("Result not null, conf = " + jumpResult.Confidence);
 
@@ -157,12 +152,6 @@ public class KManager : MonoBehaviour
                             gestureDetected = true;
                             startgame.GetComponent<StartGame>().MoveRight();
                         }
-                        //else if(crouchResult.FirstFrameDetected && gestureDetected == false)
-                        //{
-                        //    gestureDetected = true;
-                        //    Debug.Log("Crouch");
-                        //    startgame.GetComponent<StartGame>().RollForward();
-                        //}
                         else if (swingResult.FirstFrameDetected && gestureDetected == false)
                         {
                             gestureDetected = true;
