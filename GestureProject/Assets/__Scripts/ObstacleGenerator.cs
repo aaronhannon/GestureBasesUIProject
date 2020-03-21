@@ -77,8 +77,9 @@ public class ObstacleGenerator : MonoBehaviour
         {
             for (int i = start + 80; i < end; i += 100)
             {
+                randomIndex = Random.Range(0, 3);
                 // Instaniate and set start point of NPC so they only run to the start of the village chunk.
-                GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(Random.Range(-2.5f, 2.5f), 1f, i), Quaternion.Euler(0, -180, 0));
+                GameObject npc = Instantiate(gameObstacles["NPC_Man"], new Vector3(spawnpoints[randomIndex], 1f, i), Quaternion.Euler(0, -180, 0));
                 npc.transform.parent = container.transform;
 
                 Debug.Log("Position" + start);
