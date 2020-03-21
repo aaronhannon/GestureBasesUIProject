@@ -208,4 +208,9 @@ public class VoiceControl : MonoBehaviour
             tutorialPanel.SetActive(true);
         }
     }
+
+    public void CloseTutorial()
+    {
+        tutorialPanel.SetActive(false);
+    }
 }

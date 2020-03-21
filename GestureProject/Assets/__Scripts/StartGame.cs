@@ -22,6 +22,7 @@ public class StartGame : MonoBehaviour
     private Rigidbody playerRb;
     private CapsuleCollider playerCollider;
     public Animator animator;
+    private GameObject tutorialText;
     private bool fixedcamera = false;
     private bool isRolling = false;
     private int heartcounter = 1;
@@ -32,6 +33,7 @@ public class StartGame : MonoBehaviour
     {
         mainCamera = GameObject.Find("Main Camera");
         player = GameObject.Find("Low Poly Warrior");
+        tutorialText = GameObject.Find("TutorialText");
         playerRb = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<CapsuleCollider>();
         SetPlayerSpeed(.3f);
@@ -180,6 +182,8 @@ public class StartGame : MonoBehaviour
         Debug.Log("Game Started");
 
         AudioController.Instance.PlayAudioOnce("horn");
+
+        tutorialText.SetActive(false);
     }
 
     public void SetMovementState(bool boolVal)
