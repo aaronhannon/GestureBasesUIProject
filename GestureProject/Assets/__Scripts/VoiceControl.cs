@@ -53,6 +53,8 @@ public class VoiceControl : MonoBehaviour
 
         //set up dictation recogniser to allow user to input name
         dictationRecognizer = new DictationRecognizer();
+        //set timeout period for dictation recognizer
+        dictationRecognizer.InitialSilenceTimeoutSeconds = 15;
         dictationRecognizer.DictationResult += DictationRecognizer_DictationResult;
         dictationRecognizer.DictationHypothesis += DictationRecognizer_DictationHypothesis;
         dictationRecognizer.Start();
