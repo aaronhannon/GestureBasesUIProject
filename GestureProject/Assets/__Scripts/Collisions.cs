@@ -18,7 +18,8 @@ public class Collisions : MonoBehaviour
     public GameObject reviveDisplay;
     private StartGame startgame;
     private GameObject player;
-    
+    private Pause pause;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +29,15 @@ public class Collisions : MonoBehaviour
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
         playerAnimator = GameObject.Find("Low Poly Warrior").GetComponent<Animator>();
         player = GameObject.Find("Low Poly Warrior");
-        
+        pause = GameObject.Find("Main Camera").GetComponent<Pause>();
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (inboat)
+        if (inboat && (pause.GetPauseValue()==false))
         {
-            //Debug.Log("BOAT " + GameObject.Find("boat").transform.position.x + " " + GameObject.Find("boat").transform.position.y + " " + GameObject.Find("boat").transform.position.z);
-            //Debug.Log("Player " + gameObject.transform.position.x + " " + gameObject.transform.position.y + " " + gameObject.transform.position.z);
-
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             startgame.SetPlayerSpeed(.5f);
@@ -139,7 +138,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("helmet"))
         {
-            // X size = 0.003000001 y size = 0.004000003 z size = 0.003600002
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
             helmet = true;

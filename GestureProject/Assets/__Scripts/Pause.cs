@@ -78,4 +78,10 @@ public class Pause : MonoBehaviour
             timer = true;
         }
     }
+
+    //method to pause game
+    public bool GetPauseValue()
+    {
+        return paused;
+    }
 }
