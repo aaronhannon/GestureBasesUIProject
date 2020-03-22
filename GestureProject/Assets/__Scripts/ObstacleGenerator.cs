@@ -95,7 +95,7 @@ public class ObstacleGenerator : MonoBehaviour
         }
 
         //generate rocks
-        for (int i = start+50; i < end-30; i += 55)
+        for (int i = start+50; i < end-30; i += 35)
         {
             randomIndex = Random.Range(0, 3);
             Instantiate(gameObstacles["rock"], new Vector3(spawnpoints[randomIndex], 1.2f, i), Quaternion.identity).transform.parent = container.transform;
