@@ -81,7 +81,20 @@ public class Collisions : MonoBehaviour
             gameObject.GetComponent<Animator>().SetBool("outboat", false);
             inboat = true;
             gameObject.GetComponent<Animator>().SetBool("stopRun",true);
-        }else if (other.CompareTag("outboat"))
+        }
+        else if (other.CompareTag("water"))
+        {
+            if (inboat == false)
+            {
+                //need to kill player if in water and not in boat, so reset all collectable and kill player
+                helmet = false;
+                revive = false;
+                reviveDisplay.SetActive(false);
+                lives = 1;
+                TakeDamage(other);
+            }
+        }
+        else if (other.CompareTag("outboat"))
         {
             startgame.SetPlayerSpeed(startgame.playerSpeed);
             inboat = false;
