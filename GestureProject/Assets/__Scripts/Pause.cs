@@ -42,12 +42,12 @@ public class Pause : MonoBehaviour
                 timeleft = 3.0f;
                 timer = false;
                 StartGame.ControlsOn = true;
-            }
-            var foundNPCs = FindObjectsOfType<MoveNPC>();
-            // reset NPC movespeed
-            foreach (var item in foundNPCs)
-            {
-                item.MoveSpeed = 4f;
+                var foundNPCs = FindObjectsOfType<MoveNPC>();
+                // reset NPC movespeed
+                foreach (var item in foundNPCs)
+                {
+                    item.MoveSpeed = 4f;
+                }
             }
         }
 
