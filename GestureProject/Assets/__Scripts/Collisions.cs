@@ -168,12 +168,10 @@ public class Collisions : MonoBehaviour
             // Turn on/off controls.
             if (StartGame.ControlsOn == false)
             {
-                Debug.Log("Controls on");
                 StartGame.ControlsOn = true;
             }
             else
             {
-                Debug.Log("Controls off");
                 StartGame.ControlsOn = false;
             }
         }

@@ -40,6 +40,7 @@ public class StartGame : MonoBehaviour
         SetPlayerSpeed(.3f);
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
         playerMovement = true;
+
         //KManager.OnSwipeUpDown += new KManager.SimpleEvent(KinectManagerScript_OnSwipeUpDown);
     }
     
@@ -50,8 +51,6 @@ public class StartGame : MonoBehaviour
     {
         if(gameStarted == true)
         {
-            controlsOn = true;
-
             if(mainCamera.transform.position.x < 0 && fixedcamera == false)
             {
                 mainCamera.transform.position = new Vector3(mainCamera.transform.position.x+0.03f, mainCamera.transform.position.y, mainCamera.transform.position.z);
