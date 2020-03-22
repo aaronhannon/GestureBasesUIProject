@@ -40,7 +40,7 @@ public class Collisions : MonoBehaviour
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
             GameObject.Find("boat").transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
-            startgame.SetPlayerSpeed(.5f);
+            startgame.SetPlayerSpeed(.8f);
         }
     }
 
@@ -96,11 +96,11 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("outboat"))
         {
-            startgame.SetPlayerSpeed(startgame.playerSpeed);
             inboat = false;
             gameObject.GetComponent<Animator>().SetBool("outboat", true);
             gameObject.GetComponent<Animator>().SetBool("stopRun", false);
             Destroy(GameObject.Find("boat"));
+            startgame.SetPlayerSpeed(.4f);
         }
         else if (other.CompareTag("Enemy"))
         {

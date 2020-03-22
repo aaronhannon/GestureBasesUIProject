@@ -37,7 +37,7 @@ public class StartGame : MonoBehaviour
         tutorialText = GameObject.Find("TutorialText");
         playerRb = player.GetComponent<Rigidbody>();
         playerCollider = player.GetComponent<CapsuleCollider>();
-        SetPlayerSpeed(.3f);
+        SetPlayerSpeed(.4f);
         distToGround = player.GetComponent<Collider>().bounds.extents.y;
         playerMovement = true;
         controlsOn = false;

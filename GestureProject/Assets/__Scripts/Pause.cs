@@ -38,7 +38,7 @@ public class Pause : MonoBehaviour
             timeleft -= Time.deltaTime;
             if (timeleft < 0)
             {
-                startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.3f);
+                startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.4f);
                 timeleft = 3.0f;
                 timer = false;
                 StartGame.ControlsOn = true;
