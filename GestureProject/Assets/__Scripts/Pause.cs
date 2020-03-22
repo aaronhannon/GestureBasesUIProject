@@ -41,6 +41,7 @@ public class Pause : MonoBehaviour
                 startbutton.GetComponent<StartGame>().SetPlayerSpeed(0.3f);
                 timeleft = 3.0f;
                 timer = false;
+                StartGame.ControlsOn = true;
             }
             var foundNPCs = FindObjectsOfType<MoveNPC>();
             // reset NPC movespeed
@@ -58,6 +59,7 @@ public class Pause : MonoBehaviour
         //if game isnt paused, then pause game
         if (paused == false)
         {
+            StartGame.ControlsOn = false;
             //set pause to true and call pause animation
             paused = true;
             anim.SetBool("Paused", true);
