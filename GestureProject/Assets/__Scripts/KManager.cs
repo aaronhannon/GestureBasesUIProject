@@ -10,7 +10,7 @@ using System.Collections;
 public class KManager : MonoBehaviour 
 {
     VisualGestureBuilderDatabase _dbGestures;
-    Windows.Kinect.KinectSensor _kinect;
+    public Windows.Kinect.KinectSensor _kinect;
     VisualGestureBuilderFrameSource _gestureFrameSource;
     Windows.Kinect.BodyFrameSource _bodyFrameSource;
     VisualGestureBuilderFrameReader _gestureFrameReader;
@@ -35,6 +35,7 @@ public class KManager : MonoBehaviour
 
     void Start () 
     {
+        
         //initialise kinect
         InitKinect();
     }
@@ -167,6 +168,12 @@ public class KManager : MonoBehaviour
     void Update () 
     {
 	
+    }
+
+    void OnApplicationQuit()
+    {
+        _kinect.Close();
+        Debug.Log("Application ending after " + Time.time + " seconds");
     }
 }
 

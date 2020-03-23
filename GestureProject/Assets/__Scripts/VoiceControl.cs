@@ -216,6 +216,7 @@ public class VoiceControl : MonoBehaviour
         startgame.SetMovementState(false);
         //Shut down phraze recognition system, as cannot have both dictation and phraze active at same time - https://docs.microsoft.com/en-us/windows/mixed-reality/voice-input-in-unity
         PhraseRecognitionSystem.Shutdown();
+        GameObject.Find("Kinect Manager").GetComponent<KManager>()._kinect.Close();
         //reload scene
         SceneManager.LoadScene(0);
     }
