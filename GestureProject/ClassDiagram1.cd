@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AmbientLight">
+    <Position X="27.5" Y="6.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACCAEAAAiCAAAAAAAAAAAAAAAoAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\AmbientLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioController">
+    <Position X="24.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAgAGABAAAAAAAAAABAAAAgIAAAQAAAAAQAAEA=</HashCode>
+      <FileName>Assets\__Scripts\AudioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions">
+    <Position X="21.5" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="GenerateChunks" Type="GenerateChunks" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="23" Y="5.75" />
+        <Point X="23.717" Y="5.75" />
+        <Point X="23.717" Y="3.227" />
+        <Point X="24.5" Y="3.227" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAABggBAAyAQQREAACAAAAAgABIgKABBQAAAhAAAICA=</HashCode>
+      <FileName>Assets\__Scripts\Collisions.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StartGame" />
+      <Property Name="ScoreScript" />
+      <Property Name="MoveNPC" />
+      <Property Name="AudioController" />
+      <Property Name="GenerateChunks" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DeathVoiceControl">
+    <Position X="24.5" Y="13.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="StartGame" Type="StartGame" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="25.25" Y="13.5" />
+        <Point X="25.25" Y="12.438" />
+        <Point X="23" Y="12.438" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEAAAAIQACgAEAEIACAAAAAgAAAAAAAAAAQIAAAAIAA=</HashCode>
+      <FileName>Assets\__Scripts\DeathVoiceControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StartGame" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DestroyInvalidObstacles">
+    <Position X="27.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\DestroyInvalidObstacles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyPaths">
+    <Position X="29.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\DestroyPaths.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GenerateChunks">
+    <Position X="24.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAoAAEAACBAAAgBAAAAAICAAIAQABAAAGAAAEAAAAI=</HashCode>
+      <FileName>Assets\__Scripts\GenerateChunks.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ObstacleGenerator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KManager">
+    <Position X="24.5" Y="9" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="KManager.SimpleEvent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\__Scripts\KManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CABAAhAgACAIIAQBAiQAAgAiAAABAgAAKAEgAACAAAA=</HashCode>
+      <FileName>Assets\__Scripts\KManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StartGame" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="LoadingCircle">
+    <Position X="15.25" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAABAACAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\LoadingCircle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoveNPC">
+    <Position X="21.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\MoveNPC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDestroyer">
+    <Position X="29.75" Y="8.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\ObjectDestroyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObstacleGenerator">
+    <Position X="27" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>RCAJAAACACBAAAAgEIAACAEABAACAhAACQAGAghAAQA=</HashCode>
+      <FileName>Assets\__Scripts\ObstacleGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Options">
+    <Position X="18" Y="14.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACCAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\Options.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathGenerator">
+    <Position X="27.5" Y="10.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\PathGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pause">
+    <Position X="21.5" Y="14" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQAAAgAAiAAIAAAgAAAAAAAQAAAAAAAAQAAAAAAIAA=</HashCode>
+      <FileName>Assets\__Scripts\Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScoreboardScript">
+    <Position X="29.75" Y="10.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAEAAIACsAAAAAAAEABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\ScoreboardScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScoreScript">
+    <Position X="18" Y="5.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAAiBgAAAAAIAMBAAAAAAAAFAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\ScoreScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartGame">
+    <Position X="21.5" Y="9" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="AudioController" Type="AudioController" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="23" Y="9.813" />
+        <Point X="23.656" Y="9.813" />
+        <Point X="23.656" Y="7.588" />
+        <Point X="24.5" Y="7.588" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BEAgCABAEmIQAxgCAAAAAAABAAgAMAANYAEACQAEECA=</HashCode>
+      <FileName>Assets\__Scripts\StartGame.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pause" />
+      <Property Name="AudioController" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VoiceControl">
+    <Position X="18" Y="8.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Pause" Type="Pause" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="19.5" Y="13.375" />
+        <Point X="21.875" Y="13.375" />
+        <Point X="21.875" Y="14" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AEIgAAoQACgAEAmIICEwkCDggAARIAAAEIYIAEBAIAA=</HashCode>
+      <FileName>Assets\__Scripts\VoiceControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="StartGame1" />
+      <Property Name="LoadingCircle" />
+      <Property Name="Options" />
+      <Property Name="Pause" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
