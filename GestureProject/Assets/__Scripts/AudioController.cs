@@ -40,6 +40,7 @@ public class AudioController : MonoBehaviour
     void Update()
     {
         // Check if game audio is off using player prefs, if so mute audiosource.
+        // This turns the music on or off.
         if (PlayerPrefs.GetString("Music") == "True")
         {
             sourceMusic.mute = false;
@@ -87,7 +88,7 @@ public class AudioController : MonoBehaviour
             {
                 // Remove file extension from file name, get file from resouces and add to dictionary.
                 string[] fileName = file.Name.Split('.');
-
+                
                 AudioClip temp = Resources.Load("Audio/" + fileName[0]) as AudioClip;
                 audioClips.Add(fileName[0], temp);
             }

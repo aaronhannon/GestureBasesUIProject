@@ -15,6 +15,7 @@ public class AmbientLight : MonoBehaviour
 
     void Start()
     {
+        // Find gameojects in UI, and set initial values.
         firefly = GameObject.Find("firefly");
         skybox = GameObject.Find("SkyDome");
         mr = skybox.GetComponent<MeshRenderer>();
@@ -34,6 +35,7 @@ public class AmbientLight : MonoBehaviour
             light.intensity -= offset;
             RenderSettings.ambientIntensity -= offsetDiv;
             mr.material.mainTextureOffset = new Vector2(mr.material.mainTextureOffset.x + offsetDiv, 0);
+
             if (light.intensity <= 0.0f)
             {
                 change = true;
@@ -50,6 +52,7 @@ public class AmbientLight : MonoBehaviour
             light.intensity += offset;
             RenderSettings.ambientIntensity += offsetDiv;
             mr.material.mainTextureOffset = new Vector2(mr.material.mainTextureOffset.x - offsetDiv, 0);
+
             if (light.intensity >= 1.0f)
             {
                 change = false;

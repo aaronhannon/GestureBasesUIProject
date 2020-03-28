@@ -43,6 +43,7 @@ public class Pause : MonoBehaviour
                 timer = false;
                 StartGame.ControlsOn = true;
                 var foundNPCs = FindObjectsOfType<MoveNPC>();
+
                 // reset NPC movespeed
                 foreach (var item in foundNPCs)
                 {
@@ -50,7 +51,6 @@ public class Pause : MonoBehaviour
                 }
             }
         }
-
     }
 
     //method to pause game

@@ -36,8 +36,6 @@ public class Options : MonoBehaviour
         {
             PlayerPrefs.SetString("Music", "True");
         }
-
-        // SFX
     }
     
     public void OnMouseDown()

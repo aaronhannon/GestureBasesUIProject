@@ -35,7 +35,6 @@ public class KManager : MonoBehaviour
 
     void Start () 
     {
-        
         //initialise kinect
         InitKinect();
     }
@@ -89,7 +88,7 @@ public class KManager : MonoBehaviour
                 if (body != null && body.IsTracked)
                 {
                     _currentBody = body; // для простоты берем первого найденного человека
-		    break;
+		            break;
                 }
             }
             if (_currentBody != null)
@@ -102,7 +101,6 @@ public class KManager : MonoBehaviour
                 _gestureFrameSource.TrackingId = 0;
                 _gestureFrameReader.IsPaused = true;
             }
-            
         }
     }
 
@@ -163,11 +161,6 @@ public class KManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    void Update () 
-    {
-	
     }
 
     void OnApplicationQuit()

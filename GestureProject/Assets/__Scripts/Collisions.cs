@@ -20,10 +20,10 @@ public class Collisions : MonoBehaviour
     private GameObject player;
     private Pause pause;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        // Find Gameobjects and scripts from UI.
         scoreScript = FindObjectOfType<ScoreScript>();
         startgame = FindObjectOfType<StartGame>();
         playerRb = GameObject.Find("Low Poly Warrior").GetComponent<Rigidbody>();
@@ -36,6 +36,7 @@ public class Collisions : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Check if player is in boat and game isn't paused.
         if (inboat && (pause.GetPauseValue()==false))
         {
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, 1.5f, gameObject.transform.position.z);
@@ -50,12 +51,12 @@ public class Collisions : MonoBehaviour
         playerRb.AddForce(new Vector3(0.0f, 1.6f, 0.0f) * jumpSpeed, ForceMode.Impulse);
     }
 
+    // Called when a collider colliders with another collider, e.g. player with obstacle.
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("obstacle") || other.CompareTag("VillageObstacle") || other.CompareTag("ForestObstacle")|| other.CompareTag("RiverObstacle"))
         {
-            Debug.Log("Obstacle");
-
+            // Check if object is tree by name so animation can be triggered.
             if (!other.gameObject.name.Contains("tree")) {
                 other.gameObject.GetComponent<Animator>().SetBool("collided", true);
             }
@@ -64,13 +65,15 @@ public class Collisions : MonoBehaviour
             TakeDamage(other);
 
             AudioController.Instance.PlayAudioOnce("smash_fence");
-        }else if(other.CompareTag("EndChunk")){
-            
+        }
+        else if(other.CompareTag("EndChunk")){
+            // If last chunk, destroy and generate a new chunk.
             Destroy(other.transform.parent.gameObject);
             startgame.GetComponent<GenerateChunks>().GenerateChunk();
         }
         else if (other.CompareTag("boat"))
         {
+            // If not in boat, play animation to jump in boat.
             if(inboat == false)
             {
                 gameObject.GetComponent<Animator>().SetTrigger("inboat");
@@ -125,8 +128,6 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("roll"))
         {
-            Debug.Log("Roll");
-
             // Check if roll animation is playing.
             if (!playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("RollForward"))
             {
@@ -151,6 +152,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("helmet"))
         {
+            // Collect helmet object.
             GameObject.Find("playerHelm").GetComponent<Animator>().SetBool("spawnHelm",true);
             GameObject.Find("helmPowerUp").GetComponent<Animator>().SetBool("spawn", true);
             helmet = true;
@@ -159,6 +161,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("coin"))
         {
+            // Collect coin object.
             other.gameObject.GetComponent<Animator>().SetBool("pickup", true);
 
             other.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1f, gameObject.transform.position.z);
@@ -168,6 +171,7 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("revive"))
         {
+            // Collect revive object.
             Destroy(other);
             revive = true;
             reviveDisplay.SetActive(true);
@@ -188,6 +192,8 @@ public class Collisions : MonoBehaviour
         }
         else if (other.CompareTag("NPCStart"))
         {
+            // Finds all NPC's available and starts them running.
+            // This is so the NPC haven't run off screen until you get to the required chunk.
             var foundNPCs = FindObjectsOfType<MoveNPC>();
 
             foreach (var item in foundNPCs)
@@ -205,7 +211,6 @@ public class Collisions : MonoBehaviour
             GameObject heart = GameObject.Find("heart" + lives);
             Animator a = heart.GetComponent<Animator>();
             a.SetBool("Destroyed", true);
-            //Destroy(heart);Destroy(heart);
 
             lives--;
 
@@ -233,13 +238,12 @@ public class Collisions : MonoBehaviour
         // Turn off controls again when player dies.
         StartGame.ControlsOn = false;
 
-        //AudioController.Instance.PlayAudioOnce("playerDeath");
-
         // if user has collected a revive potion
         if (revive)
         {
             reviveDisplay.GetComponent<Animator>().SetTrigger("UseRevive");
             startgame.SetMovementState(false);
+
             //trigger revive animation transition
             playerAnimator.SetTrigger("Revive");
             AudioController.Instance.PlayAudioOnce("GlassBreak");

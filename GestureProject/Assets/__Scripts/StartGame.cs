@@ -102,12 +102,14 @@ public class StartGame : MonoBehaviour
                 RollForward();
             }
 
+            // Check if player is attacking.
             else if (Input.GetMouseButtonDown(0) && controlsOn)
             {
                 PlayerAttack();
             }
             else
             {
+                // Only allow movement methods to be called once.
                 onetime = false;
             }
         }
@@ -132,8 +134,10 @@ public class StartGame : MonoBehaviour
         }
     }
 
+    // Move the player one lane to the left.
     public void MoveLeft()
     {
+        // Check if player is within bounds, E.g they are not in the left lane.
         if(player.transform.position.x >= -2f && controlsOn)
         {
             player.transform.position = new Vector3(player.transform.position.x - moveSpeed, player.transform.position.y, player.transform.position.z);
@@ -141,8 +145,10 @@ public class StartGame : MonoBehaviour
         }
     }
 
+    // Move the player one lane to the right.
     public void MoveRight()
     {
+        // Check if player is within bounds, E.g they are not in the right lane.
         if (player.transform.position.x <= 2f && controlsOn)
         {
             player.transform.position = new Vector3(player.transform.position.x + moveSpeed, player.transform.position.y, player.transform.position.z);
@@ -150,44 +156,43 @@ public class StartGame : MonoBehaviour
         }
     }
     
+    // Player rolls forward to roll under trees.
     public void RollForward()
     {
-
         if (controlsOn)
         {
             animator.SetTrigger("RollForward");
         }
-
-        //AudioController.Instance.PlayAudioOnce("roll");
     }
 
-    public void SetPlayerSpeed(float speed)
-    {
-        playerSpeed = speed;
-    }
-
+    // Player swings axe to kill npcs.
     public void PlayerAttack()
     {
         if (controlsOn)
         {
             animator.SetTrigger("Attack");
         }
-        
     }
 
+    // Triggers start game on click.
     public void OnMouseDown()
     {
         gameStarted = true;
-        Debug.Log("Game Started");
 
         AudioController.Instance.PlayAudioOnce("horn");
 
         tutorialText.SetActive(false);
     }
 
+    // Set the player speed dynamically.
+    public void SetPlayerSpeed(float speed)
+    {
+        playerSpeed = speed;
+    }
+
+    // Start or stop the player.
     public void SetMovementState(bool boolVal)
     {
         playerMovement = boolVal;
     }
-
 }
